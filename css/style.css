@@ -1,0 +1,6228 @@
+/* ==========================================================================
+   СБРОС И УПРАВЛЕНИЕ ВИДИМОСТЬЮ (ДЕСКТОП ПО УМОЛЧАНИЮ)
+   ========================================================================== */
+
+.desktop-only-link {
+    display: inline-block;
+}
+
+:root {
+    /* Переменные шрифтов */
+    --font-main: 'Montserrat', sans-serif;         /* Основной интерфейс и формы */
+    --font-title: 'Playfair Display', serif;       /* Заголовки, логотип и меню */
+    --font-sub-title: 'Cormorant Garamond', serif; /* Подзаголовки, курсивы, цитаты */
+
+    /* Переменные цвета */
+    --color-dark-chockolate: #371910;
+    --color-pale-chockolate: #33301f80;
+    --color-gold: #a37629;
+    --color-accent-red: #e05a47;
+    --color-bg-light-gray: hsl(40, 20%, 97%);
+    --color-text-muted: hsl(34, 9%, 50%);
+    --color-border-soft: hsla(31, 43%, 60%, 0.302);
+    --color-background: hsl(0, 0%, 100%); 
+
+    /* Градиенты */
+    --gradient-gold: linear-gradient(180deg, #C5994A 0%, #9A722C 100%);
+    --gradient-gold-hover: linear-gradient(180deg, #D4A858 0%, #A87F35 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: var(--font-main);
+    color: var(--color-dark-chockolate);
+    overflow-x: clip;
+    position: relative;
+
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main.content-section,
+main {
+    flex: 1 0 auto;
+}
+
+footer, 
+.main-footer {
+    flex-shrink: 0;
+}
+
+/* Скрытие служебных элементов */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==========================================================================
+   1. ОБЩИЕ СТИЛИ СЕКЦИЙ (Унифицированные отступы 100px сверху)
+   ========================================================================== */
+
+.aesthetics-section,
+.stories-section,
+.chefs-choice-section,
+.trends-section,
+.world-cuisines-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px 0; 
+}
+
+/* Индивидуальные свойства для конкретных секций */
+.stories-section { 
+    scroll-margin-top: 90px;
+}
+
+/* Универсальный заголовок с длинными линиями и ромбиками */
+.section-title-italic {
+    font-family: var(--font-sub-title);
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-gold);
+    text-align: center;
+    margin-bottom: 64px;
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.section-title-italic::before,
+.section-title-italic::after {
+    content: '';
+    flex: 1;
+    height: 6px;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 4px 4px, calc(100% - 3px) 1px;
+}
+
+.section-title-italic::before {
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'%3E%3Crect width='4.2' height='4.2' x='0.9' y='0.9' fill='%23C5994A' transform='rotate(45 3 3)'/%3E%3C/svg%3E"),
+        linear-gradient(90deg, transparent 0%, var(--color-gold) 100%);
+    background-position: right center, left center;
+}
+
+.section-title-italic::after {
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'%3E%3Crect width='4.2' height='4.2' x='0.9' y='0.9' fill='%23C5994A' transform='rotate(45 3 3)'/%3E%3C/svg%3E"),
+        linear-gradient(90deg, var(--color-gold) 0%, transparent 100%);
+    background-position: left center, right center;
+}
+
+/* ==========================================================================
+   2. ОСНОВНАЯ ШАПКА (HEADER) - ДЕСКТОП
+   ========================================================================== */
+.main-header {
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px; 
+    max-width: 1440px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;       
+    flex-shrink: 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-header.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo-block {
+    color: var(--color-dark-chockolate);
+    font-family: var(--font-title);
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.logo-title {
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.2em; 
+    text-transform: uppercase;
+    transition: color 0.3s ease; 
+}
+
+.main-header .nav-group {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 440px;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                visibility 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-dark-chockolate);
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap; 
+    transition: color 0.25s ease;
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 36px; 
+    margin-left: auto; 
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-dark-chockolate);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+/* Переключатели иконки темы */
+.theme-btn .sun-icon { display: none; }
+.theme-btn .moon-icon { display: block; }
+body.dark-theme .theme-btn .sun-icon { display: block; }
+body.dark-theme .theme-btn .moon-icon { display: none; }
+
+/* ==========================================================================
+   3. ПОИСК И ЯЗЫК В ШАПКЕ - ДЕСКТОП
+   ========================================================================== */
+.search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 24px;
+}
+
+input[type="text"].search-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-gold);
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--color-dark-chockolate);
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    opacity: 0;
+    padding: 2px 0;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+input[type="text"].search-input::placeholder {
+    color: var(--color-pale-chockolate);
+    opacity: 0.8;
+}
+
+.search-box.active input[type="text"].search-input {
+    width: 180px;
+    opacity: 1;
+    padding: 2px 4px;
+    pointer-events: auto;
+}
+
+.lang-select-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 50%;
+    transform: translateX(50%);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-gold);
+    border-radius: 6px;
+    padding: 6px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+}
+
+.lang-option {
+    padding: 4px 16px;
+    font-family: var(--font-main);
+    font-size: 13px;
+    color: var(--color-dark-chockolate);
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ==========================================================================
+   4. ВЫПАДАЮЩЕЕ МЕНЮ РЕЦЕПТОВ - ДЕСКТОП
+   ========================================================================== */
+.dropdown-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-arrow {
+    margin-left: 4px;
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+}
+
+.glass-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 210px;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: 1px solid rgba(197, 153, 74, 0.25);
+    box-shadow: 0 15px 35px rgba(26, 14, 11, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 1010;
+}
+
+.glass-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--color-dark-chockolate);
+    border-radius: 6px;
+    position: relative; 
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+/* Ховер при наведении мыши */
+.dropdown-item:hover {
+    background-color: rgba(197, 153, 74, 0.08); 
+}
+
+/* Постоянное активное состояние раздела, на котором находится пользователь */
+.dropdown-item.is-active {
+    color: var(--color-gold, #c5a94a);
+    font-weight: 600;
+    padding-left: 18px; 
+}
+
+/* Тонкая вертикальная золотая полоска слева для активного пункта */
+.dropdown-item.is-active::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: var(--color-gold, #c5a94a);
+    border-radius: 2px;
+}
+
+/* --- СКРЫТИЕ МОБИЛЬНЫХ ЭЛЕМЕНТОВ НА ДЕСКТОПЕ --- */
+.mobile-search-box,
+.mobile-search-page-form.hide-on-desktop,
+.mobile-action-group,
+.mobile-only-dropdown,
+.mobile-only-link,
+.burger-btn {
+    display: none;
+}
+
+.dropdown-wrapper.open .dropdown-arrow {
+    transform: rotate(180deg);
+}
+.dropdown-wrapper.open .glass-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 2. Реакция на касание/клик — работает на планшетах и мобилках (без залипания ховера) */
+.dropdown-item:active,
+.dropdown-item:focus {
+    background-color: rgba(197, 153, 74, 0.12);
+    color: var(--color-gold);
+}
+
+.btn-primary:active {
+    background-color: #8c6a38;
+}
+
+/* --- СТРАНИЦА ИЗБРАННОГО --- */
+.favorites-page {
+    padding-top: 40px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Разметка сетки для карточек в избранном */
+#favoritesGrid.recipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px;
+}
+
+.page-title {
+    font-family: var(--font-title, 'Playfair Display', serif); 
+    font-size: 32px;
+    color: #1e1b1a;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #666666;
+    opacity: 0.85;
+}
+
+/* Пустое состояние (Empty State) */
+.empty-state {
+    text-align: center;
+    max-width: 520px;
+    margin: 60px auto;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(30, 27, 26, 0.05);
+    color: #8c6a38;
+    margin-bottom: 28px;
+}
+
+.empty-state h2 {
+    font-family: var(--font-title, 'Playfair Display', serif); 
+    font-size: 22px; 
+    font-weight: 500;
+    margin-bottom: 36px !important;
+    line-height: 1.3;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1e1b1a;
+    color: #ffffff;
+    border-radius: 24px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+#favoritesGrid .favorite-item .recipe-content {
+    padding: 14px 16px !important; 
+}
+
+#favoritesGrid .favorite-item .recipe-card-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 0 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important; 
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    height: auto !important; 
+    min-height: calc(1.1rem * 1.3 * 2) !important;
+    flex-grow: 0 !important;
+}
+
+/* Запрещаем ссылке внутри заголовка растягиваться на весь блок */
+#favoritesGrid .favorite-item .recipe-card-title a {
+    display: inline !important;
+    height: auto !important;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- ЕДИНЫЙ HERO-БАННЕР --- */
+.hero-banner {
+    width: 100%;
+    max-width: 1220px;
+    margin: 24px auto 0;
+    padding: 48px 40px;
+    background: linear-gradient(135deg, #1e1b1a 0%, #2a2421 100%);
+    border-radius: 16px;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c5994a;
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.hero-description {
+    color: #a89f91;
+    font-size: 0.95rem;
+    max-width: 660px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ====    1. ГЛОБАЛЬНЫЕ КОНТЕЙНЕРЫ И ТУЛБАР ПОИСКА    ==== */
+
+.container {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.content-section {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.content-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;          
+    margin-bottom: 12px;   
+    padding-bottom: 12px; 
+    border-bottom: 1px solid rgba(44, 37, 35, 0.08);
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.section-search-box {
+    position: relative;
+    flex: 1;
+    max-width: 320px;
+}
+
+.section-search-box input {
+    width: 100%;
+    padding: 10px 14px 10px 38px;
+    border-radius: 20px;
+    border: 1px solid rgba(44, 37, 35, 0.15);
+    background: transparent;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-dark-chockolate, #2c2523);
+    transition: all 0.2s ease;
+}
+
+.section-search-box input:focus {
+    outline: none;
+    border-color: var(--color-dark-chockolate, #2c2523);
+    background: #fff;
+}
+
+.section-search-box .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(44, 37, 35, 0.4);
+}
+
+.articles-counter {
+    font-size: 0.85rem;
+    color: rgba(44, 37, 35, 0.6);
+    white-space: white-space;
+    white-space: nowrap;
+}
+
+.articles-counter strong {
+    color: var(--color-dark-chockolate, #2c2523);
+}
+
+/* Управление бейджами через фильтры */
+.content-section[data-active-filter="all"] .card-badge {
+    display: inline-block;
+}
+
+.content-section[data-active-filter="story"] .card-badge,
+.content-section[data-active-filter="hack"] .card-badge {
+    display: none !important;
+}
+
+
+/* ====   2. СЕТКА КАРТОЧЕК И БАЗОВЫЕ ЭЛЕМЕНТЫ     ===== */
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 28px;
+    margin-bottom: 48px;
+}
+
+.article-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 154, 108, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    flex-direction: column;
+    min-height: 420px;
+}
+
+.article-card.is-hidden {
+    display: none !important;
+}
+
+/* Растягивание ссылки на всю карточку */
+.article-card-title a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #f4f1ea;
+}
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    /* Защита от микро-дребезжания */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Заголовки карточек */
+.article-card-title,
+h2.article-card-title,
+h3.article-card-title {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: 1.25rem; 
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.article-card-title a {
+    color: var(--color-dark-chockolate, #2c2523);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Текст-описание и мета-информация */
+.card-excerpt,
+.recipe-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1.4em * 3); 
+    font-size: 0.95rem;
+    color: #70675c;
+    line-height: 1.5;
+}
+
+.story-card .card-excerpt,
+.hack-card .card-excerpt {
+    margin-bottom: 16px;
+}
+
+.card-meta {
+    font-size: 0.8rem;
+    color: rgba(44, 37, 35, 0.5);
+    margin-top: auto; 
+    padding-top: 0; 
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.story-card .card-meta,
+.hack-card .card-meta {
+    padding-top: 16px;
+}
+
+.read-time,
+.story-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 20px;
+    font-weight: 400;
+    color: #888;
+}
+
+.read-time::before {
+    content: "⏱";
+    font-size: 0.8rem;
+}
+
+
+/* ===== СПЕЦИАЛЬНЫЕ КАРТОЧКИ И БАННЕРЫ ===== */
+
+/* Единый верхний Hero-баннер страницы */
+
+.hero-banner {
+    width: 100%;
+    max-width: 1220px;
+    margin: 24px auto 0;
+    padding: 40px 32px;
+    background: linear-gradient(135deg, #1e1b1a 0%, #2a2421 100%);
+    border-radius: 16px;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c5994a;
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.hero-description {
+    color: #a89f91;
+    font-size: 0.95rem;
+    max-width: 660px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Главная карточка-статья (Hero Story) в сетке */
+.story-hero-card {
+    grid-template-columns: 1fr 1.1fr !important;
+    gap: 30px !important;
+    margin-bottom: 40px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 154, 108, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.story-hero-card .card-image-wrap {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 360px;
+}
+
+.story-hero-card .card-image-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.story-hero-card .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 30px 30px 0;
+    box-sizing: border-box;
+}
+
+.story-hero-card .article-card-title {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+    font-size: 1.6rem; 
+    line-height: 1.3;
+}
+
+.story-hero-card .card-excerpt {
+    font-size: 1rem;
+}
+
+.hero-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.hero-card-footer .card-meta {
+    margin: 0; 
+    padding: 0;
+}
+
+.story-author {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #888;
+}
+
+/* Широкая featured-card в сетке */
+.article-card.featured-card {
+    grid-column: span 2;              
+    flex-direction: row;  
+    align-items: stretch;
+    background: linear-gradient(135deg, #ffffff 0%, #fcf8f3 100%);
+    border-color: var(--color-border-soft);
+    box-shadow: 0 10px 25px rgba(196, 154, 108, 0.08);
+}
+
+.article-card.featured-card .card-image-wrap {
+    flex: 0 0 44%;
+    max-width: 44%;
+    min-height: 100%;
+    margin-bottom: 0;
+}
+
+.article-card.featured-card .card-content {
+    justify-content: space-between;
+    padding: 30px 28px 20px;
+}
+
+.article-card.featured-card .article-card-title {
+    font-size: 1.5rem;
+}
+
+.article-card.featured-card .card-excerpt {
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-line-clamp: 5;
+    max-height: calc(1.55em * 5);
+}
+
+
+/* ==== КНОПКА "ПОКАЗАТЬ ЕЩЕ" И СТИЛИ СТАТЬИ (ДЕМО / СТРАНИЦА) ====== */
+
+.load-more-wrap {
+    text-align: center;
+}
+
+.load-more-btn {
+    padding: 14px 36px;
+    border-radius: 28px;
+    border: 1px solid var(--color-dark-chockolate, #1e1b1a);
+    background: #ffffff; 
+    color: var(--color-dark-chockolate, #1e1b1a); 
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.container-narrow {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 0;
+}
+
+.article-header {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.article-badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.article-title {
+    font-size: 2.25rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--color-dark-chockolate, #1a1a1a);
+    margin: 0 0 12px;
+    min-height: 2.6em;
+}
+
+.article-lead {
+    font-family: var(--font-sub-title); 
+    font-size: 1.35rem;
+    line-height: 1.5;
+    font-style: italic;
+    margin: 0 0 24px 0;
+    padding-left: 18px;
+    border-left: 3px solid var(--color-gold);
+}
+
+.article-author-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #777777;
+    margin-bottom: 16px;
+}
+
+.meta-dot {
+    color: #ccc;
+}
+
+.article-hero-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 36px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.article-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Компактный класс для иллюстраций и коллажей внутри текста статьи */
+.article-embedded-image {
+    max-width: 78%;
+    margin: 0 auto;
+}
+
+.article-embedded-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px; 
+}
+
+.article-embedded-image .image-caption {
+    margin-top: 8px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-text-muted);
+    text-align: right;
+}
+
+.article-body {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+}
+
+/* Сближаем только абзацы, идущие друг за другом */
+.article-body p + p {
+    margin-top: -10px;
+}
+
+/* Заголовки */
+.article-body h2 {
+    font-size: 1.65rem;
+    line-height: 1.3;
+    margin: 8px 0 -8px;
+}
+
+.article-body h3 {
+    font-size: 1.3rem;
+    margin: 6px 0 -8px 0;
+}
+
+/* Списки */
+.article-body ul, 
+.article-body ol {
+    margin-left: 24px;
+    padding: 0;
+}
+
+.article-body li {
+    margin-bottom: 8px;
+}
+
+.article-body li:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================
+   ОБЩИЕ СТИЛИ ДЛЯ АКЦЕНТНЫХ БЛОКОВ
+   ========================================== */
+.quote-box,
+.chef-note {
+    background-color: #f9f8f6;
+    border-left: 4px solid #e05a47;
+    border-radius: 0 12px 12px 0;
+    color: var(--color-dark-chockolate);
+    padding: 24px 28px;
+    margin: 12px 0;
+}
+
+/* ==========================================
+   1. ЦИТАТА В ИСТОРИЯХ (.quote-box)
+   ========================================== */
+.quote-box {
+    font-family: var(--font-sub-title);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* ==========================================
+   2. СОВЕТ ШЕФА В ЛАЙФХАКАХ (.chef-note)
+   ========================================== */
+.chef-note {
+    font-family: var(--font-main);      
+    font-size: 1rem;                    
+    line-height: 1.6;
+    font-style: normal;                
+}
+
+.article-body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* --- БАЗОВЫЕ ПРАВИЛА ДЛЯ КРОШЕК --- */
+.breadcrumbs-container {
+    width: 100%;
+    max-width: 1220px;
+    margin: 20px auto 24px auto;
+    padding: 0 16px; 
+    font-size: 0.9rem;
+}
+
+.recipe-page .breadcrumbs-container,
+.story-article .breadcrumbs-container,
+.hack-article .breadcrumbs-container {
+    max-width: 100%;
+    padding: 0;
+    margin: 16px 0 20px 0;
+}
+
+.breadcrumbs-container a {
+    color: #8c8275;
+    text-decoration: none;
+    transition: color 0.2s ease;    
+}
+
+.breadcrumbs-container .separator {
+    margin: 0 3px;
+    color: #c49a6c;
+    opacity: 0.6;
+}
+
+.hide-on-desktop {
+    display: none;
+}
+
+/* Единая аккуратная ссылка «Назад» */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 400; 
+    color: #8c8275; 
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* --- ФИЛЬТРЫ И ТЕГИ --- */
+
+.tags-scroll {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap; 
+    overflow-x: auto;  /* Горизонтальный скролл при нехватке места */
+    margin-top: 24px;
+    margin-bottom: 16px;
+    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
+    -webkit-overflow-scrolling: touch;
+}
+
+.content-toolbar .tags-scroll {
+    margin: 0 !important;
+}
+
+.tags-scroll::-webkit-scrollbar { 
+    display: none; /* Скрываем скроллбар в Chrome и Safari */
+}
+
+.tag-btn {
+    background-color: #f5f2ed;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #524842;
+    transition: all 0.25s ease;
+    flex-shrink: 0; /* Запрещаем кнопкам сжиматься */
+}
+
+    .tag-btn.active {
+        background-color: #1e1b1a;
+        color: #ffffff;
+        border-color: #1e1b1a;
+    }
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* БАЗОВЫЙ СТИЛЬ КАРТОЧКИ РЕЦЕПТА */
+.recipe-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 154, 108, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.recipe-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.recipe-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    /* Аппаратное ускорение и сглаживание для устранения подпрыгиваний */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* 1. Карточки в каталоге  */
+/* Общие стили для всех кнопок избранного */
+.fav-btn,
+.mobile-fav-btn {
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    backdrop-filter: blur(10px) saturate(140%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark-chockolate, #1e1b1a);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Позиция и размер только для карточек */
+.fav-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    isolation: isolate;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Активное состояние (добавлено в избранное) */
+.fav-btn.is-active,
+.mobile-fav-btn.is-active {
+    background: #ffffff;
+    color: #c5994a;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+.fav-btn.is-active svg,
+.mobile-fav-btn.is-active svg {
+    fill: currentColor;
+}
+
+/* Плашка категории */
+.card-image-wrap .card-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    top: auto;
+    right: auto;
+    
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    
+    margin: 0;
+    padding: 5px 12px;
+    
+    background: var(--color-pale-chockolate); 
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    
+    max-width: calc(100% - 64px); 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   КНОПКИ ИЗБРАННОГО НА СТРАНИЦЕ РЕЦЕПТА
+   ========================================================================== */
+
+.mobile-fav-btn {
+    display: none;
+}
+
+/* Делаем правый блок флексом с колоночным направлением */
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Убеждаемся, что блок занимает всю высоту рядом с фото */
+}
+
+/* Кнопка "Добавить в избранное" на странице рецепта */
+.recipe-fav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto; 
+  align-self: flex-start; 
+  padding: 10px 18px;
+  background-color: transparent;
+  border: 1.5px solid #1e1b1a;
+  border-radius: 20px;
+  color: #1e1b1a;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Иконка закладок в обычном состоянии */
+.recipe-fav-btn .bookmark-icon {
+  stroke: #1e1b1a;
+  fill: none;
+  transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+
+/* Активное состояние кнопки (когда рецепт сохранен в избранное) */
+.recipe-fav-btn.is-active {
+  background-color: #1e1b1a;
+  border-color: #1e1b1a;
+  color: #ffffff;
+}
+
+.recipe-fav-btn.is-active .bookmark-icon {
+  fill: #ffffff;
+  stroke: #ffffff;
+}
+
+.recipe-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(30, 27, 26, 0.75);
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+/* Изменения только для карточек в каталоге и поиске */
+.recipe-content { 
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 2.6em;
+ }
+
+ .recipe-card .recipe-meta { margin-bottom: 12px; }
+ .recipe-level { font-size: 0.70rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+
+.recipe-card-title { 
+    font-family: var(--font-title, 'Playfair Display', serif); 
+    font-size: 1.2rem; 
+    margin-bottom: 8px; 
+    line-height: 1.3; 
+}
+
+.recipe-card-title a { 
+    color: var(--color-dark-chockolate, #1e1b1a);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Кликабельность всей карточки через псевдоэлемент ссылки */
+.recipe-card-title a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ==========================================
+   ОСНОВНОЙ БЛОК СТРАНИЦЫ РЕЦЕПТА
+   ========================================== */
+
+/* Контейнер страницы */
+.recipe-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+/* --- ГЛАВНАЯ СЕКЦИЯ (Фото + Инфо) --- */
+.recipe-hero {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 35px;
+    align-items: stretch; 
+}
+
+.recipe-image-wrapper {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.recipe-cover {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Главный заголовок рецепта (Десктоп) */
+.recipe-single-title {
+    font-family: var(--font-title);
+    color: var(--color-dark-chockolate);
+    font-size: 2rem;            
+    font-weight: 600;
+    line-height: 1.1;
+    text-transform: none;
+    margin-top: -5px;
+    margin-bottom: 16px;
+}
+
+.recipe-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #8c6a38;
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.recipe-meta {
+    font-size: 12px;                  
+    color: #9a722c;                   
+    font-weight: 500;                 
+    letter-spacing: 0.03em;           
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.recipe-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #5c4d44;
+}
+
+/* --- ДЕКОРАТИВНЫЕ РАЗДЕЛИТЕЛИ --- */
+.section-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 50px 0 25px;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #c7beaf;
+}
+
+.section-divider h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #5c4d44;
+    padding: 0 20px;
+}
+
+/* --- СЕКЦИЯ ИНГРЕДИЕНТОВ --- */
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.ingredients-col {
+    list-style: none;
+}
+
+.ingredients-col li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 12px;
+    color: #5c4d44;
+}
+
+.ingredients-col li::before {
+    content: '•';
+    color: #8c6a38;
+    position: absolute;
+    left: 0;
+}
+
+/* --- БЛОК CHEF'S TIPS --- */
+.chefs-tips-banner {
+    background: linear-gradient(135deg, #1f1715 0%, #2b211e 100%);
+    background-color: #2b211e; /* Резервный цвет, если нет картинки */
+    color: #e6dfd3;
+    padding: 35px 40px;
+    border-radius: 4px;
+    margin: 45px 0 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-left: 3px solid #d4af37;
+}
+
+.chefs-tips-banner h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: #d4af37;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.tips-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #d9d0c1;
+}
+
+.tips-content p:last-child {
+    margin-bottom: 0;
+}
+
+.tips-content strong {
+    color: #fff;
+}
+
+/* --- СЕКЦИЯ ПРИГОТОВЛЕНИЯ --- */
+.steps-list {
+    list-style: none;
+}
+
+.steps-list li {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.step-num {
+    background: #8c6a38;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.steps-list p {
+    color: #5c4d44;
+    line-height: 1.6;
+}
+
+/* === СТРАНИЦА ПОИСКА === */
+
+.search-page-section {
+    padding-top: 70px;
+}
+
+/* Выделение искомого запроса */
+#searchQueryTitle {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+/* Счетчик результатов */
+.search-counter {
+    margin-bottom: 24px;
+    color: #666;
+}
+
+/* Сетка результатов */
+#searchResultsGrid {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+/* Заглушка, если ничего не найдено */
+#noResults {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#noResults h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+#noResults p {
+    color: #888;
+}
+
+/* ==========================================================================
+   5. БАННЕР-КАРУСЕЛЬ (HERO CAROUSEL)
+   ========================================================================== */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: var(--color-dark-chockolate);
+
+    /* ВСТАВКА ДЛЯ ИДЕАЛЬНОГО МОБИЛЬНОГО СВАЙПА */
+    touch-action: pan-y;         
+    user-select: none;           
+    -webkit-user-select: none;   
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: flex;
+    align-items: center;
+    pointer-events: none; 
+    z-index: 1;
+    overflow: hidden;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    
+    /* ВСТАВКА: разрешаем активному слайду принимать свайпы и клики по кнопке */
+    pointer-events: auto; 
+    z-index: 2;
+}
+
+.slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    transform: scale(1.03);
+    transition: transform 6s ease-out;
+    pointer-events: none; 
+}
+
+.carousel-slide.active .slide-img {
+    transform: scale(1);
+}
+
+.slide-overlay {
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    background: linear-gradient(90deg, 
+        rgba(26, 14, 11, 0.85) 0%, 
+        rgba(26, 14, 11, 0.5) 45%, 
+        rgba(26, 14, 11, 0) 100%);
+    z-index: 2;
+}
+
+.carousel-slide.light-slide .slide-overlay {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 255, 255, 0.7) 45%, 
+        rgba(255, 255, 255, 0) 100%);
+}
+
+.slide-content {
+    position: relative;
+    pointer-events: none;
+    z-index: 3;
+    max-width: 600px;
+    padding-left: 90px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.slide-content .btn-gold,
+.slide-content a {
+    pointer-events: auto; 
+}
+
+.carousel-slide.light-slide .slide-content {
+    color: var(--color-dark-chockolate);
+}
+
+.slide-tag {
+    font-family: var(--font-main);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+}
+
+.slide-title {
+    font-family: var(--font-title);
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+}
+
+.slide-subtitle {
+    font-family: var(--font-sub-title);
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.carousel-slide.light-slide .slide-subtitle {
+    color: var(--color-dark-chockolate);
+    opacity: 0.8;
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--gradient-gold);
+    color: #FFFFFF;
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(154, 114, 44, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Кнопки переключения карусели главного баннера */
+.hero-carousel .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    
+    /* Добавляем скрытие по умолчанию и плавность анимации */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-carousel .prev-btn { left: 24px; }
+.hero-carousel .next-btn { right: 24px; }
+
+/* Авто-адаптация стрелок под светлый слайд (Michelin) */
+.hero-carousel:has(.light-slide.active) .carousel-btn {
+    background: rgba(26, 14, 11, 0.08);
+    border-color: rgba(26, 14, 11, 0.2);
+    color: var(--color-dark-chockolate);
+}
+
+/* Индикаторы (точки) */
+.hero-carousel .carousel-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-carousel .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
+}
+
+.hero-carousel .dot.active {
+    background: var(--color-gold);
+    width: 28px;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   6. СЕКЦИЯ AESTHETICS (ИСКУССТВО ПОДАЧИ)
+   ========================================================================== */
+
+.aesthetics-header {
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aesthetics-subtitle {
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.aesthetics-title {
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--color-dark-chockolate);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+}
+
+.aesthetics-divider {
+    position: relative;
+    width: 240px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+    margin: 0 auto;
+}
+
+.aesthetics-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 5px;
+    height: 5px;
+    background-color: var(--color-gold);
+}
+
+.aesthetics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* Эстетичная карточка */
+.aesthetics-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #FAF7F2;
+    box-shadow: 0 10px 25px rgba(26, 14, 11, 0.06);
+}
+
+.aesthetics-card-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    width: 100%;
+}
+
+.aesthetics-card-image {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.aesthetics-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    
+    /* Блокируем микро-дребезжание крайних пикселей */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.aesthetics-card-footer {
+    padding: 24px 16px;
+    text-align: center;
+    background-color: #FAF7F2;
+}
+
+.aesthetics-card-title {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-dark-chockolate);
+    transition: color 0.25s ease;
+}
+
+/* ==========================================================================
+   6. КУЛИНАРНЫЕ ПОДБОРКИ
+   ========================================================================== */
+
+.stories-container {
+    display: flex;      
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 45px;
+}
+
+.story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 140px;
+    transition: transform 0.3s ease;
+}
+
+.story-circle-wrapper {
+    width: 136px;
+    height: 136px;
+    border-radius: 50%;
+    padding: 3px;
+    border: 1.5px solid transparent; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(212, 155, 45, 0.45);
+}
+
+.story-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.story-label {
+    margin-top: 16px;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-dark-chockolate);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.3;
+    transition: color 0.25s ease;
+}
+
+/* ==========================================================================
+   7. ВЫБОР ШЕФА (CHEF'S CHOICE)
+   ========================================================================== */
+
+.chefs-choice-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 24px;
+}
+
+.chefs-choice-side {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.chef-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    background-color: #FAF7F2;
+    box-shadow: 0 10px 25px rgba(26, 14, 11, 0.08);
+    
+    /* Изолируем слои, чтобы браузер не дергал внешние границы */
+    isolation: isolate;
+    
+    /* Плавный подъём карточки и тени */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+.card-large { height: 480px; }
+.card-small { height: 228px; }
+
+.card-img-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0) scale(1);
+
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(26, 14, 11, 0.85) 100%);
+    padding: 24px; 
+    display: block; 
+    color: #FFFFFF;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Бейдж прижимаем к верхнему левому углу оверлея */
+.card-overlay .card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--color-pale-chockolate);
+    backdrop-filter: blur(4px);         
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    z-index: 2;
+}
+
+/* Заголовок прижимаем к нижнему левому углу оверлея */
+.card-overlay .card-title {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-family: var(--font-title);
+    font-weight: 300 !important; 
+    line-height: 1.25;
+    color: #FFFFFF;
+    letter-spacing: 0.01em;
+}
+
+.card-large .card-title { 
+    font-size: 1.35rem;
+    bottom: 40px;
+}
+
+.card-small .card-title { font-size: 1.05rem; }
+
+.card-desc {
+    position: absolute;
+    bottom: 18px;
+    left: 16px;
+    right: 16px;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.755);
+    margin-top: 0;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   8. ПОПУЛЯРНЫЕ ТРЕНДЫ (GLOBAL TRENDS)
+   ========================================================================== */
+
+.trends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.trend-card {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(26, 14, 11, 0.06);
+    border: 1px solid rgba(197, 153, 74, 0.15);
+    display: flex;
+    flex-direction: column;
+    
+    /* Изолируем контекст рендеринга против микро-сдвигов */
+    isolation: isolate;
+    
+    /* Плавная синхронизированная анимация подъёма, тени и границ */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+
+.trend-card-link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.trend-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    transform: translateZ(0);
+    border-radius: 14px 14px 0 0;
+}
+
+.trend-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0) scale(1);
+    
+    /* Настройка мягкого зума картинки */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.trend-info {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.trend-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.trend-title {
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-dark-chockolate);
+    line-height: 1.25;
+    transition: color 0.25s ease;
+}
+
+.trend-subtitle {
+    font-family: var(--font-main);
+    font-size: 0.82rem;
+    color: var(--color-pale-chockolate);
+    margin-top: 4px;
+}
+
+.trend-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: var(--font-main);
+    color: #FFFFFF;
+    width: 95px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+/* Цветовые акценты плашек */
+.tag-street { background-color: #8C3A27; }
+.tag-viral  { background-color: #D97724; }
+.tag-healthy{ background-color: #1E8754; }
+.tag-quick  { background-color: #A33B3B; }
+.tag-fast   { background-color: #804B18; }
+.tag-fine   { background-color: #2D503B; }
+
+/* ==========================================================================
+   ЖЕСТКИЙ ДВУХКОЛОНОЧНЫЙ БЛОК (ФЕРМЕНТАЦИЯ + ИНГРЕДИЕНТЫ)
+   ========================================================================== */
+.trending-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto 0;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.trending-col-left,
+.trending-col-right {
+  flex: 1 1 0%;
+  min-width: 0; 
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   ТРЕНДЫ: ЛЕВАЯ И ПРАВАЯ КОЛОНКИ
+   ========================================================================== */
+
+/* --- Левая колонка --- */
+.trending-sub-title {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8C6225;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.trending-circles-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* ==========================================================================
+   1. КРУЖОЧКИ (ИНГРЕДИЕНТЫ В МОДЕ)
+   ========================================================================== */
+
+.trending-circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.trending-img-box {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background-color: var(--color-bg-light-gray);
+    
+    /* Начальная прозрачная рамка, чтобы при hover контент не сдвигался */
+    border: 2px solid transparent; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    
+    /* Плавный переход для рамки и свечения */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trending-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.trending-item-label {
+    margin-top: 10px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    color: var(--color-dark-chockolate);
+    transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   БАННЕР ФЕРМЕНТАЦИИ 
+   ========================================================================== */
+
+.ferment-card {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-background);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.ferment-card-img {
+    width: 55%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-dark-chockolate);
+}
+
+/* Стили для вложенной картинки <img> */
+.ferment-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ferment-card-info {
+    width: 45%;
+    height: 100%;
+    background-color: var(--color-dark-chockolate);
+    padding: 28px 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.ferment-card-info h4 {
+    color: #ffffff;
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    margin: 0 0 10px 0;
+    font-weight: 400;
+}
+
+.ferment-card-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0 0 auto 0;
+}
+
+/* Кнопка неподвижна, только свечение при hover */
+.ferment-card-info .btn-gold {
+    margin-top: 16px;
+    background: var(--gradient-gold);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    transform: none !important;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== СЕКЦИЯ КУХНИ МИРА ==================== */
+
+/* Обёртка для позиционирования стрелок */
+.marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* --- 1. Бесконечная бегущая лента --- */
+.cuisines-cards-grid {
+    display: flex !important;
+    gap: 24px !important;
+    width: max-content !important;
+    padding: 10px 0 80px 0 !important;
+    margin-bottom: 80px !important;
+    align-items: start !important;
+    will-change: transform !important;
+}
+
+/* --- Карточки и Лесенка --- */
+.cuisine-card {
+    position: relative !important;
+    width: 270px !important;
+    flex-shrink: 0 !important;
+    height: 340px !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    text-decoration: none !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+    
+    /* Сохраняем плавный переход для сдвига */
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+/* Настройки высоты лесенки */
+.cuisine-card.card-up {
+    transform: translateY(0) !important;
+}
+
+.cuisine-card.card-down {
+    transform: translateY(45px) !important;
+}
+
+/* Картинка плавно масштабируется внутри */
+.card-bg-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Glassmorphism панель */
+.card-glass-content {
+    position: relative !important;
+    z-index: 2 !important;
+    background: rgba(45, 38, 35, 0.45) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 16px 14px 18px 14px !important;
+    text-align: center !important;
+    color: #ffffff !important;
+}
+
+.glass-title {
+    font-family: "Playfair Display", Georgia, serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 6px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.glass-desc {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 6px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Акцентные полоски флагов */
+.flag-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.flag-india { background: linear-gradient(to right, #FF9933 0%, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%); }.flag-italy { background: linear-gradient(to right, #009246 0%, #009246 33%, #FFFFFF 33%, #FFFFFF 66%, #CE2B37 66%); }
+.flag-hawaii { background: linear-gradient(to right, #0077BE 0%, #0077BE 33.3%, #F4D06F 33.3%, #F4D06F 66.6%, #D23333 66.6%); }
+.flag-east { background: linear-gradient(to right, #002366 0%, #002366 40%, #FFFFFF 40%, #FFFFFF 60%, #002366 60%); }
+.flag-mexico { background: linear-gradient(to right, #008080 0%, #008080 33.3%, #D2691E 33.3%, #D2691E 66.6%, #FFD700 66.6%); }
+
+/* --- 2. Баннер с цитатой о Китае --- */
+.china-banner {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 90px; 
+}
+
+.china-banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.china-banner-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(202, 177, 137, 0.4) 0%, rgba(160, 135, 105, 0.55) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.china-banner-quote {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--color-background);
+    text-shadow: 0 1px 3px rgba(40, 25, 15, 0.6);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 1000px;
+}
+
+/* --- 3. Круглые карточки истории --- */
+.history-circles-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    gap: 24px;
+}
+
+.circle-card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    max-width: 210px;
+    text-align: center;
+}
+
+/* Оболочка круга с ЭФФЕКТОМ МЕДАЛЬОНА */
+.circle-img-frame {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: inset 0 0 22px rgba(30, 30, 30, 0.6), 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.4s ease;
+}
+
+.circle-img-frame img {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Плавное приближение самой фотографии */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Текст под кругом */
+.circle-card-title {
+    font-family: var(--font-main, "Montserrat", sans-serif);
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #5a4e46;
+    max-width: 180px;
+    transition: color 0.3s ease;
+}
+
+/* ==================== ФУТЕР / ПОДВАЛ ==================== */
+
+.site-footer {
+    background-color: #1e1b1a; 
+    color: #a89f91;
+    font-family: var(--font-main, 'Montserrat', sans-serif);
+    padding-top: 40px;
+    margin-top: 70px;
+    flex-shrink: 0;
+}
+
+/* Контейнер с отступами между колонками */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 40px 40px; 
+    display: grid;
+    grid-template-columns: 2.2fr 1.2fr 1.5fr; 
+    gap: 60px; 
+}
+
+
+.footer-logo {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: 1.6rem;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px; 
+}
+
+.footer-logo span {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: #c5994a; 
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.footer-desc {
+    color: #8c8275;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 28px; 
+    max-width: 320px;
+}
+
+/* Соцсети */
+.footer-socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c2b5a5;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+
+/* Заголовки колонок "РАЗДЕЛЫ" и "КОНТАКТЫ" */
+.footer-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c5994a; 
+    margin-bottom: 24px; 
+    font-weight: 600;
+}
+
+/* Список ссылок */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 14px; 
+}
+
+.footer-links a {
+    color: #a89f91;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    display: inline-block;
+}
+
+/* Блок контактов */
+.footer-contact-item {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-bottom: 8px; 
+    font-weight: 500;
+}
+
+.footer-contact-text {
+    color: #8c8275;
+    font-size: 0.88rem;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+/* Нижняя плашка с копирайтом */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 0;
+    background-color: #171514;
+}
+
+.footer-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center; 
+    font-size: 0.82rem;
+    color: #6b6257;
+}
+
+/* ==========================================================================
+   1. ОБЩИЙ БЛОК ДЛЯ ВСЕХ ПЛАНШЕТОВ (от 600px до 1199px)
+   Базовые стили, сетки, шапка и типографика для Surface, iPad Pro и iPad mini
+   ========================================================================== */
+@media (min-width: 600px) and (max-width: 1199px) {
+    /* Отступы секций */
+    .aesthetics-section,
+    .stories-section,
+    .chefs-choice-section,
+    .trends-section,
+    .world-cuisines-section {
+        padding: 80px 20px 0;
+    }
+
+    .section-title-italic {
+        font-size: 1.8rem;
+        margin-bottom: 48px;
+        gap: 16px;
+    }
+
+    /* ШАПКА */
+    .main-header {
+        padding: 20px 40px;
+    }
+
+    /* Исправленный селектор: ищет активный поиск внутри шапки и скрывает меню */
+    .main-header:has(.search-box.active) .nav-group {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .main-header .nav-group {
+        position: static;
+        transform: none;
+        justify-content: center;
+        width: auto; 
+        max-width: none;
+        flex: 1; 
+        margin: 0;
+        gap: 60px;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .main-header .nav-link {
+        font-size: 1.15rem;
+    }
+
+    .main-header .action-group {
+        justify-content: flex-end;
+        gap: 28px;
+        flex-shrink: 0;
+    }
+
+    /* ГЛАВНЫЙ БАННЕР КАРУСЕЛИ */
+
+    .hero-carousel {
+        height: 380px; 
+    }
+
+    .slide-content {
+        padding-left: 56px;
+        max-width: 520px;
+        text-align: left;
+    }
+
+    .slide-title {
+        font-size: 2.1rem;
+        margin-bottom: 12px;
+    }
+
+    .slide-subtitle {
+        font-size: 1.1rem; 
+        margin-bottom: 22px;
+    }
+
+    .slide-tag {
+        margin-bottom: 8px;
+    }
+
+    .hero-carousel .carousel-btn {
+        display: none !important;
+    }
+
+    /* ИСКУССТВО ПОДАЧИ */
+    .aesthetics-grid {
+        gap: 24px !important;
+    }
+
+    .aesthetics-card.article-card {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .aesthetics-card-link {
+        height: auto !important;
+    }
+
+    .aesthetics-card-image {
+        height: 280px !important; 
+    }
+
+    .aesthetics-card-footer {
+        padding: 20px 14px !important;
+    }
+
+    .aesthetics-card-title {
+        font-size: 1.15rem !important;
+    }
+
+    /* КУЛИНАРНЫЕ ПОДБОРКИ (КРУГИ) */
+    .stories-container {
+        flex-wrap: nowrap;
+        gap: 34px;
+    }
+
+    .story-item {
+        width: 120px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .story-circle-wrapper {
+        width: 116px !important;
+        height: 116px !important;
+    }
+
+    .story-label {
+        font-size: 0.72rem !important;
+        margin-top: 10px !important;
+    }
+
+    /* ВЫБОР ШЕФА */
+
+    .chefs-choice-grid {
+        gap: 20px;
+    }
+
+    .chefs-choice-side {
+        gap: 20px;
+    }
+
+    .card-large {
+        height: 420px;
+    }
+
+    .card-small {
+        height: 200px;
+    }
+
+    .card-badge {
+        font-size: 0.6rem !important;
+        padding: 4px 10px !important;
+    }
+
+    .card-small .card-badge {
+        top: 12px;
+        left: 12px;
+    }
+
+    .card-large .card-title {
+        font-size: 1.30rem;
+    }
+
+    .card-small .card-title {
+        font-size: 1.02rem;
+    }
+
+    /* ТРЕНДЫ */
+
+    .trends-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .trend-img-wrapper {
+        height: 160px;
+    }
+
+    .trend-title {
+        font-size: 1rem;
+    }
+
+    .trend-subtitle {
+        font-size: 0.78rem;
+    }
+
+    .trend-badge {
+        position: static;
+        width: 90px;
+        height: 24px;
+        font-size: 0.68rem;
+    }
+
+    .fav-btn {
+        width: 32px;
+        height: 32px;
+        top: 12px;
+        right: 12px;
+    }
+
+    .fav-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+/* ИНГРЕДИЕНТЫ И ФЕРМЕНТАЦИЯ В ТРЕНДЕ */
+    .trending-flex-row {
+        margin-top: 50px;
+        gap: 24px;
+        align-items: stretch; /* Одинаковая высота колонок */
+    }
+
+
+    .trending-sub-title {
+        margin-bottom: 25px;
+    }
+
+    /* Плотная сетка для кружков, чтобы они красиво умещались */
+    .trending-circles-wrap {
+        gap: 12px; 
+
+    }
+
+    .trending-circle-item {
+        width: 85px; 
+    }
+
+    .trending-img-box {
+        width: 85px;
+        height: 85px;
+    }
+
+    .trending-item-label {
+        font-size: 12px;
+        margin-top: 6px;
+        display: block;
+    }
+
+    /* Карточка ферментации справа */
+    .ferment-card {
+        height: 100%;
+        flex-grow: 1;
+        overflow: hidden;
+    }
+
+    .ferment-card-img {
+        flex: 1;
+        min-height: 100%;
+    }
+
+    .ferment-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ferment-card-info {
+        flex: 1;
+        padding: 18px 16px;
+    }
+
+    .ferment-card-info h4 {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+    }
+
+    .ferment-card-info p {
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+
+    .ferment-card-info .btn-gold {
+        margin-top: auto;
+        padding: 8px 14px;
+        font-size: 0.78rem;
+    }
+
+    /* КУХНИ МИРА */
+    .cuisine-card {
+        width: 240px;
+        height: 310px;
+    }
+
+    .cuisine-card.card-down {
+        transform: translateY(35px);
+    }
+
+    .cuisine-card.card-down:hover {
+        transform: translateY(35px);
+    }
+
+    .cuisines-cards-grid {
+        gap: 20px;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+    .china-banner {
+        height: 115px;
+        margin-bottom: 48px;
+        border-radius: 10px;
+    }
+
+    .china-banner-quote {
+        font-size: 22px;
+        max-width: 850px;
+    }
+
+    .history-circles-row {
+        gap: 15px;
+    }
+
+    .circle-img-frame {
+        width: 150px;
+        height: 150px;
+    }
+
+    .circle-card-title {
+        font-size: 0.78rem;
+        max-width: 160px;
+    }
+
+    /* ФУТЕР */
+    .site-footer {
+        margin-top: 50px; 
+        padding-top: 35px;
+    }
+
+    .site-footer .footer-container {
+        padding: 0 20px 40px 20px;
+        grid-template-columns: 2fr 1fr 1.3fr;
+        gap: 40px;
+    }
+
+    .site-footer .footer-bottom-container {
+        padding: 0 20px;
+    }
+
+    /* КРОШКИ, БАННЕР */
+    .breadcrumbs-container {
+        padding: 0 36px;
+    }
+
+    .hero-banner {
+        width: calc(100% - 48px);
+        padding: 40px 36px;
+    }
+    
+    /* ТЕГИ, ФИЛЬТРЫ И СЕТКА СТАТЕЙ/РЕЦЕПТОВ */
+    .recipes-filter-wrapper,
+    .recipes-section .container,
+    .content-section:not(.search-page-section) .container {
+        padding-left: 24px;
+        padding-right: 24px;
+        box-sizing: border-box;
+}
+
+    .recipes-grid,
+    .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .articles-grid {
+        margin-bottom: 32px; 
+}
+
+    /* СТРАНИЦА РЕЦЕПТА */
+    .recipe-page {
+        max-width: 900px;
+        padding: 20px 24px 0;
+    }
+
+    .recipe-hero {
+        grid-template-columns: 340px 1fr;
+        gap: 28px;
+    }
+
+    .recipe-single-title {
+        font-size: 1.8rem;
+    }
+
+    .recipe-fav-btn {
+        margin-top: auto !important;
+        align-self: flex-start;
+        padding: 9px 16px;
+        font-size: 13.5px;
+        background-color: rgba(197, 153, 74, 0.08);
+        color: #c5994a;
+        border-color: #c5994a;
+    }
+
+    .recipe-fav-btn .bookmark-icon {
+        stroke: #c5994a;
+    }
+
+    .content-toolbar {
+        gap: 20px;
+        margin-top: 24px;
+    }
+
+    .content-toolbar .toolbar-left {
+        flex: 0 0 auto;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .section-search-box {
+        width: 260px;
+        max-width: 260px;
+        flex: 0 0 auto;
+    }
+
+    .section-search-box input {
+        padding: 9px 14px 9px 36px;
+        font-size: 0.85rem;
+    }
+
+    .tags-scroll {
+        display: flex;
+        gap: 10px;
+    }
+
+    .tag-btn {
+        padding: 8px 18px;
+        font-size: 0.88rem;
+        white-space: nowrap;
+    }
+
+    /* КАРТОЧКИ СТАТЕЙ */
+    .story-hero-card .card-content {
+        padding: 26px 26px 26px 0 !important;
+    }
+
+    .story-hero-card .article-card-title,
+    .story-hero-card .article-card-title a {
+        font-size: 1.5rem !important;
+    }
+
+    .story-hero-card .card-excerpt {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        -webkit-line-clamp: 3;
+        max-height: calc(1.5em * 3);
+    }
+
+    .article-card.featured-card .card-content {
+        padding: 24px 24px 20px;
+    }
+
+    .article-card.featured-card .article-card-title,
+    .article-card.featured-card .article-card-title a {
+        font-size: 1.25rem;
+    }
+
+    .article-card.featured-card .card-excerpt {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        -webkit-line-clamp: 4;
+        max-height: calc(1.55em * 4);
+    }
+
+    .article-card.featured-card .card-meta {
+        font-size: 0.78rem;
+        padding-top: 8px;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-content {
+        padding: 18px 20px 20px;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .article-card-title,
+    .article-card:not(.story-hero-card):not(.featured-card) .article-card-title a {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-excerpt {
+        font-size: 0.86rem;
+        margin-bottom: 0;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-meta,
+    .story-author,
+    .hero-card-footer .card-meta {
+        font-size: 0.78rem;
+        padding-top: 8px !important;
+    }
+
+    /* ТЕКСТ СТАТЬИ */
+    .container-narrow {
+        padding: 16px 36px 0;
+    }
+
+    .article-title {
+        font-size: 2.1rem !important;
+        line-height: 1.25 !important;
+        margin: 0 0 18px !important;
+    }
+
+    .article-author-info {
+        font-size: 0.89rem !important;
+        margin-bottom: 16px !important;
+    }
+
+    .article-lead {
+        font-size: 1.25rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 32px !important;
+        padding-left: 18px !important;
+    }
+
+    .article-hero-image {
+        border-radius: 16px !important;
+        margin-bottom: 32px !important;
+    }
+
+    .article-body {
+        font-size: 1.08rem !important;
+        line-height: 1.72 !important;
+        gap: 20px;
+    }
+
+    .article-body h2 {
+        font-size: 1.55rem !important;
+        margin-bottom: -10px !important;
+    }
+
+    .quote-box {
+        padding: 22px 26px !important;
+        margin: 10px 0;
+    }
+
+    /* СТРАНИЦА ПОИСКА */
+
+    main.content-section.search-page-section {
+        padding: 40px 24px 0;    
+        display: flex;
+        flex-direction: column;
+    }
+
+    main.content-section.search-page-section .container {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;   
+        padding-right: 0;
+    }
+
+    .search-page-section .page-title {
+        font-size: 1.9rem;
+        margin-bottom: 12px;
+    }
+
+    .search-counter {
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+
+    /* Двухколоночная сетка результатов поиска для планшетов */
+    #searchResultsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Заглушка, если ничего не найдено */
+    #noResults {
+        padding: 40px 20px;
+        margin: auto 0;
+    }
+
+    #noResults h3 {
+        font-size: 1.4rem;
+    }
+
+    /* ==========================================================================
+   АДАПТИВ СТРАНИЦЫ ИЗБРАННОЕ (FAVORITES)
+   ========================================================================== */
+
+    .favorites-page {
+        padding: 36px 24px 0;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 382px);
+    }
+
+    /* На планшетах держим 2 колонки для устойчивой сетки */
+    #favoritesGrid.recipe-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 16px;
+    }
+
+    .page-header {
+        margin-bottom: 32px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .empty-state {
+        max-width: 480px !important; 
+        margin: auto auto !important; /* Центрируем блок по горизонтали */
+        padding: 32px 24px !important;
+    }
+
+    .empty-state h2 {
+        font-size: 19px;
+        margin-bottom: 18px !important;
+    }
+}
+
+/* ==========================================================================
+   2. КОМПАКТНЫЕ ПЛАНШЕТЫ И SURFACE (iPad Mini, Surface Pro, экраны от 600px до 1024px)
+   ========================================================================== */
+@media (min-width: 600px) and (max-width: 950px) {
+
+    .aesthetics-section,
+    .stories-section,
+    .chefs-choice-section,
+    .trends-section,
+    .world-cuisines-section {
+        padding: 60px 20px 0;
+    }
+
+    .section-title-italic {
+      font-size: 1.65rem;
+      margin-bottom: 36px;
+      gap: 14px;
+    }
+
+    .stories-section {
+        scroll-margin-top: 70px !important;
+    }
+
+    /* ШАПКА */
+
+    .main-header {
+        padding: 14px 24px; 
+    }
+
+    .main-header .logo-title {
+        font-size: 21px;
+    }
+    
+    .main-header .logo-subtitle {
+        font-size: 10px;
+    }
+
+    .main-header .nav-group {
+        gap: 24px;
+    }
+
+    .main-header .nav-link {
+        font-size: 0.95rem;
+    }
+
+    .main-header .action-group {
+        gap: 14px; 
+    }
+
+    /* ГЛАВНЫЙ БАННЕР */
+
+    .slide-content {
+        padding: 0 40px;      
+        max-width: 600px;    
+        margin: 0 auto;       
+        align-items: center;  
+        text-align: center;   
+    }
+
+    /* Индивидуальное кадрирование картинок для каждого слайда на мобилках */
+    .carousel-slide:nth-child(1) .slide-img {
+        object-position: 90% center !important; 
+    }
+
+    .carousel-slide:nth-child(2) .slide-img {
+        object-position: right !important; 
+    }
+
+    .carousel-slide:nth-child(3) .slide-img {
+        object-position: 70% center !important; 
+    }
+
+    .slide-title {
+        font-size: 1.9rem;
+        margin-bottom: 10px;
+    }
+
+    .slide-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 22px;
+    }
+
+    .hero-carousel .carousel-btn {
+        display: none !important;
+    }
+
+    .slide-overlay {
+        background: radial-gradient(circle, rgba(26, 14, 11, 0.75) 0%, rgba(26, 14, 11, 0.9) 100%);
+    }
+
+    .carousel-slide.light-slide .slide-overlay {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.95) 100%);
+    }
+
+    /* БЛОК ЭСТЕТИК */
+
+    .aesthetics-header {
+        margin-bottom: 30px !important;
+    }
+
+    .aesthetics-title {
+        font-size: 2rem !important;
+    }
+
+    .aesthetics-grid {
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 16px !important;
+    }
+
+    .aesthetics-card.article-card {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .aesthetics-card-link {
+        height: auto !important;
+    }
+
+    .aesthetics-card-image {
+        height: 200px !important; 
+    }
+
+    .aesthetics-card-footer {
+        padding: 14px 10px !important; 
+    }
+
+    .aesthetics-card-title {
+        font-size: 1.05rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* КУЛИНАРНЫЕ ПОДБОРКИ */
+
+   .stories-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 24px 20px !important; 
+        justify-items: center !important;
+        max-width: 900px !important; 
+        margin: 0 auto !important;
+    }
+
+    .story-item {
+        width: 100% !important;
+        max-width: 150px !important; 
+    }
+
+    .story-circle-wrapper {
+        width: 110px !important;  
+        height: 110px !important;
+    }
+
+    .story-label {
+        font-size: 0.8rem !important;
+        letter-spacing: 0.08em !important;
+        margin-top: 12px !important;
+    }
+
+    /* ВЫБОР ШЕФА */
+
+    .chefs-choice-grid {
+        gap: 16px;
+    }
+
+    .chefs-choice-side {
+        gap: 16px;
+    }
+
+    .card-small {
+        height: 202px !important; 
+    }
+
+    .card-overlay {
+        padding: 20px;
+    }
+
+    .card-large .card-title {
+        font-size: 1.20rem;
+    }
+
+    .card-small .card-title {
+        font-size: 1rem;
+    }
+
+    .card-desc {
+        font-size: 0.80rem;
+        margin-top: 6px;
+    }
+
+    /* ТРЕНДЫ */
+
+    .trends-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trend-img-wrapper {
+        height: 200px;
+    }
+
+    .trend-title {
+        font-size: 1rem;
+    }
+
+    .trend-subtitle {
+        font-size: 0.80rem;
+    }
+
+    /* ИНГРИДИЕНТЫ В ТРЕНДЕ */
+  .trending-flex-row {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 0;
+  }
+
+  .trending-col-left,
+  .trending-col-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  /* КРУЖОЧКИ */
+  .trending-col-left .trending-circles-wrap {
+    flex-wrap: nowrap; 
+  }
+
+  .trending-circles-wrap .trending-circle-item {
+    width: auto !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+  }
+
+  .trending-circle-item .trending-img-box {
+    width: 90px !important;                
+    height: 90px !important;
+    flex-shrink: 0 !important;            
+  }
+
+  .trending-circle-item .trending-item-label {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    margin-top: 8px !important;
+  }
+
+  /* 4. КАРТОЧКА ФЕРМЕНТАЦИИ: Аккуратная лежачая плашка во всю ширину */
+  .trending-col-right .ferment-card,
+  .ferment-card {      
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .trending-col-right .ferment-card-img,
+  .ferment-card-img {
+    width: 55% !important;                 
+    height: 100% !important;
+  }
+
+  /* Текстовый блок (коричневая часть) */
+  .trending-col-right .ferment-card-info,
+  .ferment-card-info {
+    width: 45% !important;                 
+    height: 100% !important;
+    padding: 24px 20px !important;        
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+  }
+
+  /* Шрифты внутри карточки ферментации */
+  .ferment-card-info h4 {
+    font-size: 1.3rem !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+  }
+
+  .ferment-card-info p {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 auto 0 !important;
+  }
+
+  .ferment-card-info .btn-gold {
+    margin-top: 16px !important;
+    padding: 10px 18px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* ==========================================================================
+   АДАПТИВНОСТЬ СЕКЦИИ «КУХНИ МИРА»
+   ========================================================================== */
+    .cuisine-card {
+        width: 210px;
+        height: 290px;
+    }
+
+    .cuisine-card.card-down {
+        transform: translateY(30px);
+    }
+
+    .cuisine-card.card-down:hover {
+        transform: translateY(30px);
+    }
+
+    .cuisines-cards-grid {
+        gap: 16px;
+        padding-bottom: 35px;
+        margin-bottom: 34px;
+    }
+
+    .scroll-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    /* КРУГИ ИСТОРИИ (КУХНИ МИРА) */
+    .china-banner {
+        height: 110px;
+        margin-bottom: 46px;
+    }
+
+    .china-banner-overlay {
+        padding: 0 24px;
+    }
+
+    .china-banner-quote {
+        font-size: 19px;
+        line-height: 1.4;
+    }
+
+    .circle-img-frame {
+        width: 130px;
+        height: 130px;
+    }
+
+    /* ==========================================================================
+   АДАПТИВНОСТЬ ФУТЕРА / ПОДВАЛА
+   ========================================================================== */
+
+    .site-footer .footer-container {
+        display: grid; /* явно указываем грид */
+        padding: 0 24px 36px 24px; 
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 40px; 
+    }
+
+    /* О проекте занимает всю верхнюю ширину */
+    .site-footer .footer-col.footer-about {
+        grid-column: 1 / -1;
+        max-width: 100%;
+    }
+
+    .site-footer .footer-desc {
+        max-width: 550px; 
+        margin-bottom: 0;
+    }
+
+    .site-footer .footer-bottom-container {
+        padding: 0 24px;
+    }
+
+    /* СТР РЕЦЕПТОВ - ЛАЙФХАКОВ */
+
+    /* БАННЕР И КРОШКИ в каталоге */
+    .breadcrumbs-container {
+        padding: 0 30px!important; 
+    }
+
+    .story-article .breadcrumbs-container,
+    .hack-article .breadcrumbs-container,
+    .recipe-page .breadcrumbs-container {
+        padding: 0 !important;
+    }
+
+    .hero-banner {
+        width: calc(100% - 40px);
+        padding: 32px 24px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    /* ТЕГИ И ФИЛЬТРЫ */
+    .recipes-filter-wrapper {
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    .recipes-filter-wrapper .tags-scroll {
+        margin: 24px 0 18px;
+    }
+
+    /* СЕТКА КАРТОЧЕК (РЕЦЕПТЫ) */
+    .recipes-section .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    .recipes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* ==========================================================================
+   АДАПТИВ ДЛЯ СТРАНИЦЫ РЕЦЕПТА (.recipe-page)
+   ========================================================================== */
+
+   .recipe-page {
+        padding: 16px 20px 0;
+    }
+
+    .back-link {
+        font-size: 0.85rem;      
+    }
+
+    .recipe-hero {
+        grid-template-columns: 300px 1fr; 
+        gap: 24px;
+        align-items: stretch !important;
+    }
+
+    .recipe-fav-btn {
+        margin-top: auto !important; 
+        align-self: flex-start;
+        padding: 8px 14px;
+        font-size: 13px;
+        gap: 6px;
+
+        background-color: rgba(197, 153, 74, 0.08); 
+        color: #c5994a;
+        border-color: #c5994a;
+    }  
+
+    .recipe-fav-btn .bookmark-icon {
+        width: 16px;             
+        height: 16px;
+    }
+
+    /* Красим иконку в золотой цвет */
+    .recipe-fav-btn .bookmark-icon {
+        stroke: #c5994a;
+    }
+
+    .recipe-single-title {
+        font-size: 1.6rem;
+    }
+
+    .recipe-description {
+        font-size: 1rem;
+    }
+
+    .chefs-tips-banner {
+        padding: 28px 30px;
+        margin: 35px 0 0;
+    }
+
+    /* КАТАЛОГ СТАТЕЙ */
+
+    /* Общий тулбар: выстраиваем элементы по краям с аккуратным зазором */
+    .content-toolbar {
+        gap: 12px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+    }
+
+    /* Левая группа (поиск + счётчик) */
+    .content-toolbar .toolbar-left {
+        flex: 0 0 auto;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    /* Фиксированная и аккуратная ширина поля поиска */
+    .section-search-box {
+        width: 200px;
+        max-width: 200px;
+        flex: 0 0 auto;
+    }
+
+    /* Поле ввода */
+    .section-search-box input {
+        padding: 7px 10px 7px 32px;
+        font-size: 0.8rem;
+    }
+
+    /* Счётчик "Найдено: " */
+    .articles-counter {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    /* Кнопки-табы фильтров */
+    .tags-scroll {
+        display: flex;
+        gap: 8px;
+    }
+
+    .tag-btn {
+        padding: 6px 14px;
+        font-size: 0.82rem;
+        white-space: nowrap;
+    }
+
+    /* Сетки: ровно 2 колонки */
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px !important;
+    }
+
+    .article-card {
+        min-height: 320px;
+    }
+
+    /* Hero: чуть компактнее */
+    .story-hero-card {
+        gap: 24px !important;
+        margin-bottom: 32px;
+    }
+
+    .story-hero-card .card-image-wrap {
+        min-height: 300px;
+    }
+
+    .story-hero-card .card-content {
+        padding: 24px 24px 24px 0 !important;
+    }
+
+    .story-hero-card .card-excerpt {
+        font-size: 0.90rem;
+        line-height: 1.5;
+        -webkit-line-clamp: 4;
+        max-height: calc(1.5em * 4);
+}
+
+    .hero-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 8px;
+    }
+
+    .hero-card-footer .story-author, 
+    .hero-card-footer .card-meta {
+        font-size: 0.76rem;
+}
+
+
+    /* Featured: горизонтальная */
+    .article-card.featured-card {
+       min-height: 220px;
+    }
+
+    .article-card.featured-card .card-image-wrap {
+        flex: 0 0 46%;
+        max-width: 46%;
+        height: auto !important;
+    }
+
+    .article-card.featured-card .card-content {
+        padding: 20px 22px;
+    }
+
+    .article-card.featured-card .article-card-title,
+    .article-card.featured-card .article-card-title a {
+        font-size: 1.15rem;
+    }
+
+    .article-card.featured-card .card-excerpt {
+        font-size: 0.88rem;
+        -webkit-line-clamp: 3;
+        max-height: calc(1.55em * 3);
+}
+
+    .article-card.featured-card .card-meta {
+        font-size: 0.76rem;
+        padding-top: 8px;
+    }
+
+    /* Обычные карточки */
+    .card-image-wrap {
+        height: 180px !important;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-content {
+    padding: 18px 20px 20px;
+}
+
+    .article-card:not(.story-hero-card):not(.featured-card) .article-card-title,
+    .article-card:not(.story-hero-card):not(.featured-card) .article-card-title a {
+        font-size: 1.08rem;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-excerpt {
+        font-size: 0.86rem;
+        margin-bottom: 16px;
+    }
+
+    .article-card:not(.story-hero-card):not(.featured-card) .card-meta {
+        font-size: 0.76rem;
+        padding-top: 8px;
+    }
+
+    /* Бейджи: компактнее на обычных карточках и на featured */
+    .article-card:not(.story-hero-card) .card-badge {
+        bottom: 12px !important;
+        left: 12px !important;
+        font-size: 0.64rem !important;
+        padding: 4px 10px !important;
+        letter-spacing: 0.6px !important;
+    }
+
+   /* 1. Контейнер статьи */
+    .container-narrow {
+        max-width: 100%;
+        padding: 0 32px 0;  
+    }
+
+    /* 2. Заголовок статьи */
+    .article-title {
+        font-size: 1.9rem !important; 
+        line-height: 1.25 !important;
+        margin: 0 0 16px !important;
+    }
+
+    .article-author-info {
+        font-size: 0.9rem !important; 
+        margin-bottom: 14px !important;
+        gap: 6px !important;
+    }
+
+    /* 3. Лид (вводный абзац) */
+    .article-lead {
+        font-size: 1.2rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 28px !important;
+        padding-left: 16px !important;
+    }
+
+    /* 4. Главная обложка статьи (Hero Image) */
+    .article-hero-image {
+        border-radius: 14px !important;
+        margin-bottom: 32px !important;
+    }
+
+    /* 5. Тело статьи и заголовки */
+    .article-body {
+        font-size: 1.05rem !important; 
+        line-height: 1.7 !important;
+    }
+
+    .article-body h2 {
+        font-size: 1.45rem !important;
+    }
+
+    /* 6. Цитаты и блоки */
+    .quote-box {
+        padding: 20px 24px !important;
+    }
+
+    .search-page-section {
+        padding: 32px 16px 0 !important;
+    }
+
+    #favoritesGrid.recipe-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .favorites-page {
+        padding: 32px 20px 0;
+    }
+
+/* Внутренние отступы блока с контентом карточки */
+    #favoritesGrid .favorite-item .recipe-card-title {
+        font-size: 1.05rem !important; 
+        line-height: 1.35 !important;
+    }
+}
+
+/* Микро-фикс для экранов шириной от 900px до 1024px (Surface Pro и аналоги) */
+@media (min-width: 900px) and (max-width: 1024px) {
+
+    .trending-flex-row {
+        align-items: end;
+        gap: 18px;
+    }
+
+    /* Чуть уменьшаем отступы и размеры кружков слева, чтобы все 5 гарантированно уместились в ряд */
+    .trending-circles-wrap {
+        gap: 7px;
+        flex-wrap: nowrap; 
+    }
+
+    /* Фиксируем высоту правой карточки, чтобы она визуально соответствовала левой колонке */
+    .ferment-card {
+        height: 160px; 
+    }
+
+    .ferment-card-info{
+        padding: 14px 16px;
+    }
+}    
+
+@media (max-width: 599px) {
+    /* --- Базовые сбросы страницы --- */
+    html, body {
+      overflow-x: hidden;
+  }
+
+    .aesthetics-section,
+    .stories-section,
+    .chefs-choice-section,
+    .trends-section,
+    .world-cuisines-section {
+        padding: 36px 16px 0 16px !important;
+    }
+
+    .stories-section {
+        scroll-margin-top: 60px !important;
+    }
+
+    /* ШАПКА */   
+
+    .main-header {
+        padding: 16px 20px;
+        position: relative;
+    }
+
+    /* Включаем бургер-кнопку */
+    .main-header .burger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    .burger-line {
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-dark-chockolate, #2c2523);
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .burger-btn.active .burger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger-btn.active .burger-line:nth-child(2) { opacity: 0; }
+    .burger-btn.active .burger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Скрываем всю десктопную правую группу */
+    .main-header .action-group {
+        display: none; 
+    }
+
+    /* Превращаем навигацию в выезжающую панель */
+    .main-header .nav-group {
+        position: fixed;
+        top: 0;
+        left: auto; 
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        background: #fcfbfa;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 100px 20px 40px 20px;
+        gap: 34px;
+        margin: 0;
+        transform: translateX(100%); 
+        z-index: 1000;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    /* Перебиваем ховеры десктопа для мобильной навигации */
+    .main-header .nav-group:hover {
+        transform: translateX(100%); 
+    }
+
+    .main-header .nav-group.active {
+        transform: translateX(0);
+    }
+    
+    .main-header .nav-group.active:hover {
+        transform: translateX(0);
+    }
+
+    /* Сброс центрирования элементов внутри меню */
+    .main-header .logo-title {
+        font-size: 19px;
+    }
+    .main-header .logo-subtitle {
+        font-size: 9px;
+    }
+
+    .main-header .nav-group > *:not(.mobile-search-box) {
+        margin: 0;
+        position: static;
+        text-align: center;
+        width: auto;
+    }
+
+    .main-header .nav-group .nav-link {
+        color: var(--color-dark-chockolate, #2c2523);
+        font-size: 1.2rem;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    /* Включаем элементы, предназначенные только для мобилок */
+    .main-header .mobile-only-dropdown,
+    .main-header .mobile-only-link {
+        display: block;
+    }
+
+    /* Сбрасываем десктопный отступ и скрываем золотую полоску слева */
+    .main-header .nav-group .dropdown-item.is-active {
+        color: var(--color-gold, #c5a94a) !important;
+        font-weight: 600;
+        padding-left: 14px !important;
+        position: static !important; 
+    }
+
+    .main-header .nav-group .dropdown-item.is-active::before {
+        display: none !important; 
+    }
+
+    /* --- МОБИЛЬНЫЙ ПОИСК В МЕНЮ И НА СТРАНИЦЕ --- */
+    .main-header .mobile-search-box {
+        display: block;
+        position: relative;
+        width: 82%;
+        max-width: 280px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .mobile-search-page-form.hide-on-desktop {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin: 16px 0 24px 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .mobile-search-box .mobile-search-input,
+    .mobile-search-page-form .mobile-search-input {
+        width: 100%;
+        padding: 10px 40px 10px 42px;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(44, 37, 35, 0.18);
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: var(--color-dark-chockolate, #2c2523);
+        outline: none;
+        box-sizing: border-box;
+        font-family: inherit;
+        text-align: left;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .mobile-search-box .mobile-search-input:focus,
+    .mobile-search-page-form .mobile-search-input:focus {
+        background: rgba(0, 0, 0, 0.01);
+        border-color: rgba(44, 37, 35, 0.4);
+    }
+
+    .mobile-search-box .mobile-search-input::placeholder,
+    .mobile-search-page-form .mobile-search-input::placeholder {
+        color: rgba(44, 37, 35, 0.45);
+    }
+
+    .mobile-search-box .search-icon,
+    .mobile-search-page-form .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50% !important; 
+        transform: translateY(-50%);
+        stroke: rgba(44, 37, 35, 0.5);
+        pointer-events: none;
+    }
+
+    /* === СТРАНИЦА ПОИСКА === */
+
+.search-page-section {
+    padding-top: 24px; 
+}
+
+/* Заголовок с результатами */
+.search-page-section .page-title {
+    font-size: 1.35rem; 
+    line-height: 1.3;
+    margin-bottom: 12px; 
+}
+
+/* Счетчик найденных материалов */
+.search-counter {
+    margin-bottom: 20px; 
+    font-size: 0.95rem;
+}
+
+/* Блок результатов или заглушка */
+#searchResultsGrid,
+#noResults {
+    margin-top: 24px; 
+}
+
+#noResults {
+    text-align: center;
+    padding: 40px 16px; 
+}
+
+#noResults h3 {
+    font-size: 1.1rem; 
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+#noResults p.no-results-sub {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: rgba(44, 37, 35, 0.5);
+    z-index: 10;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .mobile-search-page-form .clear-search-btn:hover,
+    .mobile-search-box .clear-search-btn:hover {
+        color: rgba(44, 37, 35, 0.9);
+    }
+
+    /* --- АККОРДЕОН ВЫПАДАЮЩИХ СПИСКОВ НА МОБИЛКЕ --- */
+    .main-header .dropdown-wrapper {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Отключаем десктопное появление по ховеру */
+    .main-header .dropdown-wrapper:hover .glass-dropdown {
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+    }
+
+    .main-header .dropdown-wrapper .dropdown-arrow {
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .main-header .dropdown-wrapper.open .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    .main-header .glass-dropdown {
+        position: static;
+        transform: none;
+        width: 100%;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        box-shadow: none;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.3s ease,
+                    padding 0.3s ease,
+                    visibility 0.3s ease;
+    }
+
+    .main-header .dropdown-wrapper.open .glass-dropdown {
+        max-height: 400px;
+        opacity: 1;
+        visibility: visible;
+        padding-top: 14px;
+        padding-bottom: 6px;
+        transform: none !important;
+    }
+
+    .main-header .dropdown-item {
+        color: #6b6257;
+        font-size: 1.05rem;
+        padding: 6px 12px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .main-header .dropdown-item:hover {
+        transform: none; 
+        background-color: transparent;
+    }
+
+    .main-header .dropdown-item:active {
+        background-color: rgba(44, 37, 35, 0.06);
+        color: var(--color-dark-chockolate, #2c2523);
+    }
+
+    /* --- НИЖНЯЯ ПАНЕЛЬ С ТЕМОЙ И ЯЗЫКОМ --- */
+    .main-header .mobile-action-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        margin-top: auto;
+        margin-bottom: 75px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        width: 140px;
+        position: relative;
+        overflow: visible;
+    }
+
+    .main-header .mobile-lang-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-header .mobile-lang-wrapper .lang-dropdown {
+        position: absolute;
+        top: calc(100% + 12px);
+        bottom: auto;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(-6px);
+        background: #ffffff;
+        border: 1px solid rgba(44, 37, 35, 0.12);
+        border-radius: 20px;
+        padding: 6px 14px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: auto;
+        min-width: 85px;
+        height: auto;
+        white-space: nowrap;
+        z-index: 1050;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+
+    /* Отключаем десктопный ховер на мобильном переключателе языка */
+    .main-header .mobile-lang-wrapper:hover .lang-dropdown {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .main-header .mobile-lang-wrapper .lang-dropdown .lang-option {
+        color: var(--color-dark-chockolate, #2c2523);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1;
+        padding: 4px 6px;
+        display: inline-block;
+        border-radius: 6px;
+        transition: opacity 0.2s ease;
+    }
+
+    .main-header .mobile-lang-wrapper .lang-dropdown .lang-option:not(.active) {
+        opacity: 0.5;
+    }
+
+    /* Активация мобильного языка по клику (.active) */
+    .main-header .mobile-lang-wrapper #mobileLangDropdown.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* ГЛАВНЫЙ БАННЕР */
+
+    .hero-carousel {
+       height: 350px;
+    }
+
+
+    /* На смартфонах листаем пальцем (свайпом), стрелки скрываем */
+    .hero-carousel .carousel-btn {
+        display: none;
+    }
+
+    .slide-content {
+        padding: 0 20px;
+        max-width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+        /* Индивидуальное кадрирование картинок для каждого слайда на мобилках */
+    .carousel-slide:nth-child(1) .slide-img {
+        object-position: 90% center !important; 
+    }
+
+    .carousel-slide:nth-child(2) .slide-img {
+        object-position: 80% center !important; 
+    }
+
+    .carousel-slide:nth-child(3) .slide-img {
+        object-position: 70% center !important; 
+    }
+
+
+    .slide-tag {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    /* Твои эффекты для супер-читабельности текста на мобильных экранах */
+    .slide-title {
+        font-size: 1.7rem;
+        line-height: 1.2;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+    }
+
+    .slide-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.35;
+        margin-bottom: 20px;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Для светлого слайда Michelin адаптируем тень под светлый фон */
+    .carousel-slide.light-slide .slide-title {
+        text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+    }
+    .carousel-slide.light-slide .slide-subtitle {
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-gold {
+        padding: 10px 24px;
+        font-size: 12px;
+    }
+
+    /* Плотный вертикальный градиент: картинка сверху, подложка под текст снизу */
+    .slide-overlay {
+        background: linear-gradient(0deg, 
+            rgba(26, 14, 11, 0.95) 0%, 
+            rgba(26, 14, 11, 0.7) 60%, 
+            rgba(26, 14, 11, 0.3) 100%);
+    }
+
+    .carousel-slide.light-slide .slide-overlay {
+        background: linear-gradient(0deg, 
+            rgba(255, 255, 255, 0.98) 0%, 
+            rgba(255, 255, 255, 0.85) 60%, 
+            rgba(255, 255, 255, 0.4) 100%);
+    }
+
+    .hero-carousel .carousel-dots {
+        bottom: 12px;
+    }
+
+    /* --- СЕКЦИЯ AESTHETICS (ИСКУССТВО ПОДАЧИ) --- */
+
+    .aesthetics-header {
+        margin-bottom: 24px !important;
+    }
+
+    .aesthetics-title {
+        font-size: 1.5rem;
+    }
+
+    .aesthetics-divider {
+        width: 160px !important;
+    }
+
+    /* РЕШЕНИЕ БАГА СЕТКИ: Насильно заставляем перестроиться в 1 колонку */
+    .aesthetics-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+
+    /* РЕШЕНИЕ БАГА ВЫСОТЫ: Полностью обнуляем десктопные 420px для мобилок */
+    .aesthetics-card.article-card {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .aesthetics-card-link {
+        height: auto !important; 
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .aesthetics-card-image {
+        height: 250px !important; 
+        min-height: 250px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Подвал аккуратно ужимается вокруг текста «Архитектура блюда» */
+    .aesthetics-card-footer {
+        padding: 16px 14px 20px 14px !important;
+        background-color: #FAF7F2 !important;
+    }
+
+    .aesthetics-card-title {
+        font-size: 1.02rem;
+        font-weight: 500;
+        line-height: 1.25;
+    }
+
+    .aesthetics-subtitle {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+    }
+
+    .fav-btn,
+    .mobile-fav-btn {
+        width: 30px;
+        height: 30px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .fav-btn svg,
+    .mobile-fav-btn svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .fav-btn::before,
+    .mobile-fav-btn::before {
+        content: '';
+        position: absolute;
+        inset: -7px;
+    }
+
+    /* Стабилизация для тач-скринов */
+    .aesthetics-card:hover .aesthetics-card-image img {
+        transform: translate3d(0, 0, 0) scale(1) !important;
+    }
+
+    .aesthetics-card-link:active .aesthetics-card-title {
+        color: var(--color-gold) !important;
+    }
+
+    /* --- СЕКЦИЯ КУЛИНАРНЫЕ ПОДБОРКИ --- */
+
+    /* Заголовок с золотыми линиями для узких экранов */
+    .section-title-italic {
+        font-size: 1.35rem;
+        margin-bottom: 24px;
+        gap: 10px;
+    }
+
+    .section-title-italic::before,
+    .section-title-italic::after {
+        height: 4px !important;
+    }
+
+    /* На смартфонах сторис становятся 3 в ряд (сетка 3х2) */
+    .stories-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px 10px !important;
+        justify-items: center !important;
+    }
+
+    .story-item {
+        width: 100% !important;
+        max-width: 100px !important;
+    }
+
+    .story-circle-wrapper {
+        width: 82px !important;
+        height: 82px !important;
+        padding: 2px !important;
+    }
+
+    .story-circle {
+        box-shadow: 0 4px 10px rgba(26, 14, 11, 0.08) !important;
+    }
+
+    .story-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+        margin-top: 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    /* ВЫБОР ШЕФА */
+
+    /* Главная сетка: 1 колонка */
+    .chefs-choice-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Контейнер для двух малых карточек снизу превращаем в ряд (2 колонки) */
+    .chefs-choice-side {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px;
+    }
+
+    /* Высота карточек для мобилки */
+    .card-large {
+        height: 260px; 
+    }
+
+    .card-small {
+        height: 180px; 
+    }
+
+    .card-overlay {
+        padding: 16px;
+    }
+
+    /* Шрифты для гармонии */
+    .card-large .card-title {
+        font-family: var(--font-title);
+        font-weight: 300 !important; /* Убираем десктопную жирность на мобилках */
+        font-size: 1.10rem;
+        line-height: 1.25;
+        bottom: 30px; 
+        left: 16px;
+        right: 16px;
+        letter-spacing: 0.01em;
+    }
+
+    .card-small .card-title {
+        font-family: var(--font-title);
+        font-weight: 300 !important; 
+        font-size: 0.90rem; 
+        line-height: 1.2;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        letter-spacing: 0.01em;
+    }
+
+    .card-large .card-desc {
+        bottom: 12px; 
+        left: 16px;
+        right: 16px;
+        font-size: 0.70rem;
+        font-weight: 300;
+        margin-top: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-overlay .card-badge {
+        font-size: 0.5rem !important;
+        padding: 3px 6px !important;
+        top: 12px !important;
+        left: 12px !important;
+    }
+
+    .card-small .card-badge {
+        top: 10px !important;
+        left: 10px !important;
+    }
+
+    /* Отключаем десктопное подпрыгивание при тапе */
+    .chef-card:hover {
+        transform: none !important;
+        box-shadow: 0 8px 20px rgba(26, 14, 11, 0.08) !important;
+    }
+
+    /* ТРЕНДЫ */
+
+    .trends-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .trend-img-wrapper {
+        height: 110px;
+    }
+
+    .trend-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 3;
+        font-size: 0.58rem;
+        width: auto;
+        padding: 2px 6px;
+        height: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .trend-card .fav-btn,
+    .chefs-choice-side .fav-btn {
+        top: 8px;
+        right: 8px;
+    }
+
+    .trend-info {
+        padding: 10px 10px;
+        justify-content: flex-start;
+    }
+
+    .trend-title {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+
+    .trend-subtitle {
+        font-size: 0.7rem;
+        margin-top: 2px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .trend-card:hover {
+        transform: none;
+        box-shadow: 0 6px 18px rgba(26, 14, 11, 0.06);
+        border-color: rgba(197, 153, 74, 0.15);
+    }
+
+    .trend-card:hover .trend-img {
+        transform: translateZ(0) scale(1);
+    }
+
+    /* ИНГРИДИЕНТЫ В ТРЕНДЕ */
+    .trending-col-left,
+    .trending-col-right {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .trending-flex-row {
+        flex-direction: column;
+        margin-top: 36px;
+        gap: 32px;
+    }
+
+    .trending-sub-title {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+        letter-spacing: 0.1em;
+    }
+
+    /* 1. Все 5 кружков строго в один ряд без переноса */
+    .trending-col-left .trending-circles-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 4px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Адаптивное сжатие каждого элемента */
+    .trending-circles-wrap .trending-circle-item {
+        flex: 1 1 auto;
+        max-width: 62px;
+        min-width: 0;
+    }
+
+    /* Сохранение идеальной формы круга через aspect-ratio */
+    .trending-circle-item .trending-img-box {
+        width: 100%;
+        max-width: 54px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        margin-bottom: 6px;
+    }
+
+    /* Компактные подписи без переноса */
+    .trending-circle-item .trending-item-label {
+        font-size: 0.65rem;
+        margin-top: 4px;
+        white-space: nowrap;
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+
+    /* 2. Адаптация карточки ферментации для мобилок */
+    .ferment-card {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        border-radius: 14px; 
+    }
+
+    .ferment-card-img {
+        width: 100%;
+        height: 150px; 
+    }
+
+    .ferment-card-info {
+        width: 100%;
+        padding: 14px 18px !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        justify-content: center !important;
+        gap: 8px !important; 
+    }
+
+    .ferment-card-info h4 {
+        font-size: 1.1rem !important;
+        margin: 0 !important; 
+    }
+
+    .ferment-card-info p {
+        font-size: 0.75rem !important;
+        line-height: 1.35 !important;
+        max-width: 270px !important;
+        margin: 0 !important; 
+        text-align: center !important;
+    }
+
+    .ferment-card-info .btn-gold {
+        width: auto !important;
+        padding: 7px 18px !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.04em !important;
+        margin-top: 2px !important; 
+    }
+
+    /* ==========================================================================
+   АДАПТИВНОСТЬ СЕКЦИИ «КУХНИ МИРА»
+   ========================================================================== */
+
+.marquee-container {
+    overflow: hidden !important;
+    position: relative !important;
+    touch-action: pan-y;
+    width: 100%; 
+    margin-bottom: 24px;
+}
+
+.cuisines-cards-grid {
+    margin-bottom: 0 !important;
+    gap: 16px !important;
+    
+    /* Оставляем твои исходные верхний и нижний отступы */
+    padding: 30px 0 40px 0 !important; 
+    
+    /* РЕШЕНИЕ ОТ ДРОЖАНИЯ */
+    padding-right: 400px !important; 
+    
+    /* Форсируем использование видеокарты смартфона для плавного движения */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.cuisine-card {
+    width: 210px !important;
+    height: 270px !important;
+    flex-shrink: 0 !important;
+    
+    /* Полностью изолируем карточки от мерцания в Safari/iOS */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Твоя лесенка, которая теперь будет плыть идеально ровно */
+.cuisine-card.card-down {
+    transform: translateY(18px) !important;
+}
+
+.cuisine-card.card-up {
+    transform: translateY(-18px) !important;
+}
+
+.scroll-btn,
+.world-cuisines-section .scroll-btn {
+    display: none !important;
+}
+
+
+    /* КРУГИ ИСТОРИИ (КУХНИ МИРА) */
+    .china-banner {
+        height: auto;
+        min-height: 130px;
+        margin-bottom: 32px;
+        border-radius: 10px;
+    }
+
+    .china-banner-overlay {
+        padding: 16px 20px;
+    }
+
+    .china-banner-quote {
+        font-size: 0.98rem; 
+        line-height: 1.45;
+        max-width: 100%;
+    }
+
+    /* Круги истории на мобилках: сетка 2 колонки */
+    .history-circles-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+    }
+
+    .circle-card-item {
+        max-width: 100%;
+    }
+
+    .circle-img-frame {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 10px;
+        box-shadow: inset 0 0 16px rgba(30, 30, 30, 0.5), 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .circle-card-title {
+        font-size: 0.72rem;
+        line-height: 1.35;
+        max-width: 140px;
+    }
+
+    /* ==========================================================================
+   АДАПТИВНОСТЬ ФУТЕРА / ПОДВАЛА
+   ========================================================================== */
+
+    .site-footer {
+        margin-top: 36px;
+        padding-top: 30px;
+    }
+
+    /* Главная сетка: Логотип сверху на всю ширину, Разделы и Контакты в две колонки ниже */
+    .footer-container {
+        padding: 0 20px 32px 20px !important;
+        display: grid !important;
+        grid-template-columns: 1.1fr 1.3fr !important; 
+        gap: 28px 16px !important; 
+        text-align: left !important; 
+    }
+
+    /* Логотип занимает всю ширину верхнего ряда */
+    .footer-col.footer-about {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+
+    .footer-logo {
+        margin-bottom: 0 !important;
+    }
+
+    /* Полностью скрываем длинное описание, чтобы сэкономить высоту */
+    .footer-desc {
+        display: none !important;
+    }
+
+    /* Поджимаем заголовки */
+    .footer-title {
+        margin-bottom: 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* Делаем ссылки компактнее, чтобы они не переносились */
+    .footer-links li {
+        margin-bottom: 10px !important;
+    }
+
+    .footer-links a {
+        font-size: 0.82rem !important;
+        line-height: 1.3;
+    }
+
+    /* Блок контактов */
+    .footer-contact-item {
+        font-size: 0.82rem !important;
+        margin-bottom: 6px !important;
+        word-break: normal !important; 
+    }
+
+    .footer-contact-text {
+        font-size: 0.82rem !important;
+        margin-top: 4px !important;
+        margin-bottom: 16px !important; 
+    }
+
+    /* Соцсети */
+    .footer-socials {
+        justify-content: flex-start; 
+        margin-top: 12px; 
+        gap: 8px;
+    }
+
+    .social-link {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    /* Нижняя плашка */
+    .footer-bottom {
+        padding: 12px 0 !important;
+    }
+
+    .footer-bottom-container {
+        padding: 0 16px !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* КАТАЛОГ РЕЦЕПТОВ И ЛАЙФХАКИ */
+
+    /* Хлебные крошки на мобильных */
+    .breadcrumbs-container .hide-on-desktop {
+        display: inline !important;
+    }
+
+/* 1. Общее правило для крошек на мобилках */
+    .breadcrumbs-container {
+        margin: 16px 0;
+        padding: 0 22px;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        overflow-x: auto; 
+    }
+
+    /* 2. Точечное правило для рецептов и статей */
+    .recipe-page .breadcrumbs-container,
+    .story-article .breadcrumbs-container,
+    .hack-article .breadcrumbs-container {
+        padding: 0 4px !important; 
+        margin-top: 16px !important;    
+        margin-bottom: 18px !important;
+    }
+
+    .breadcrumbs-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .breadcrumbs-container .separator {
+       margin: 1px;
+    }
+
+    .hero-banner {
+        width: calc(100% - 32px) !important;
+        margin: 16px auto 0 !important;
+        padding: 24px 20px !important;
+        border-radius: 12px;
+  }
+
+    .hero-badge {
+        font-size: 0.50rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 6px;
+    }
+
+    .hero-title {
+        font-size: 1.45rem;
+        line-height: 1.25;
+        margin-bottom: 8px;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        opacity: 0.85;
+    }
+
+    /* --- БАЗОВЫЕ СТИЛИ ДЛЯ ФИЛЬТРОВ И ТЕГОВ --- */
+
+  .recipes-filter-wrapper {
+    position: relative !important;
+    overflow: hidden !important;
+    padding-left: 16px; 
+    padding-right: 0;
+  }
+
+  /* Градиент справа (подсказка о скролле) */
+  .recipes-filter-wrapper::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 48px !important;
+    height: 100% !important;
+    background: linear-gradient(
+      to right, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, 0.95) 70%, 
+      rgba(255, 255, 255, 1) 100%
+    ) !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+  }
+
+  /* 3. Горизонтальная лента с кнопками */
+  .recipes-filter-wrapper .tags-scroll {
+    width: calc(100% + 16px) !important;
+    padding: 20px 48px 14px 0 !important; 
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  /* 4. Фиксация тегов */
+  .recipes-filter-wrapper .tags-scroll .tag-btn {
+    flex-shrink: 0 !important;
+    scroll-snap-align: start;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+
+  .recipes-filter-wrapper .tags-scroll::-webkit-scrollbar { 
+    display: none !important; 
+  }
+
+  /* СЕТКА КАРТОЧЕК (РЕЦЕПТЫ) */
+  .recipes-section .container {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+    }
+
+    .recipes-grid {
+        grid-template-columns: 1fr; 
+        gap: 16px;
+    }
+
+    /* Чуть компактнее отступы внутри карточки на мобильных */
+    .recipe-card {
+        border-radius: 16px;
+    }
+
+    .recipe-content {
+        padding: 16px;
+    }
+
+    .recipe-card .recipe-meta { margin-bottom: 10px; }
+    
+.recipe-meta .recipe-level {
+    font-size: 0.62rem !important; 
+    letter-spacing: 0.04em !important;
+  }
+    .recipe-card-title {
+        font-size: 1.1rem;
+    }
+
+    .recipe-excerpt {
+        font-size: 0.88rem;
+    }
+
+    /* ==========================================================================
+   АДАПТИВ ДЛЯ СТРАНИЦЫ РЕЦЕПТА (.recipe-page)
+   ========================================================================== */
+   .recipe-page {
+        padding: 12px 16px 0;
+    }
+
+    /* Навигация назад на мобильных */
+    .back-link {
+        font-size: 0.82rem;     
+    }
+
+    /* Главная секция перестраивается в 1 колонку */
+    .recipe-hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 32px;
+    }
+
+    .recipe-image-wrapper {
+        border-radius: 12px;
+    }
+
+    .recipe-single-title {
+        font-size: 1.45rem;
+        line-height: 1.25;
+        margin-bottom: 12px;
+    }
+
+    .recipe-meta {
+        flex-wrap: wrap; 
+        gap: 10px 14px;
+        margin-bottom: 16px;
+        font-size: 0.82rem;
+    }
+
+    .recipe-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* Разделители и заголовки */
+    .section-divider {
+        margin: 35px 0 20px;
+    }
+
+    .section-divider h2 {
+        font-size: 1rem;
+        padding: 0 12px;
+        letter-spacing: 1.5px;
+    }
+
+    /* Ингредиенты складываются в 1 колонку */
+    .ingredients-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .ingredients-col li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    /* Блок Chef's Tips */
+    .chefs-tips-banner {
+        padding: 24px 20px;
+        margin: 30px 0 0;
+        border-radius: 12px;
+    }
+
+    .chefs-tips-banner h3 {
+        font-size: 1.25rem;
+        margin-bottom: 14px;
+    }
+
+    .tips-content p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    /* Шаги приготовления */
+    .steps-list li {
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .steps-list p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* На мобильных полностью убираем текстовую кнопку */
+    .recipe-fav-btn {
+        display: none !important;
+    }
+
+    /* Включаем и позиционируем закладку прямо на фото */
+    .mobile-fav-btn {
+        display: flex;
+    }
+
+   /* ==========================================================================
+   АДАПТИВ ДЛЯ КАТАЛОГА СТАТЕЙ И ЛАЙФХАКОВ
+   ========================================================================== */
+   .content-section .container {
+    padding-left: 16px;
+    padding-right: 16px;
+   }
+
+   .content-section .content-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    gap: 14px;
+   }
+
+    .content-section .content-toolbar .articles-counter {
+    padding-left: 7px;
+    font-size: 0.8rem;
+    }
+
+    .content-section .content-toolbar .toolbar-left {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    }
+
+    .content-section .content-toolbar .section-search-box {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    }
+
+    .content-section .content-toolbar .tags-scroll {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    }
+
+    .content-section .content-toolbar .tags-scroll > .tag-btn {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    }
+
+    /* Сетки: одна колонка */
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 32px;
+    }
+
+    /* Общие параметры карточек */
+    .article-card {
+        min-height: unset;
+        border-radius: 16px;
+    }
+
+    .card-image-wrap {
+        height: 190px !important;
+    }
+
+    .article-card.featured-card .card-badge {
+        background: var(--color-gold, #c5994a) !important;
+        color: #ffffff;
+    }
+
+    .card-image-wrap .card-badge {
+        bottom: 8px;
+        left: 8px;
+        padding: 3px 6px;
+        font-size: 0.5rem;
+    }
+
+    .card-content{
+        padding: 18px 18px 20px !important;
+    }
+
+    .article-card-title,
+    .article-card-title a,
+    h3.article-card-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 8px;
+    }
+
+    .article-card.featured-card .card-excerpt {
+    -webkit-line-clamp: 3;
+    max-height: calc(1.55em * 3);
+}
+
+    .card-excerpt {
+        font-size: 0.88rem !important;
+        margin-bottom: 18px !important;
+    }
+
+    /* Hero: одна колонка, картинка сверху */
+    .story-hero-card {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        gap: 0 !important;
+        margin-bottom: 24px;
+        border-radius: 16px;
+        min-height: 500px !important;
+        padding-top: 0 !important;
+    }
+
+    .story-hero-card .card-image-wrap {
+        height: 230px !important;
+        min-height: 0 !important;
+    }
+
+    .story-hero-card .card-excerpt {
+        margin-bottom: 18px !important;
+        padding-bottom: 0 !important;
+    }
+
+    .story-hero-card .article-card-title,
+    .story-hero-card .article-card-title a {
+        font-size: 1.35rem !important;
+        margin-bottom: 10px;
+    }
+
+    .hero-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 6px !important;
+    }
+
+    /* Featured: из горизонтальной в вертикальную */
+    .article-card.featured-card {
+        flex-direction: column !important;
+        grid-column: auto !important;
+        border-color: rgba(197, 153, 74, 0.55);
+    }
+
+    .article-card.featured-card .card-image-wrap {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
+        min-height: 0;
+        height: 205px !important;
+    }
+
+    .article-card.featured-card .card-excerpt {
+    line-height: 1.4;
+    }
+
+/* Единый размер мета-данных для всех карточек в сетке */
+    .article-card .card-meta {
+        font-size: 0.76rem;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* --- КНОПКА "ПОКАЗАТЬ ЕЩЕ" --- */
+    .load-more-wrap {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Сама кнопка «Показать ещё» на всю ширину мобильного экрана */
+    .load-more-btn {
+        width: 100% !important;
+        padding: 14px 20px !important;
+        border-radius: 20px; 
+        box-sizing: border-box;
+    }
+
+    /* СТРАНИЦА СТАТЬИ */
+
+    /* 1. Контейнер и внешние отступы */
+    .container-narrow {
+        padding: 0 16px; 
+    }
+
+    /* 2. Шапка статьи и метаданные */
+    .article-header {
+        margin-bottom: 0;
+    }
+
+    .article-title {
+        font-size: 1.45rem !important; 
+        line-height: 1.28 !important;
+        margin: 0 0 12px 0 !important;
+    }
+
+    .article-author-info {
+        font-size: 0.76rem !important; 
+        margin-bottom: 16px !important;
+        gap: 6px !important;
+    }
+
+    /* 3. Лид (Вводный абзац статьи) */
+    .article-lead {
+        font-size: 0.95rem !important; 
+        line-height: 1.55 !important;
+        margin-bottom: 20px !important;
+        padding-left: 14px !important;
+        border-left-width: 2px !important; 
+    }
+
+    /* 4. Главная обложка (Hero Image) */
+    .article-hero-image {
+            border-radius: 12px !important; 
+            margin-bottom: 28px !important;
+        }
+
+    .article-embedded-image {
+        max-width: 86% !important;
+    }
+
+    .article-embedded-image .image-caption {
+        font-size: 12px !important;        
+        line-height: 1.4;
+        margin-top: 6px !important;      
+        padding: 0 8px;
+    }
+
+    /* 5. Тело статьи и заголовки разделов */
+    .article-body {
+        font-size: 1.0rem !important; 
+        line-height: 1.65 !important;
+        gap: 18px !important;
+    }
+
+    .article-body p {
+        font-size: 0.9rem;
+    }
+
+    .article-body h2 {
+        font-size: 1.2rem !important; 
+        line-height: 1.35 !important;
+        margin-top: 6px;
+    }
+
+    .article-body h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important; 
+    }
+
+    .article-body li {
+        margin-bottom: 6px;
+    }
+
+    /* 6. Блок цитаты / Заметки шефа */
+    .quote-box {
+        padding: 16px 20px !important; 
+        margin: 8px 0;
+        border-left-width: 3px !important;
+        border-radius: 0 8px 8px 0 !important;
+        font-size: 0.96rem !important;
+    }
+
+    /* 7. Списки */
+    .article-body ul, 
+    .article-body ol {
+        margin: 0 0 0 18px !important;
+}
+
+/* ==========================================================================
+   АДАПТИВ СТРАНИЦЫ ИЗБРАННОЕ (FAVORITES)
+   ========================================================================== */
+
+.favorites-page {
+        padding: 24px 16px 0;
+    }
+
+    /* Одна колонка на смартфонах */
+    #favoritesGrid.recipe-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+    }
+
+    /* Компактный empty-state для маленьких экранов */
+    .empty-state {
+        margin: 24px auto;
+        padding: 24px 16px;
+    }
+
+    .empty-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 20px;
+    }
+
+    .empty-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .empty-state h2 {
+        font-size: 16px;
+        margin-bottom: 20px !important;
+    }
+
+/* Блок контента карточки */
+#favoritesGrid .favorite-item .recipe-content {
+    padding: 16px 16px 20px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    justify-content: flex-start !important; 
+}
+
+/* Заголовок рецепта */
+#favoritesGrid .favorite-item .recipe-card-title {
+    min-height: auto !important;   
+}
+}
+
+ /* Микро-фикс для iPhone SE */
+@media (max-width: 599px) and (max-height: 700px) {
+    .stories-section,
+    .chefs-choice-section,
+    .trends-section,
+    .world-cuisines-section {
+        padding-top: 28px !important;
+    }
+
+    /* ШАПКА */
+
+      .main-header .nav-group {
+        padding-top: 80px; 
+        gap: 24px;        
+    }
+
+    .main-header .glass-dropdown {
+        gap: 8px;         
+    }
+    
+    .main-header .nav-group .mobile-action-group {
+        margin-bottom: 40px; 
+    }
+
+    /* ГЛАВНЫЙ БАННЕР */
+
+    .hero-carousel {
+        height: 310px;
+    }
+
+    .slide-content {
+        padding: 0 24px;      
+        justify-content: center; 
+    }
+
+    .slide-tag {
+        font-size: 9px;       
+        margin-bottom: 6px;   
+    }
+
+    .slide-title {
+        font-size: 1.3rem;    
+        line-height: 1.2;
+        margin-bottom: 14px;  
+    }
+
+    .slide-subtitle {
+        display: none; 
+    }
+
+    /* ИСКУССТВО ПОДАЧИ */
+
+    .aesthetics-card-image {
+        height: 180px !important;
+        min-height: 180px !important;
+    }
+
+    /* КУЛИНАРНЫЕ ПОДБОРКИ */
+
+    .section-title-italic {
+        font-size: 1.2rem !important;
+        margin-bottom: 18px !important;
+    }
+
+    .story-circle-wrapper {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+    .story-label {
+        font-size: 0.6rem !important;
+    }
+
+    /* ВЫБОР ШЕФА */
+
+    .card-large .card-title {
+        bottom: 28px;
+    }
+
+    .card-small .card-title {
+        font-size: 0.85rem;
+    }
+
+    .card-large .card-desc {
+        bottom: 10px;
+        font-size: 0.70rem;
+    }
+
+    .card-badge {
+        top: 10px;
+        left: 10px;
+    }
+
+    /* ==========================================================================
+   АДАПТИВНОСТЬ СЕКЦИИ «КУХНИ МИРА»
+   ========================================================================== */
+   
+   .world-cuisines-section {
+        padding-top: 28px !important;
+    }
+
+    /* КРУГИ ИСТОРИИ (КУХНИ МИРА) */
+    .china-banner {
+        min-height: 110px;
+        margin-bottom: 30px;
+    }
+    
+    .circle-img-frame {
+        width: 95px;
+        height: 95px;
+    }
+
+    /* ==========================================================================
+   АДАПТИВНОСТЬ ФУТЕРА / ПОДВАЛА
+   ========================================================================== */
+
+    .site-footer {
+        margin-top: 24px !important;
+        padding-top: 24px !important; /* Делаем верхний отступ еще компактнее */
+    }
+
+    .footer-container {
+        padding: 0 16px 20px 16px !important; 
+        gap: 16px 12px !important; 
+        grid-template-columns: 1fr 1.4fr !important; 
+    }
+
+    /* Уменьшаем шрифты разделов и контактов, чтобы всё гарантированно помещалось */
+    .footer-links a {
+        font-size: 0.78rem !important;
+    }
+
+    .footer-contact-item {
+        font-size: 0.78rem !important;
+    }
+
+    .footer-contact-text {
+        font-size: 0.78rem !important;
+        margin-bottom: 8px !important; 
+    }
+
+    /* Уменьшаем заголовки «РАЗДЕЛЫ» и «КОНТАКТЫ» */
+    .footer-title {
+        margin-bottom: 8px !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Делаем списки еще плотнее */
+    .footer-links li {
+        margin-bottom: 6px !important;
+    }
+
+    /* Чуть уменьшаем иконки, чтобы сэкономить высоту */
+    .social-link {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .social-link svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .footer-bottom {
+        padding: 8px 0 !important;
+    }
+
+    .footer-bottom-container {
+        font-size: 0.7rem !important;
+    }
+
+    /* БАННЕР */
+
+    .hero-banner {
+        padding: 20px 16px;
+    }
+
+    .hero-title {
+        font-size: 1.35rem;
+    }
+
+    /* ==========================================================================
+   АДАПТИВ ДЛЯ СТРАНИЦЫ РЕЦЕПТА (.recipe-page)
+   ========================================================================== */
+
+    .recipe-single-title {
+        font-size: 1.3rem;
+    }
+
+    .chefs-tips-banner {
+        padding: 18px 16px;
+    }
+
+    /* СТРАНИЦА ПОИСКА */
+
+    .search-page-section .page-title {
+        font-size: 1.2rem; 
+    }
+
+    .search-counter {
+        margin-bottom: 16px;
+    }
+
+    #noResults h3 {
+        font-size: 1.15rem;
+}
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .logo-block:hover { transform: scale(1.03) translateZ(0); }
+    .logo-block:hover .logo-title,
+    .logo-block:hover .logo-subtitle { color: var(--color-gold); }
+    .logo-block:hover .logo-title { text-shadow: 0 2px 12px rgba(196, 154, 108, 0.25); }
+
+    .nav-link:hover { color: var(--color-gold); }
+
+    .action-btn:hover {
+        color: var(--color-gold);
+        transform: translateY(-1px);
+    }
+
+    .lang-select-wrapper:hover .lang-dropdown {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lang-option:hover,
+    .lang-option.active {
+        color: var(--color-gold);
+        font-weight: 600;
+    }
+
+    .dropdown-wrapper:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-wrapper:hover .glass-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(197, 153, 74, 0.12);
+        color: var(--color-gold);
+        transform: translateX(4px);
+    }
+
+    .btn-primary:hover {
+        background-color: #8c6a38;
+    }
+
+    /* ЕДИНЫЙ ХОВЕР ДЛЯ ВСЕХ ОБЫЧНЫХ КАРТОЧЕК (Истории + Лайфхаки) */
+    .article-card:hover,
+    .story-card:hover {
+        box-shadow: 0 16px 32px rgba(44, 37, 35, 0.08);
+        border-color: rgba(230, 126, 34, 0.3);
+    }
+
+    .article-card:hover .card-image {
+        transform: scale(1.04) translate3d(0, 0, 0);
+    }
+
+    .article-card-title a:hover {
+        color: var(--color-gold, #c49a6c);
+    }
+
+    .load-more-btn:hover {
+        background: #4A3B32;
+        border-color: #4A3B32;
+        color: #ffffff;
+    }
+
+    .story-hero-card:hover {
+        box-shadow: 0 16px 36px rgba(44, 37, 35, 0.1);
+        border-color: rgba(196, 154, 108, 0.5);
+    }
+
+    .breadcrumbs-container a:hover {
+        color: #c5994a;
+    }
+
+    .back-link:hover {
+        color: #c5994a;
+        transform: translateX(-4px);
+    }
+
+    .tag-btn:hover {
+        background-color: #1e1b1a;
+        color: #ffffff;
+        border-color: #1e1b1a;
+    }
+
+    .recipe-card:hover {
+        box-shadow: 0 16px 32px rgba(44, 37, 35, 0.08);
+        border-color: rgba(230, 126, 34, 0.3);
+    }
+
+    .recipe-card:hover .recipe-thumb img { 
+        transform: scale(1.04) translate3d(0, 0, 0); 
+    }
+
+    .fav-btn:hover {
+        background: rgba(255, 255, 255, 0.95);
+        color: #c5994a;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        transform: translate3d(0, 0, 0) scale(1.1);
+    }
+
+    .fav-btn.is-active:hover {
+        background: #ffffff;
+    }
+
+/* Ховер для обычной кнопки избранного на странице рецепта */
+    .recipe-fav-btn:not(.is-active):hover {
+        background-color: rgba(30, 27, 26, 0.05);
+        color: #c5994a;
+        border-color: #c5994a;
+    }
+
+    .recipe-fav-btn:not(.is-active):hover .bookmark-icon {
+        stroke: #c5994a;
+    }
+
+    /* Защита активной кнопки от ховера (чтобы не светлела и не дергалась) */
+    .recipe-fav-btn.is-active:hover {
+        background-color: #1e1b1a !important;
+        border-color: #1e1b1a !important;
+        color: #ffffff !important;
+        transform: none !important;
+    }
+
+    .recipe-fav-btn.is-active:hover .bookmark-icon {
+        fill: #ffffff !important;
+        stroke: #ffffff !important;
+    }
+
+    /* Ховер для заголовка карточки рецепта */
+    .recipe-card-title a:hover {
+        color: var(--color-gold, #c49a6c);
+    }
+
+    .btn-gold:hover {
+        background: var(--gradient-gold-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(154, 114, 44, 0.4);
+    }
+
+/* При наведении на саму карусель показываем стрелки и сдвигаем на финальные позиции */
+.hero-carousel:hover .carousel-btn {
+    opacity: 1;
+    visibility: visible;
+}
+.hero-carousel:hover .prev-btn { left: 24px; }
+.hero-carousel:hover .next-btn { right: 24px; }
+
+/* Авто-адаптация стрелок под светлый слайд (Michelin) */
+.hero-carousel:has(.light-slide.active) .carousel-btn {
+    background: rgba(26, 14, 11, 0.08);
+    border-color: rgba(26, 14, 11, 0.2);
+    color: var(--color-dark-chockolate);
+}
+
+/* Ховер при наведении на саму кнопку */
+.hero-carousel .carousel-btn:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: #FFFFFF;
+}
+
+.hero-carousel:has(.light-slide.active) .carousel-btn:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: #FFFFFF;
+}
+
+    .aesthetics-card:hover .aesthetics-card-image img {
+        transform: translate3d(0, 0, 0) scale(1.04);
+    }
+
+    .aesthetics-card:hover .aesthetics-card-title {
+        color: var(--color-gold);
+    }
+
+    .story-item:hover .story-circle-wrapper {
+    border-color: #D49B2D; 
+    box-shadow: 0 12px 28px rgba(212, 155, 45, 0.45);
+    }
+
+    .story-item:hover .story-circle img {
+        transform: scale(1.12);
+    }
+
+    .story-item:hover .story-label {
+        color: var(--color-gold);
+    }
+
+    .chef-card:hover {
+        transform: translateY(-10px) !important;
+        box-shadow: 0 25px 50px rgba(26, 14, 11, 0.25), 0 0 20px rgba(197, 153, 74, 0.15) !important;
+    }
+
+    .chef-card:hover .card-img {
+        transform: translateZ(0) scale(1.06) !important;
+        filter: brightness(1.03);
+    }
+
+    .trend-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 30px rgba(26, 14, 11, 0.14);
+        border-color: rgba(197, 153, 74, 0.4);
+    }
+
+    .trend-card:hover .trend-img {
+        transform: translateZ(0) scale(1.04);
+    }
+
+    .trend-card:hover .trend-title {
+        color: var(--color-gold);
+    }
+
+    .trending-circle-item:hover .trending-img-box {
+        border-color: var(--color-gold);
+        box-shadow: 0 0 12px rgba(197, 153, 74, 0.4), 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .trending-circle-item:hover .trending-item-label {
+        color: var(--color-gold);
+    }
+
+    .ferment-card-info .btn-gold:hover {
+        background: var(--gradient-gold-hover);
+        box-shadow: 0 0 15px rgba(212, 168, 88, 0.6), 0 4px 14px rgba(0, 0, 0, 0.25);
+        transform: none !important;
+    }
+
+    .cuisines-cards-grid:hover {
+        animation-play-state: paused;
+    }
+
+    .world-cuisines-section:hover .scroll-btn {
+        opacity: 1;
+    }
+
+    .world-cuisines-section:hover .prev-btn {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    .world-cuisines-section:hover .next-btn {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    .scroll-btn:hover {
+        background: #c5994a;
+        color: #ffffff;
+        border-color: #c5994a;
+        box-shadow: 0 6px 18px rgba(197, 153, 74, 0.4);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .cuisine-card.card-up:hover {
+        transform: translateY(0);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+    }
+
+    .cuisine-card.card-down:hover {
+        transform: translateY(45px);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+    }
+
+    .cuisine-card:hover .card-bg-img {
+        transform: scale(1.08);
+    }
+
+    .circle-card-item:hover .circle-img-frame {
+        box-shadow: inset 0 0 18px rgba(30, 30, 30, 0.5), 0 10px 24px rgba(197, 153, 74, 0.25);
+    }
+
+    .circle-card-item:hover .circle-img-frame img {
+        transform: scale(1.12);
+    }
+
+    .circle-card-item:hover .circle-card-title {
+        color: #c5994a;
+    }
+
+    .social-link:hover {
+        background-color: #c5994a;
+        color: #ffffff;
+        border-color: #c5994a;
+        transform: translateY(-2px);
+    }
+
+    .footer-links a:hover {
+        color: #ffffff;
+        padding-left: 4px;
+    }
+
+    .article-card.featured-card:hover {
+        border-color: rgba(196, 154, 108, 0.6) !important;
+        box-shadow: 0 18px 36px rgba(196, 154, 108, 0.18) !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
