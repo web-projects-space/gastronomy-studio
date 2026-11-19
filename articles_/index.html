@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гастрономические истории | Gastronomy Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/gastronomy-studio/css/style.css">
+</head>
+
+<body>
+
+    <!-- Шапка (header) -->
+    <header class="main-header">
+        <!-- Логотип -->
+        <a href="/gastronomy-studio/index.html" class="logo-block">
+            <span class="logo-title">Gástronomy</span>
+            <span class="logo-subtitle">Studio</span>
+        </a>
+
+        <!-- Основная навигация -->
+        <nav class="nav-group" id="mobileMenu">
+            <!-- ПОИСК (Только для мобилок) -->
+<form class="mobile-search-box" id="mobileSearchForm" action="/gastronomy-studio/search.html" method="GET">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" name="q" id="mobileSearchInput" placeholder="Поиск по сайту..." class="mobile-search-input" autocomplete="off">
+</form>
+
+            <!-- Рецепты -->
+            <div class="dropdown-wrapper">
+                <a href="#" class="nav-link dropdown-toggle">
+                    Рецепты
+                    <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1L6 6L11 1"/>
+                    </svg>
+                </a>
+            <div class="glass-dropdown">
+                <a href="/gastronomy-studio/recipes/hot-dishes/index.html" class="dropdown-item">Первые и горячие блюда</a>
+                <a href="/gastronomy-studio/recipes/salads/index.html" class="dropdown-item">Салаты и закуски</a>
+                <a href="/gastronomy-studio/recipes/baking/index.html" class="dropdown-item">Мучные блюда и выпечка</a>
+                <a href="/gastronomy-studio/recipes/desserts/index.html" class="dropdown-item">Десерты</a>
+                <a href="/gastronomy-studio/recipes/sauces/index.html" class="dropdown-item">Соусы и заправки</a>
+                <a href="/gastronomy-studio/recipes/drinks/index.html" class="dropdown-item">Напитки</a>
+                <a href="/gastronomy-studio/recipes/health-and-diet/index.html" class="dropdown-item">Здоровье и диеты</a>
+            </div>
+            </div>
+            
+            <!-- Статьи и секреты (Активная прямая ссылка) -->
+            <a href="/gastronomy-studio/articles_/index.html" class="nav-link active">Статьи и секреты</a>
+
+            <!-- Ссылка только для мобилок (Избранное) -->
+            <a href="/gastronomy-studio/favorites.html" class="nav-link mobile-close-link mobile-only-link">Избранное</a>
+
+            <!-- Контакты -->
+            <div class="dropdown-wrapper mobile-only-dropdown">
+                <a href="#" class="nav-link dropdown-toggle">
+                    Контакты
+                    <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1L6 6L11 1"/>
+                    </svg>
+                </a>
+                <div class="glass-dropdown">
+                    <a href="mailto:gastronomystudiosev@gmail.com" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        gastronomystudiosev@gmail.com
+                    </a>
+                    <a href="tel:+79788272295" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +7 (978) 827-22-95
+                    </a>
+                    <a href="https://t.me/gastronomy_studio" target="_blank" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Telegram-канал
+                    </a>
+                </div>
+            </div>
+
+            <!-- Иконки для мобилок -->
+            <div class="mobile-action-group">
+                <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему">
+                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <div class="lang-select-wrapper mobile-lang-wrapper">
+                    <button class="action-btn" id="mobileLangBtn" aria-label="Язык">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+                    </button>
+                    <div class="lang-dropdown" id="mobileLangDropdown">
+                        <a href="#" class="lang-option active">RU</a>
+                        <a href="#" class="lang-option">EN</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Правая десктопная группа -->
+    <div class="action-group">
+<form class="search-box" id="searchBox" action="/gastronomy-studio/search.html" method="GET">
+        <input type="text" name="q" class="search-input" id="headerSearchInput" placeholder="Поиск по сайту..." autocomplete="off"/>
+        <button type="submit" class="action-btn search-btn" id="searchBtn" aria-label="Поиск">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </button>
+    </form>
+        
+            <a href="/gastronomy-studio/favorites.html" class="action-btn" aria-label="Сохраненное">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </a>
+            <button class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="lang-select-wrapper">
+                <button class="action-btn" aria-label="Язык">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" class="lang-option active">RU</a>
+                    <a href="#" class="lang-option">EN</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+    </header>
+
+<!-- Основной контент -->
+<main class="main-content">
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs-container catalog-breadcrumbs">
+        <a href="/gastronomy-studio/index.html">Главная</a>
+        <span class="separator">/</span>
+        <span class="current">Статьи и секреты</span>
+    </div>
+
+    <!-- HERO-БАННЕР КАТЕГОРИИ -->
+    <section class="hero-banner">
+        <div class="hero-banner-content">
+            <span class="hero-badge">Блог &amp; Лайфхаки</span>
+            <h1 class="hero-title">Статьи и секреты</h1>
+            <p class="hero-description">
+                Занимательные истории блюд, кулинарные традиции мира, секреты шефов и проверенные трюки для вашей кухни.
+            </p>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-toolbar">
+                <div class="toolbar-left">
+                    <div class="section-search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="sectionSearch" placeholder="Искать по статьям...">
+                    </div>
+                    <span class="articles-counter">Найдено: <strong id="visibleCount">11</strong></span>
+                </div>
+
+                <!-- ТАБЫ-ФИЛЬТРЫ -->
+                <div class="tags-scroll">
+                <button class="tag-btn active" data-filter="all">Все материалы</button>
+                <button class="tag-btn" data-filter="story">Истории</button>
+                <button class="tag-btn" data-filter="hack">Лайфхаки</button>
+                </div>
+            </div>
+
+            <!-- 1. ГЛАВНАЯ СТАТЬЯ (HERO STORY - на всю ширину) -->
+            <article class="article-card story-hero-card" data-category="story" data-id="croissant-history">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/croisant-history/croissant-history-card.webp" alt="История круассана" width="800" height="600" class="card-image" fetchpriority="high">
+                    <span class="card-badge">Главная тема</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в избранное">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h2 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/croissant-history.html">Тайная история круассана: От австрийского рогалика до символа Франции</a>
+                    </h2>
+                    <p class="card-excerpt">
+                        Почему главный французский символ на самом деле появился в Вене, как осада 1683 года изменила европейский завтрак и при чем здесь Мария-Антуанетта.
+                    </p>
+                    <div class="hero-card-footer">
+                        <span class="story-author">Автор: Шеф-редактор</span>
+                        <div class="card-meta">
+                            <span class="story-date">12 октября 2026</span>
+                            <span class="meta-dot">•</span>
+                            <span class="read-time">7 мин чтения</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. СЕТКА СТАТЕЙ И ЛАЙФХАКОВ -->
+            <div class="articles-grid">
+
+            <!-- Лайфхак: Быстрый подъём дрожжевого теста -->
+            <article class="article-card featured-card" data-category="hack" data-id="dough-hack">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/dough-hack/dough-hack-card.webp" alt="Быстрый подъём дрожжевого теста" class="card-image" width="800" height="600" fetchpriority="high">
+                    <span class="card-badge">Топ лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title"><a href="/gastronomy-studio/articles_/hacks/dough-hack.html">Быстрый подъём дрожжевого теста</a></h3>
+                    <p class="card-excerpt">Простой лайфхак с мультиваркой или духовкой, который заменяет профессиональную расстоечную камеру.</p>
+                    <div class="card-meta"><span class="read-time">4 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История Michelin -->
+            <article class="article-card story-card" data-category="story" data-id="michelin-chef">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/michelin-history/michelin-chef-card.webp" class="card-image" alt="Звёзды Мишлен" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/michelin-history.html">История гида Michelin: От автошин до высшей награды в гастрономии</a>
+                    </h3>
+                    <p class="card-excerpt">Маркетинговый ход начала XX века, превратившийся в самый авторитетный ресторанный рейтинг мира.</p>
+                    <div class="card-meta"><span class="story-date">11 апреля 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Магия текстур -->
+            <article class="article-card hack-card" data-category="hack" data-id="texture-magic">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/texture-magic/texture-magic-card.webp" class="card-image" alt="Магия текстур" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title"><a href="/gastronomy-studio/articles_/hacks/texture-magic.html">Магия текстур: Сочетание хруста, нежности и глянца</a></h3>
+                    <p class="card-excerpt">Как правильно сочетать контрастные текстуры в десертах и горячем.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Мини-дегустация Michelin -->
+            <article class="article-card hack-card" data-category="hack" data-id="michelin-tasting-hack">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/michelin-tasting.html">
+                        <img src="/gastronomy-studio/images/hacks/michelin-tasting/michelin-tasting-card.webp" class="card-image" alt="Мини-дегустация Michelin" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="michelin-tasting-hack">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title"><a href="/gastronomy-studio/articles_/hacks/michelin-tasting.html">Мини‑дегустация Michelin: 6 блюд на один укус</a></h3>
+                    <p class="card-excerpt">Разбираем сет из ресторанов со звёздами Michelin, который можно повторить дома.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Корица -->
+            <article class="article-card story-card" data-category="story" data-id="cinnamon-history">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/cinnamon-history/cinamon-history-card.webp" class="card-image" alt="Как корица меняла границы империй" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/cinnamon-history.html">Как корица меняла границы империй</a>
+                    </h3>
+                    <p class="card-excerpt">Загадки древних купцов, колониальные войны и почему за одну щепотку ароматной коры когда-то отдавали целые состояния.</p>
+                    <div class="card-meta"><span class="story-date">5 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Умами -->
+            <article class="article-card hack-card" data-category="hack" data-id="umami-magic">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/umami-magic.html">
+                        <img src="/gastronomy-studio/images/hacks/umami-magic/umami-card.webp" class="card-image" alt="Умами: Неуловимая магия в вашей тарелке" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="umami-magic">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/umami-magic.html">Умами: Неуловимая магия в вашей тарелке</a>
+                    </h3>
+                    <p class="card-excerpt">Почему некоторые продукты делают вкус блюда глубже, и как работает синергия вкусов.</p>
+                    <div class="card-meta"><span class="read-time">4 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Хлеб -->
+            <article class="article-card story-card" data-category="story" data-id="bread-cultures">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/bread-cultures/bread-cultures-card.webp" class="card-image" alt="Почему в каждой культуре свой хлеб" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/bread-cultures.html">Почему в каждой культуре свой хлеб</a>
+                    </h3>
+                    <p class="card-excerpt">От пышного французского багета до кавказского лаваша — как зерно сформировало мировую культуру.</p>
+                    <div class="card-meta"><span class="story-date">5 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Кулинарные традиции мира -->
+            <article class="article-card hack-card" data-category="hack" data-id="world-culinary-traditions">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/world-culinary-traditions.html">
+                        <img src="/gastronomy-studio/images/hacks/world-culinary-traditions/map-card.webp" class="card-image" alt="Кулинарные традиции со всего мира" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="world-culinary-traditions">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/world-culinary-traditions.html">Как не обидеть повара?</a>
+                    </h3>
+                    <p class="card-excerpt">Узнайте неожиданные правила этикета и застольные привычки разных стран, чтобы не попасть впросак.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Магия рецепторов -->
+            <article class="article-card hack-card" data-category="hack" data-id="spices-magic">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/spices-magic.html">
+                        <img src="/gastronomy-studio/images/hacks/spices-magic/spices-magic-card.webp" alt="Магия рецепторов: Как специи влияют на вкус" width="800" height="600" loading="lazy" class="card-image">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="spices-magic">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/spices-magic.html">Магия рецепторов: Как специи влияют на вкус и состояние</a>
+                    </h3>
+                    <p class="card-excerpt">5 золотых правил пряностей, химия несладких специй и нейрохимия десертов.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- 4. История Кофе -->
+            <article class="article-card story-card" data-category="story" data-id="coffee-culture">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/coffee-culture/coffee-culture-card.webp" class="card-image" alt="От тайного отвара до культуры кофеен" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/coffee-culture.html">Эликсир бодрости</a>
+                    </h3>
+                    <p class="card-excerpt">История об эфиопских пастухах, суфийских монастырях и глобальной утренней привычке миллиона людей.</p>
+                    <div class="card-meta"><span class="story-date">5 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Странные гастрономические пары -->
+            <article class="article-card hack-card" data-category="hack" data-id="weird-food-pairs">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/weird-food-pairs.html">
+                        <img src="/gastronomy-studio/images/hacks/weird-food-pairs/peanutbutter-pickles-card.webp" class="card-image" alt="Самые странные, но удивительно вкусные пары" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="weird-food-pairs">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/weird-food-pairs.html">Самые странные, но удивительно вкусные пары</a>
+                    </h3>
+                    <p class="card-excerpt">Необычные вкусовые сочетания от шефов со всего мира, которые стоит попробовать дома.</p>
+                    <div class="card-meta"><span class="read-time">4 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Сырная палитра -->
+            <article class="article-card hack-card" data-category="hack" data-id="cheese-board">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/cheese-board/cheese-board-card.webp" class="card-image" alt="Сырная палитра" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title"><a href="/gastronomy-studio/articles_/hacks/cheese-board.html">Сырная палитра: Правила идеальной плато-сервировки</a></h3>
+                    <p class="card-excerpt">Подбор 4 категорий сыров, гастрономических пар и сборка доски.</p>
+                    <div class="card-meta"><span class="read-time">6 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: K-Food тренды -->
+            <article class="article-card story-card" data-category="story" data-id="k-food-trends">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/stories_/k-food-trends.html">
+                        <img src="/gastronomy-studio/images/stories_/k-food-trends/k-food-card.webp" class="card-image" alt="5 главных K-Food трендов" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="k-food-trends">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/k-food-trends.html">5 главных K-Food трендов: Эстетика Сеула в цифровую эпоху</a>
+                    </h3>
+                    <p class="card-excerpt">Как корейская гастрономия превратилась в культ визуала, объединивший дизайн, моду и еду.</p>
+                    <div class="card-meta"><span class="story-date">8 ноября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Архитектура блюда -->
+            <article class="article-card hack-card" data-category="hack" data-id="food-architecture"> 
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/food-architecture/food-architecture-card.webp" class="card-image" alt="Архитектура блюда" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title"><a href="/gastronomy-studio/articles_/hacks/food-architecture.html">Архитектура блюда: Как выстраивать объём и форму</a></h3>
+                    <p class="card-excerpt">Секреты создания вертикали и формы при подаче пасты и горячих блюд.</p>
+                    <div class="card-meta"><span class="read-time">6 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Феномен цитруса Юдзу -->
+            <article class="article-card story-card" data-category="story" data-id="yuzu-trend">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/yuzu-trend/yuzu-trend-card.webp" class="card-image" alt="Цитрус Юдзу" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/yuzu-trend.html">Феномен Юдзу: Как азиатский цитрус покорил высокую кухню</a>
+                    </h3>
+                    <p class="card-excerpt">Путь от древних гор Восточной Азии до главного тренда в меню ресторанов со звёздами Michelin.</p>
+                    <div class="card-meta"><span class="story-date">4 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Искусство ферментации -->
+            <article class="article-card hack-card" data-category="hack" data-id="fermentation-revival">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/fermentation-revival/fermentation-card.webp" class="card-image" alt="Искусство ферментации" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/fermentation-revival.html">Искусство ферментации в домашних условиях</a>
+                    </h3>
+                    <p class="card-excerpt">Освойте базовые техники и правила безопасности для создания ферментированных продуктов дома.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Зеленое золото Японии (Матча) -->
+            <article class="article-card story-card" data-category="story" data-id="matcha-trend">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/matcha-trend/matcha-trend-card.webp" class="card-image" alt="Матча" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/matcha-trend.html">Как чай Матча покорил мировые кофейни и десерты</a>
+                    </h3>
+                    <p class="card-excerpt">От дзен-буддийских медитаций до главного суперфуда современности.</p>
+                    <div class="card-meta"><span class="story-date">4 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Секрет корейской кухни (Гочуджанг) -->
+            <article class="article-card hack-card" data-category="hack" data-id="gochujang-guide">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/gochujang-guide/gochujang-guide-card.webp" class="card-image" alt="Паста Гочуджанг" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/gochujang-guide.html">Гочуджанг: Как правильно использовать главную корейскую пасту</a>
+                    </h3>
+                    <p class="card-excerpt">Секреты баланса остроты, сладости и ферментации в повседневных блюдах.</p>
+                    <div class="card-meta"><span class="read-time">3 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Алхимия Трюфеля -->
+            <article class="article-card story-card" data-category="story" data-id="truffle-magic">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/truffle-magic/truffle-magic-card.webp" class="card-image" alt="Черный и белый трюфель" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/truffle-magic.html">Алхимия Трюфеля: Почему подгруздки ценятся дороже золота</a>
+                    </h3>
+                    <p class="card-excerpt">Таинственный мир подземных грибов, охота с собаками и магия аромата умами.</p>
+                    <div class="card-meta"><span class="story-date">3 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Идеальная Тахини -->
+            <article class="article-card hack-card" data-category="hack" data-id="tahini-secrets">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/hacks/tahini-secrets/tahini-secrets-card.webp" class="card-image" alt="Кунжутная паста Тахини" width="800" height="600" loading="lazy">
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/tahini-secrets.html">Тахини на кухне: От шелковистого хумуса до ореховых соусов</a>
+                    </h3>
+                    <p class="card-excerpt">Как выбирать, взбивать и сочетать кунжутную пасту без горечи.</p>
+                    <div class="card-meta"><span class="read-time">3 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Гастрономический гороскоп -->
+            <article class="article-card story-card" data-category="story" data-id="gastronomy-horoscope">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/horoscope/horoscope-main-card.webp" class="card-image" alt="Гастрономический гороскоп" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/gastronomy-horoscope.html">Гастрономический гороскоп</a>
+                    </h3>
+                    <p class="card-excerpt">Астро-кулинарный гид по четырём стихиям: ищем блюдо, которое гармонизирует ваше настроение.</p>
+                    <div class="card-meta"><span class="story-date">12 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Реакция Майара -->
+            <article class="article-card hack-card" data-category="hack" data-id="maillard-reaction">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/maillard-reaction.html">
+                        <img src="/gastronomy-studio/images/hacks/maillard-reaction/maillard-card.webp" class="card-image" alt="Реакция Майара" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="maillard-reaction">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/maillard-reaction.html">Почему жареная еда вкуснее: Всё о реакции Майара</a>
+                    </h3>
+                    <p class="card-excerpt">Разбираем главный физико-химический процесс на вашей сковороде: от румяной корочки до глубокого вкуса.</p>
+                    <div class="card-meta"><span class="read-time">5 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- История: Пицца -->
+            <article class="article-card story-card" data-category="story" data-id="pizza-history">
+                <div class="card-image-wrap">
+                    <img src="/gastronomy-studio/images/stories_/pizza-history/queen-margherita-card.webp" class="card-image" alt="Рецепты, изменившие мир: Неаполитанская пицца" width="800" height="600" loading="lazy">
+                    <span class="card-badge">История</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/stories_/pizza-history.html">От уличной еды бедняков до королевы Италии</a>
+                    </h3>
+                    <p class="card-excerpt">Как простое плоское тесто с томатами покорило королевский двор и превратилось в главное блюдо планеты.</p>
+                    <div class="card-meta"><span class="story-date">5 октября 2026</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Курица как в ресторане -->
+            <article class="article-card hack-card" data-category="hack" data-id="crispy-chicken">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/crispy-chicken-hack.html">
+                        <img src="/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-card.webp" class="card-image" alt="Курица как в ресторане" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="crispy-chicken">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/crispy-chicken-hack.html">Секреты идеальной хрустящей корочки</a>
+                    </h3>
+                    <p class="card-excerpt">Почему в ресторанах курица всегда получается сочной и румяной? Применяем реакцию Майара на практике.</p>
+                    <div class="card-meta"><span class="read-time">4 мин чтения</span></div>
+                </div>
+            </article>
+
+            <!-- Лайфхак: Соусы и баланс вкуса -->
+            <article class="article-card hack-card" data-category="hack" data-id="sauces-balance">
+                <div class="card-image-wrap">
+                    <a href="/gastronomy-studio/articles_/hacks/sauces-balance-hack.html">
+                        <img src="/gastronomy-studio/images/hacks/sauces-balance/sauces-balance-card.webp" class="card-image" alt="Соусы: как спасти вкус" width="800" height="600" loading="lazy">
+                    </a>
+                    <span class="card-badge">Лайфхак</span>
+
+                    <!-- КНОПКА ИЗБРАННОГО -->
+                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="sauces-balance">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="article-card-title">
+                        <a href="/gastronomy-studio/articles_/hacks/sauces-balance-hack.html">Соусы: как спасти вкус и найти идеальный баланс</a>
+                    </h3>
+                    <p class="card-excerpt">Формула идеального соуса из четырёх элементов и диагностика вкуса, когда блюдо «не собирается».</p>
+                    <div class="card-meta"><span class="read-time">4 мин чтения</span></div>
+                </div>
+            </article>
+
+            </div>
+
+            <!-- Кнопка "Показать еще" -->
+            <div class="load-more-wrap">
+                <button type="button" class="load-more-btn" data-expanded="false">Показать ещё</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+        <!-- FOOTER / ПОДВАЛ (ДЛЯ ВНУТРЕННИХ СТРАНИЦ) -->
+    <footer id="contacts" class="site-footer">
+
+        <div class="footer-main">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">Gástronomy <span>STUDIO</span></div>
+                    <p class="footer-desc">
+                        Кулинарная студия и эстетический журнал о вкусной еде, традициях и современных гастрономических трендах.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Контакты</h4>
+                    <p class="footer-contact-item">gastronomystudiosev@gmail.com</p>
+                    <p class="footer-contact-item">+7 (978) 827-22-95</p>
+                    <p class="footer-contact-text">г. Севастополь</p>
+
+                    <div class="footer-socials">
+                        <!-- Telegram -->
+                        <a href="https://t.me/gastronomy_studio" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="social-link" title="Telegram">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9.78 18.65l.28-4.2 7.63-6.88c.34-.31-.07-.48-.52-.19l-9.43 5.94-4.08-1.28c-.89-.28-.9-.89.19-1.32L19.7 6.42c.73-.28 1.38.17 1.14 1.28l-2.69 12.67c-.2.93-.75 1.15-1.53.72l-4.53-3.34-2.18 2.1c-.24.24-.44.44-.9.44z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- VK -->
+                        <a href="javascript:void(0)" aria-label="VK" class="social-link" title="ВКонтакте (скоро)" style="opacity: 0.5; cursor: default;">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15.684 18.653c-6.87 0-10.785-4.71-10.951-12.545h3.456c.115 5.753 2.651 8.186 4.664 8.691V6.108h3.255v4.962c1.993-.214 4.082-2.474 4.787-4.962h3.255c-.538 3.132-2.843 5.392-4.502 6.353 1.66.786 4.218 2.766 5.16 6.192h-3.585c-.736-2.298-2.574-4.072-5.011-4.318v4.318h-.528z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>© 2026 Gástronomy Studio. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/gastronomy-studio/js/script.js"></script>
+    <script src="/gastronomy-studio/js/search-page.js"></script>
+    <script src="/gastronomy-studio/js/favorites.js"></script>
+</body>
+</html>
