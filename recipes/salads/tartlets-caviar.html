@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тарталетки с крем-сыром и икрой | Gastronomy Studio</title>
+    <meta name="description" content="Сочная закуска с крем-сыром, икрой или рыбой для яркого фуршета.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Gastronomy Studio">
+    <meta property="og:title" content="Тарталетки с крем-сыром и красной икрой">
+    <meta property="og:description" content="Сочная закуска с крем-сыром, икрой или рыбой для яркого фуршета.">
+    <meta property="og:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/salads/tartlets-caviar-full.webp">
+    <meta property="og:url" content="https://gastronomy-studio.ru/gastronomy-studio/recipes/salads/tartlets-caviar.html">
+    <meta property="article:section" content="Рецепты">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Тарталетки с крем-сыром и красной икрой">
+    <meta name="twitter:description" content="Сочная закуска с крем-сыром, икрой или рыбой для яркого фуршета.">
+    <meta name="twitter:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/salads/tartlets-caviar-full.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/gastronomy-studio/css/style.css">
+</head>
+<body>
+
+     <!-- Шапка (header) -->
+<header class="main-header">
+    <!-- Логотип -->
+    <a href="/gastronomy-studio/index.html" class="logo-block">
+        <span class="logo-title">Gástronomy</span>
+        <span class="logo-subtitle">Studio</span>
+    </a>
+
+    <!-- Основная навигация -->
+    <nav class="nav-group" id="mobileMenu">
+        <!-- ПОИСК (Только для мобилок) -->
+            <form class="mobile-search-box" id="mobileSearchForm" action="/gastronomy-studio/search.html" method="GET">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" name="q" id="mobileSearchInput" placeholder="Поиск по сайту..." class="mobile-search-input" autocomplete="off">
+            </form>
+
+        <!-- 1. Рецепты (Выпадающее везде) -->
+        <div class="dropdown-wrapper">
+            <a href="#" class="nav-link dropdown-toggle">
+                Рецепты
+                <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1L6 6L11 1"/>
+                </svg>
+            </a>
+
+            <div class="glass-dropdown">
+                <a href="/gastronomy-studio/recipes/hot-dishes/index.html" class="dropdown-item">Первые и горячие блюда</a>
+                <a href="/gastronomy-studio/recipes/salads/index.html" class="dropdown-item is-active">Салаты и закуски</a>
+                <a href="/gastronomy-studio/recipes/baking.html" class="dropdown-item">Мучные блюда и выпечка</a>
+                <a href="/gastronomy-studio/recipes/desserts/index.html" class="dropdown-item">Десерты</a>
+                <a href="/gastronomy-studio/recipes/sauces/index.html" class="dropdown-item">Соусы и заправки</a>
+                <a href="/gastronomy-studio/recipes/drinks/index.html" class="dropdown-item">Напитки</a>
+                <a href="/gastronomy-studio/recipes/health-and-diet/index.html" class="dropdown-item">Здоровье и диеты</a>
+            </div>
+        </div>
+        
+            <!-- Статьи и секреты (Активная прямая ссылка) -->
+            <a href="/gastronomy-studio/articles_/index.html" class="nav-link active">Статьи и секреты</a>
+
+        <!-- Ссылка только для мобилок (Избранное) -->
+        <a href="/gastronomy-studio/favorites.html" class="nav-link mobile-close-link mobile-only-link">Избранное</a>
+
+<!-- 4. Контакты: Выпадашка ТОЛЬКО ДЛЯ МОБИЛОК -->
+<div class="dropdown-wrapper mobile-only-dropdown">
+    <a href="#" class="nav-link dropdown-toggle">
+        Контакты
+        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M1 1L6 6L11 1"/>
+        </svg>
+    </a>
+
+    <div class="glass-dropdown">
+        <!-- Почта -->
+        <a href="mailto:gastronomystudiosev@gmail.com" class="dropdown-item contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            gastronomystudiosev@gmail.com
+        </a>
+
+        <!-- Телефон (на мобильном сразу запускает звонок) -->
+        <a href="tel:+79788272295" class="dropdown-item contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +7 (978) 827-22-95
+        </a>
+
+        <!-- Telegram -->
+        <a href="https://t.me/gastronomy_studio" target="_blank" class="dropdown-item contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Telegram-канал
+        </a>
+    </div>
+</div>
+
+<!-- ИКОНКИ СНИЗУ (Только для мобилок) -->
+<div class="mobile-action-group">
+    <!-- Кнопка темы с луной и солнцем -->
+    <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему">
+        <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+    </button>
+
+    <!-- Выпадающий список языков -->
+    <div class="lang-select-wrapper mobile-lang-wrapper">
+        <button class="action-btn" id="mobileLangBtn" aria-label="Язык">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/>
+            </svg>
+        </button>
+        <div class="lang-dropdown" id="mobileLangDropdown">
+            <a href="#" class="lang-option active">RU</a>
+            <a href="#" class="lang-option">EN</a>
+        </div>
+    </div>
+</div>
+    </nav>
+
+    <!-- Правая десктопная группа -->
+    <div class="action-group">
+            <form class="search-box" id="searchBox" action="/gastronomy-studio/search.html" method="GET">
+                    <input type="text" name="q" class="search-input" id="headerSearchInput" placeholder="Поиск по сайту..." autocomplete="off"/>
+                    <button type="submit" class="action-btn search-btn" id="searchBtn" aria-label="Поиск">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </button>
+            </form>
+
+        <a href="/gastronomy-studio/favorites.html" class="action-btn" aria-label="Сохраненное">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <button class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему">
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+        </button>
+
+        <div class="lang-select-wrapper">
+            <button class="action-btn" aria-label="Язык">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/>
+                </svg>
+            </button>
+            <div class="lang-dropdown">
+                <a href="#" class="lang-option active">RU</a>
+                <a href="#" class="lang-option">EN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Бургер -->
+    <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+    </button>
+</header>
+
+<!-- Основной контент -->
+<main class="recipe-page">
+    
+    <!-- Хлебные крошки -->
+    <nav class="breadcrumbs-container">
+        <a href="/gastronomy-studio/recipes/salads/index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="back-link">
+            ← Назад 
+        </a>
+    </nav>
+
+    <!-- Главная секция рецепта -->
+    <section class="recipe-hero">
+        <!-- Левый блок: Главное фото с закладкой -->
+        <div class="recipe-image-wrapper">
+            <img src="/gastronomy-studio/images/salads/tartlets-caviar-full.webp" class="recipe-cover" alt="Тарталетки с крем-сыром и икрой" width="1200" height="675" fetchpriority="high">
+            <!-- Кнопка-закладка для мобильной версии -->
+            <button class="fav-btn mobile-fav-btn" aria-label="Сохранить в избранное" data-id="tartlets-caviar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Правый блок: Информация -->
+        <div class="recipe-info">
+            <h1 class="recipe-single-title">Тарталетки с крем-сыром и икрой</h1>
+            
+            <div class="recipe-meta">
+                <span class="meta-item">⏱ 5 минут</span>
+                <span class="meta-item">🍽 12–15 штук</span>
+                <span class="meta-item">Сложность: <span class="stars">★☆☆☆☆</span></span>
+            </div>
+
+            <p class="recipe-description">
+                Яркая, эффектная и бюджетная закуска для фуршета или праздничного стола, которая отлично смотрится в кадре.
+            </p>
+
+            <!-- Кнопка добавить в Избранное -->
+            <button class="recipe-fav-btn" 
+                    aria-label="Сохранить в избранное"
+                    data-id="tartlets-caviar"
+                    data-badge="5 мин"
+                    data-level="Лёгкая сложность">
+                <svg class="bookmark-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span class="btn-text">Добавить в избранное</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Секция: Ингредиенты -->
+    <section class="ingredients-section">
+        <div class="section-divider">
+            <h2>ИНГРЕДИЕНТЫ</h2>
+        </div>
+
+        <div class="ingredients-grid">
+            <ul class="ingredients-col">
+                <li>12–15 готовых тарталеток (песочных/вафельных) или крекеров</li>
+                <li>200–250 г сливочного крем-сыра (Филадельфия, Almette, Cremette и др.)</li>
+                <li>Красная икра или тонкие ломтики слабосолёной рыбы (сёмга/горбуша/кета)</li>
+            </ul>
+            <ul class="ingredients-col">
+                <li>1 ч. л. лимонного сока и немного цедры</li>
+                <li>2–3 ст. л. густой сметаны или жирных сливок (по желанию)</li>
+                <li>Свежий укроп, дольки лимона, микрозелень или чёрный перец для украшения</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Блок: Совет шефа -->
+    <section class="chefs-tips-banner">
+        <h3>Chef's Tips</h3>
+        <div class="tips-content">
+            <p><strong>✦</strong> Взбейте крем-сыр с 1 ч. л. лимонного сока и щепоткой цедры — это придаст начинке ресторанную свежесть и тонкий аромат.</p>
+            <p><strong>✦</strong> Сделайте эффектный микс: одну половину тарталеток наполните красной икрой, а вторую — слабосолёной рыбой с икрой. Стол мгновенно преобразится.</p>
+            <p><strong>✦</strong> Если крем-сыр слишком плотный, добавьте 2–3 ст. л. жирных сливок или сметаны. Начинка станет более нежной, легкой и её хватит на большее количество тарталеток.</p>
+        </div>
+    </section>
+
+    <!-- Секция: Приготовление -->
+    <section class="cooking-section">
+        <div class="section-divider">
+            <h2>ПРИГОТОВЛЕНИЕ</h2>
+        </div>
+
+        <ol class="steps-list">
+            <li>
+                <span class="step-num">1</span>
+                <p>В отдельной миске слегка перемешайте сливочный крем-сыр с лимонным соком, цедрой и (при необходимости) сметаной до нежной консистенции.</p>
+            </li>
+            <li>
+                <span class="step-num">2</span>
+                <p>Наполните каждую тарталетку или крекер щедрым слоем крем-сыра с помощью ложки или кондитерского мешка.</p>
+            </li>
+            <li>
+                <span class="step-num">3</span>
+                <p>Выложите сверху аккуратной горкой красную икру или свернутый ломтик слабосолёной рыбы.</p>
+            </li>
+            <li>
+                <span class="step-num">4</span>
+                <p>Украсьте веточкой свежего укропа, микрозеленью или тонкой долькой лимона и сразу подавайте к столу.</p>
+            </li>
+        </ol>
+    </section>
+
+</main>
+
+<!-- FOOTER / ПОДВАЛ (ДЛЯ ВНУТРЕННИХ СТРАНИЦ) -->
+<footer id="contacts" class="site-footer">
+
+    <div class="footer-main">
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <div class="footer-logo">Gástronomy <span>STUDIO</span></div>
+                <p class="footer-desc">
+                    Кулинарная студия и эстетический журнал о вкусной еде, традициях и современных гастрономических трендах.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Контакты</h4>
+                <p class="footer-contact-item">gastronomystudiosev@gmail.com</p>
+                <p class="footer-contact-item">+7 (978) 827-22-95</p>
+                <p class="footer-contact-text">г. Севастополь</p>
+
+                <div class="footer-socials">
+                    <!-- Telegram -->
+                    <a href="https://t.me/gastronomy_studio" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="social-link" title="Telegram">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.78 18.65l.28-4.2 7.63-6.88c.34-.31-.07-.48-.52-.19l-9.43 5.94-4.08-1.28c-.89-.28-.9-.89.19-1.32L19.7 6.42c.73-.28 1.38.17 1.14 1.28l-2.69 12.67c-.2.93-.75 1.15-1.53.72l-4.53-3.34-2.18 2.1c-.24.24-.44.44-.9.44z"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- VK -->
+                    <a href="javascript:void(0)" aria-label="VK" class="social-link" title="ВКонтакте (скоро)" style="opacity: 0.5; cursor: default;">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.684 18.653c-6.87 0-10.785-4.71-10.951-12.545h3.456c.115 5.753 2.651 8.186 4.664 8.691V6.108h3.255v4.962c1.993-.214 4.082-2.474 4.787-4.962h3.255c-.538 3.132-2.843 5.392-4.502 6.353 1.66.786 4.218 2.766 5.16 6.192h-3.585c-.736-2.298-2.574-4.072-5.011-4.318v4.318h-.528z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <p>© 2026 Gástronomy Studio. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/gastronomy-studio/js/script.js"></script>
+<script src="/gastronomy-studio/js/search-page.js"></script>
+<script src="/gastronomy-studio/js/favorites.js"></script>
+
+</body>
+</html>
