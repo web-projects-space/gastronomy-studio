@@ -193,7 +193,7 @@ if (mobileSearchForm && mobileSearchInput) {
             stopAutoSlide();
             autoSlideTimer = setInterval(() => {
                 goToSlide(currentSlide + 1);
-            }, 3000);
+            }, 6000);
         }
 
         function resetAutoSlide() {
