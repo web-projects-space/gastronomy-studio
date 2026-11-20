@@ -115,8 +115,8 @@
         },
 
         {
-            title: "Архитектура блюда и правила построения объема",
-            excerpt: "Секреты создания объема и вертикали при подаче пасты и горячих блюд.",
+            title: "Архитектура блюда и правила построения объёма",
+            excerpt: "Секреты создания объёма и вертикали при подаче пасты и горячих блюд.",
             image: "images/hacks/food-architecture/food-architecture-card.webp",
             link: "articles_/hacks/food-architecture.html",
             badge: "Лайфхак",
