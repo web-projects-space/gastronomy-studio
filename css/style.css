@@ -4538,7 +4538,7 @@ h3.article-card-title {
     }
 
     .slide-subtitle {
-        font-size: 0.95rem;
+        font-size: 1.10rem;
         line-height: 1.35;
         margin-bottom: 20px;
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
@@ -4548,8 +4548,11 @@ h3.article-card-title {
     .carousel-slide.light-slide .slide-title {
         text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
     }
+   
     .carousel-slide.light-slide .slide-subtitle {
-        text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.95),
+            0 1px 4px rgba(255, 255, 255, 0.9);
     }
 
     .btn-gold {
@@ -5443,11 +5446,6 @@ h3.article-card-title {
 
     .card-image-wrap {
         height: 190px !important;
-    }
-
-    .article-card.featured-card .card-badge {
-        background: var(--color-gold, #c5994a) !important;
-        color: #ffffff;
     }
 
     .card-image-wrap .card-badge {
