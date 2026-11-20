@@ -5315,7 +5315,7 @@ h3.article-card-title {
     }
 
     .recipe-description {
-        font-size: 0.95rem;
+        font-size: 1.08rem;
         line-height: 1.5;
     }
 
@@ -5576,7 +5576,7 @@ h3.article-card-title {
 
     /* 3. Лид (Вводный абзац статьи) */
     .article-lead {
-        font-size: 0.95rem !important; 
+        font-size: 1.08rem !important; 
         line-height: 1.55 !important;
         margin-bottom: 20px !important;
         padding-left: 14px !important;
@@ -5632,7 +5632,7 @@ h3.article-card-title {
         margin: 8px 0;
         border-left-width: 3px !important;
         border-radius: 0 8px 8px 0 !important;
-        font-size: 0.96rem !important;
+        font-size: 1.1rem !important;
     }
 
     /* 7. Списки */
