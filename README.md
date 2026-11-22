@@ -12,7 +12,7 @@
 ## Связь с дизайном и UI Kit
 
 - Визуальная система компонентов, сетки и макеты экранов спроектированы заранее с опорой на структуру слоёв и повторно используемые элементы.
-- Репозиторий с дизайн-макетами и UI Kit: `gastronomy-studio-design` (`https://github.com/JuliaLandish/gastronomy-studio-design`).
+- Репозиторий с дизайн-макетами и UI Kit: [gastronomy-studio-design](https://github.com/JuliaLandish/gastronomy-studio-design)
 
 ## Стек технологий
 
