@@ -37,3 +37,4 @@ git clone https://github.com/web-projects-space/gastronomy-studio.git
 # 2. Navigate to the project folder
 
 cd gastronomy-studio
+```
