@@ -35,3 +35,4 @@ git clone [https://github.com/JuliaLandish/gastronomy-studio.git](https://github
 
 # 2. Navigate to the project folder
 cd gastronomy-studio
+```
