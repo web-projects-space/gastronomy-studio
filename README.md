@@ -31,7 +31,9 @@ A culinary digital magazine and recipe catalog web application built from a cust
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/JuliaLandish/gastronomy-studio.git
+
+git clone https://github.com/web-projects-space/gastronomy-studio.git
 
 # 2. Navigate to the project folder
+
 cd gastronomy-studio
