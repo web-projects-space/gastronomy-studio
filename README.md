@@ -25,7 +25,7 @@ A culinary digital magazine and recipe catalog web application built from a cust
 ## Current Status & Roadmap
 
 - The scope of the initial version was intentionally streamlined to prioritize fast performance and build speed.
-- Dark mode and an English version of the site are currently in progress, along with further polish of responsiveness and UI details.
+- Dark mode and an English version of the site are currently in progress.
 
 ## Running Locally
 
