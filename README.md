@@ -1,36 +1,37 @@
+[English](README.md) | [Русский](README.ru.md)
+
 # Gastronomy Studio
 
-Веб-приложение кулинарного журнала и каталога рецептов, реализованное по собственному дизайн-макету и системе компонентов. Проект объединяет вёрстку страниц, навигацию, работу с рецептами, статьями и пользовательские сценарии на базе HTML, CSS и JavaScript.
+A culinary digital magazine and recipe catalog web application built from a custom design mockup and component system. The project brings together page layouts, navigation, recipe and article browsing, and interactive user flows using HTML, CSS, and JavaScript.
 
-## Структура и возможности
+## Structure & Features
 
-- **Главная страница (`index.html`):** входная точка проекта с подборками материалов, слайдером и основными разделами.
-- **Каталог рецептов и статьи (`recipes/`, `articles_`):** страницы и материалы с рецептами и кулинарными подборками.
-- **Избранное и поиск (`favorites.html`, `search.html`):** сохранение понравившихся материалов и поиск по контенту.
-- **Оформление и логика (`css/`, `js/`, `images/`):** стили и адаптивные решения (включая мобильную версию), клиентская логика и медиаресурсы.
+- **Home Page (`index.html`):** main entry point featuring curated collections, a slider, and key content sections.
+- **Recipe Catalog & Articles (`recipes/`, `articles_`):** dedicated pages and materials for recipes and culinary features.
+- **Favorites & Search (`favorites.html`, `search.html`):** saving favorite items and searching across site content.
+- **Styling & Logic (`css/`, `js/`, `images/`):** stylesheets and responsive layouts (including mobile adaptation), client-side logic, and media assets.
 
-## Связь с дизайном и UI Kit
+## Connection to Design & UI Kit
 
-- Визуальная система компонентов, сетки и макеты экранов спроектированы заранее с опорой на структуру слоёв и повторно используемые элементы.
-- Репозиторий с дизайн-макетами и UI Kit: [gastronomy-studio-design](https://github.com/JuliaLandish/gastronomy-studio-design)
+- The visual component system, grids, and screen mockups were designed upfront with a structured layer hierarchy and reusable elements.
+- Repository with design mockups and UI Kit: [gastronomy-studio-design](https://github.com/JuliaLandish/gastronomy-studio-design)
 
-## Стек технологий
+## Tech Stack
 
-- **Разметка и стили:** HTML5, CSS3 (`css/`)
-- **Интерактивность и логика:** JavaScript (`js/`)
-- **Ресурсы:** статические страницы и изображения (`images/`, `recipes/`, `articles_`)
+- **Markup & Styling:** HTML5, CSS3 (`css/`)
+- **Interactivity & Logic:** JavaScript (`js/`)
+- **Assets:** static pages and images (`images/`, `recipes/`, `articles_`)
 
-## Текущий статус и развитие
+## Current Status & Roadmap
 
-- Объём первой версии сознательно оптимизирован ради скорости работы и сборки.
+- The scope of the initial version was intentionally streamlined to prioritize fast performance and build speed.
+- Dark mode and an English version of the site are currently in progress, along with further polish of responsiveness and UI details.
 
-- В процессе доработки - ночная тема и английская версия сайта, а также дальнейшая полировка адаптивности и деталей интерфейса.
-
-## Запуск проекта локально
+## Running Locally
 
 ```bash
-# 1. Клонировать репозиторий
-git clone https://github.com/JuliaLandish/gastronomy-studio.git
+# 1. Clone the repository
+git clone [https://github.com/JuliaLandish/gastronomy-studio.git](https://github.com/JuliaLandish/gastronomy-studio.git)
 
-# 2. Перейти в папку проекта
+# 2. Navigate to the project folder
 cd gastronomy-studio
