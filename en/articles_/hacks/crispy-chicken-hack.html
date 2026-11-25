@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant-Style Chicken | Gastronomy Studio</title>
+    <meta name="description" content="Why is chicken always juicy and golden-brown in restaurants? Putting the Maillard reaction into practice.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Gastronomy Studio">
+    <meta property="og:title" content="Secrets of the Perfect Crispy Crust">
+    <meta property="og:description" content="Why is chicken always juicy and golden-brown in restaurants? Putting the Maillard reaction into practice.">
+    <meta property="og:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp">
+    <meta property="og:url" content="https://gastronomy-studio.ru/gastronomy-studio/en/articles_/hacks/crispy-chicken-hack.html">
+    <meta property="article:section" content="Kitchen Hacks">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Secrets of the Perfect Crispy Crust">
+    <meta name="twitter:description" content="Why is chicken always juicy and golden-brown in restaurants? Putting the Maillard reaction into practice.">
+    <meta name="twitter:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/gastronomy-studio/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <a href="/gastronomy-studio/en/index.html" class="logo-block">
+            <span class="logo-title">Gástronomy</span>
+            <span class="logo-subtitle">Studio</span>
+        </a>
+
+        <!-- Main navigation -->
+        <nav class="nav-group" id="mobileMenu">
+            <!-- MOBILE SEARCH -->
+            <form class="mobile-search-box" id="mobileSearchForm" action="/gastronomy-studio/en/search.html" method="GET">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" name="q" id="mobileSearchInput" placeholder="Find a recipe..." class="mobile-search-input" autocomplete="off">
+            </form>
+
+            <!-- Recipes -->
+            <div class="dropdown-wrapper">
+                <a href="#" class="nav-link dropdown-toggle">
+                    Recipes
+                    <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1L6 6L11 1"/>
+                    </svg>
+                </a>
+            <div class="glass-dropdown">
+                <a href="/gastronomy-studio/en/recipes/hot-dishes/index.html" class="dropdown-item">Soups &amp; Mains</a>
+                <a href="/gastronomy-studio/en/recipes/salads/index.html" class="dropdown-item">Salads &amp; Starters</a>
+                <a href="/gastronomy-studio/en/recipes/baking/index.html" class="dropdown-item">Savory Pastry &amp; Dough</a>
+                <a href="/gastronomy-studio/en/recipes/desserts/index.html" class="dropdown-item">Desserts &amp; Baked Goods</a>
+                <a href="/gastronomy-studio/en/recipes/sauces/index.html" class="dropdown-item">Sauces &amp; Dressings</a>
+                <a href="/gastronomy-studio/en/recipes/drinks/index.html" class="dropdown-item">Drinks</a>
+                <a href="/gastronomy-studio/en/recipes/health-and-diet/index.html" class="dropdown-item">Health &amp; Diet</a>
+            </div>
+            </div>
+            
+            <!-- Articles & Secrets (Active direct link) -->
+            <a href="/gastronomy-studio/en/articles_/index.html" class="nav-link active">Articles &amp; Secrets</a>
+
+            <!-- Mobile-only link (Favorites) -->
+            <a href="/gastronomy-studio/en/favorites.html" class="nav-link mobile-close-link mobile-only-link">Favorites</a>
+
+            <!-- Contacts -->
+            <div class="dropdown-wrapper mobile-only-dropdown">
+                <a href="#" class="nav-link dropdown-toggle">
+                    Contacts
+                    <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1L6 6L11 1"/>
+                    </svg>
+                </a>
+                <div class="glass-dropdown">
+                    <a href="mailto:gastronomystudiosev@gmail.com" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        gastronomystudiosev@gmail.com
+                    </a>
+                    <a href="tel:+79788272295" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +7 (978) 827-22-95
+                    </a>
+                    <a href="https://t.me/gastronomy_studio" target="_blank" class="dropdown-item contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Telegram Channel
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile action icons -->
+            <div class="mobile-action-group">
+                <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
+                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <div class="lang-select-wrapper mobile-lang-wrapper">
+                    <button class="action-btn" id="mobileLangBtn" aria-label="Language">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+                    </button>
+                    <div class="lang-dropdown" id="mobileLangDropdown">
+                        <a href="/gastronomy-studio/articles_/hacks/crispy-chicken-hack.html" class="lang-option">RU</a>
+                        <a href="#" class="lang-option active">EN</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Right desktop group -->
+        <div class="action-group">
+            <form class="search-box" id="searchBox" action="/gastronomy-studio/en/search.html" method="GET">
+                    <input type="text" name="q" class="search-input" id="headerSearchInput" placeholder="Search the site..." autocomplete="off"/>
+                    <button type="submit" class="action-btn search-btn" id="searchBtn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </button>
+                </form>
+            <a href="/gastronomy-studio/en/favorites.html" class="action-btn" aria-label="Saved">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </a>
+            <button class="action-btn theme-btn" id="themeBtn" aria-label="Toggle theme">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="lang-select-wrapper">
+                <button class="action-btn" aria-label="Language">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="/gastronomy-studio/articles_/hacks/crispy-chicken-hack.html" class="lang-option">RU</a>
+                    <a href="#" class="lang-option active">EN</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="burger-btn" id="burgerBtn" aria-label="Open menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+    </header>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- HACK ARTICLE -->
+    <article class="single-article hack-article">
+        <div class="container container-narrow">
+
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs-container">
+                <a href="/gastronomy-studio/en/articles_/index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="back-link">
+                    ← Back
+                </a>
+            </nav>
+
+            <!-- Article Header -->
+            <header class="article-header">
+                <h1 class="article-title">Restaurant-Style Chicken: Secrets of the Perfect Crispy Crust</h1>
+
+                <!-- Metadata Row -->
+                <div class="article-author-info">
+                    <span class="story-date">November 8, 2026</span>
+                    <span class="meta-dot">•</span>
+                    <span class="read-time">4 min read</span>
+                </div>
+
+                <p class="article-lead">
+                    Why do juicy chicken thighs come out with a golden, crispy crust in restaurants, while at home they often end up braised? Putting the Maillard reaction into practice.
+                </p>
+            </header>
+
+            <!-- Article Hero Image -->
+            <div class="article-hero-image">
+                <img src="/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp" alt="Juicy chicken thighs with a crispy crust" width="1200" height="675" fetchpriority="high">
+
+                <!-- Bookmark button over article cover -->
+                <button class="fav-btn" aria-label="Save to bookmarks" data-id="crispy-chicken">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="article-body">
+                <p>The secret to an effortless restaurant-quality dinner lies in small technical details. Today we will break down how to turn cooking chicken thighs in an everyday skillet into a true gastronomic experience.</p>
+
+                <h3>1. Three Prep Rules Before Searing</h3>
+                <p>The key to a great crust starts well before the meat touches the pan:</p>
+                <ul>
+                    <li><strong>Room temperature:</strong> Never put meat straight from the fridge into the pan. Ice-cold chicken will quickly drop the pan's temperature, release moisture, and steam in its own juices instead of searing.</li>
+                    <li><strong>Thorough dryness (Moisture is the enemy of crispiness):</strong> Pat the thighs dry carefully with paper towels. As long as there is a drop of water on the surface, the Maillard reaction will not start, and surface moisture will prevent a crisp crust from forming.</li>
+                    <li><strong>Preheat the cookware:</strong> Place the meat only in a well-preheated skillet with a splash of high-smoke-point oil.</li>
+                </ul>
+
+                <blockquote class="chef-note">
+                    Note: These cooking times are ideal for boneless thigh fillets or small boneless thighs. If you use larger bone-in pieces, finish them in the oven so the meat near the bone does not stay pink.
+                </blockquote>
+
+                <h3>2. Step-by-Step Searing Technique</h3>
+                <p>Follow a clear sequence in the skillet to get restaurant results:</p>
+                <ul>
+                    <li><strong>Step 1:</strong> Pat the thighs dry and season the meat side with salt. Place them skin-side down into the hot skillet.</li>
+                    <li><strong>Step 2 (The "Do Not Disturb" Rule):</strong> Sear over medium-high heat for 8–12 minutes. <em>Do not move or touch the pieces!</em> Give the Maillard reaction time to seal the surface and build that golden crust.</li>
+                    <li><strong>Step 3:</strong> Flip and cook for another 6–8 minutes. If the pieces are thick, cover with a lid for the last 1–2 minutes.</li>
+                    <li><strong>Step 4 (French Arrosé Technique):</strong> Two minutes before they are done, add smashed garlic, a sprig of rosemary, and a knob of butter to the skillet. Spoon the foaming, aromatic butter over the chicken as it cooks.</li>
+                </ul>
+
+                <figure class="article-embedded-image">
+                    <img src="/gastronomy-studio/images/hacks/crispy-chicken/seared-chicken.webp" alt="Chicken searing in the skillet" width="800" height="600" loading="lazy">
+                </figure>
+
+                <h3>3. The Final Touch: Resting the Meat</h3>
+                <p>Transfer the meat from the skillet to a cutting board or warm plate, sprinkle with freshly ground black pepper, and tent loosely with foil for 5 minutes.</p>
+
+                <p>This simple step lets the juices drawn toward the center by high heat redistribute evenly through the fibers. The chicken will turn out remarkably juicy inside and crispy outside!</p>
+            </div>
+        </div>
+    </article>
+</main>
+
+<!-- FOOTER (FOR INNER PAGES) -->
+<footer id="contacts" class="site-footer">
+
+    <div class="footer-main">
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <div class="footer-logo">Gástronomy <span>STUDIO</span></div>
+                <p class="footer-desc">
+                    A culinary studio and aesthetic magazine on good food, traditions, and modern gastronomic trends.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Contacts</h4>
+                <p class="footer-contact-item">gastronomystudiosev@gmail.com</p>
+                <p class="footer-contact-item">+7 (978) 827-22-95</p>
+                <p class="footer-contact-text">Sevastopol</p>
+
+                <div class="footer-socials">
+                    <!-- Telegram -->
+                    <a href="https://t.me/gastronomy_studio" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="social-link" title="Telegram">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.78 18.65l.28-4.2 7.63-6.88c.34-.31-.07-.48-.52-.19l-9.43 5.94-4.08-1.28c-.89-.28-.9-.89.19-1.32L19.7 6.42c.73-.28 1.38.17 1.14 1.28l-2.69 12.67c-.2.93-.75 1.15-1.53.72l-4.53-3.34-2.18 2.1c-.24.24-.44.44-.9.44z"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- VK -->
+                    <a href="javascript:void(0)" aria-label="VK" class="social-link" title="VK (coming soon)" style="opacity: 0.5; cursor: default;">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.684 18.653c-6.87 0-10.785-4.71-10.951-12.545h3.456c.115 5.753 2.651 8.186 4.664 8.691V6.108h3.255v4.962c1.993-.214 4.082-2.474 4.787-4.962h3.255c-.538 3.132-2.843 5.392-4.502 6.353 1.66.786 4.218 2.766 5.16 6.192h-3.585c-.736-2.298-2.574-4.072-5.011-4.318v4.318h-.528z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <p>© 2026 Gástronomy Studio. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/gastronomy-studio/js/script.js"></script>
+<script src="/gastronomy-studio/js/search-page.js"></script>
+<script src="/gastronomy-studio/js/favorites.js"></script>
+</body>
+</html>
