@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastronomy Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/gastronomy-studio/css/style.css">
+</head>
+
+<body>
+    
+<!-- Header -->
+<header class="main-header">
+
+    <!-- Logo -->
+    <a href="/gastronomy-studio/en/index.html" class="logo-block">
+        <span class="logo-title">Gástronomy</span>
+        <span class="logo-subtitle">Studio</span>
+    </a>
+
+    <!-- Main navigation -->
+    <nav class="nav-group" id="mobileMenu">
+
+<!-- MOBILE SEARCH -->
+<form class="mobile-search-box" id="mobileSearchForm" action="/gastronomy-studio/en/search.html" method="GET">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" name="q" id="mobileSearchInput" placeholder="Find a recipe..." class="mobile-search-input" autocomplete="off">
+</form>
+
+        <!-- 1. Recipes -->
+        <div class="dropdown-wrapper">
+            <a href="#" class="nav-link dropdown-toggle">
+                Recipes
+                <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1L6 6L11 1"/>
+                </svg>
+            </a>
+
+            <div class="glass-dropdown">
+                <a href="/gastronomy-studio/en/recipes/hot-dishes/index.html" class="dropdown-item">Soups &amp; Mains</a>
+                <a href="/gastronomy-studio/en/recipes/salads/index.html" class="dropdown-item">Salads &amp; Starters</a>
+                <a href="/gastronomy-studio/en/recipes/baking/index.html" class="dropdown-item">Savory Pastry &amp; Dough</a>
+                <a href="/gastronomy-studio/en/recipes/desserts/index.html" class="dropdown-item">Desserts &amp; Baked Goods</a>
+                <a href="/gastronomy-studio/en/recipes/drinks/index.html" class="dropdown-item">Drinks</a>
+                <a href="/gastronomy-studio/en/recipes/health-and-diet/index.html" class="dropdown-item">Health &amp; Diet</a>
+            </div>
+        </div>
+        
+        <!-- 2. Articles & Secrets -->
+        <a href="/gastronomy-studio/en/articles_/index.html" class="nav-link">Articles &amp; Secrets</a>
+
+        <!-- Mobile-only link (Favorites) -->
+        <a href="/gastronomy-studio/en/favorites.html" class="nav-link mobile-close-link mobile-only-link">Favorites</a>
+
+        <!-- 4. Contacts: Mobile dropdown only -->
+        <div class="dropdown-wrapper mobile-only-dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+                Contacts
+                <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1L6 6L11 1"/>
+                </svg>
+            </a>
+
+            <div class="glass-dropdown">
+                <a href="mailto:gastronomystudiosev@gmail.com" class="dropdown-item contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    gastronomystudiosev@gmail.com
+                </a>
+                <a href="tel:+79788272295" class="dropdown-item contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +7 (978) 827-22-95
+                </a>
+                <a href="https://t.me/gastronomy_studio" target="_blank" class="dropdown-item contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Telegram Channel
+                </a>
+            </div>
+        </div>
+
+        <!-- BOTTOM ICONS (Mobile only) -->
+        <div class="mobile-action-group">
+            <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
+                <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+
+            <div class="lang-select-wrapper mobile-lang-wrapper">
+                <button class="action-btn" id="mobileLangBtn" aria-label="Language">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/>
+                    </svg>
+                </button>
+                <div class="lang-dropdown" id="mobileLangDropdown">
+                    <a href="/gastronomy-studio/index.html" class="lang-option">RU</a>
+                    <a href="#" class="lang-option active">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Right desktop group -->
+    <div class="action-group">
+        <form class="search-box" id="searchBox" action="/gastronomy-studio/en/search.html" method="GET">
+            <input type="text" name="q" class="search-input" id="headerSearchInput" placeholder="Search the site..." autocomplete="off"/>
+            <button type="submit" class="action-btn search-btn" id="searchBtn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+            </button>
+        </form>
+
+        <a href="/gastronomy-studio/en/favorites.html" class="action-btn" aria-label="Favorites">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <button class="action-btn theme-btn" id="themeBtn" aria-label="Toggle theme">
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+        </button>
+
+        <div class="lang-select-wrapper">
+            <button class="action-btn" aria-label="Language">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/>
+                </svg>
+            </button>
+            <div class="lang-dropdown">
+                <a href="/gastronomy-studio/index.html" class="lang-option">RU</a>
+                <a href="#" class="lang-option active">EN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burger -->
+    <button class="burger-btn" id="burgerBtn" aria-label="Open menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+    </button>
+</header>
+
+<!-- Main content -->
+<main class="main-content">
+
+<!-- ==================== BANNER CAROUSEL ==================== -->
+<section class="hero-carousel" aria-label="Featured stories">
+    <div class="carousel-container">
+        
+        <!-- Slide 1: Main hero -->
+        <div class="carousel-slide active" data-theme="dark">
+            <img src="/gastronomy-studio/images/hero/main-hero.webp" alt="Main banner" class="slide-img" width="1440" height="400" fetchpriority="high">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1 class="slide-title">Restaurant-quality taste, <br>made simple at home</h1>
+                <p class="slide-subtitle">Discover a curated collection of tested recipes</p>
+                <a href="#culinary-stories" class="btn btn-gold">Explore</a>
+            </div>
+        </div>
+
+        <!-- Slide 2: Raspberry tart -->
+        <div class="carousel-slide" data-theme="dark">
+            <img src="/gastronomy-studio/images/hero/raspberry-tart-hero.webp" alt="French classic" class="slide-img" width="1440" height="400">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Pastry chef's pick</span>
+                <h2 class="slide-title">French Classic</h2>
+                <p class="slide-subtitle">Crisp shortcrust pastry, juicy fresh raspberries, and rich homemade caramel.</p>
+                <a href="/gastronomy-studio/en/recipes/desserts/raspberry-tart.html" class="btn btn-gold">View recipe</a>
+            </div>
+        </div>
+
+        <!-- Slide 3: Michelin history -->
+        <div class="carousel-slide light-slide" data-theme="light">
+            <img src="/gastronomy-studio/images/hero/michelin-chef-hero.webp" alt="History of the Michelin Guide" class="slide-img" width="1440" height="400">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Culinary history</span>
+                <h2 class="slide-title">History of the Michelin Guide</h2>
+                <p class="slide-subtitle">How car tires and a travel booklet shaped the world's top dining rating.</p>
+                <a href="/gastronomy-studio/en/articles_/stories_/michelin-history.html" class="btn btn-gold">Read article</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="carousel-btn prev-btn" aria-label="Previous slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="carousel-btn next-btn" aria-label="Next slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="carousel-dots">
+        <button class="dot active" aria-label="Slide 1"></button>
+        <button class="dot" aria-label="Slide 2"></button>
+        <button class="dot" aria-label="Slide 3"></button>
+    </div>
+</section>
+
+<!-- ==================== Block: Aesthetics ==================== -->
+<section id="aestethics" class="aesthetics-section">
+    <div class="aesthetics-container">
+        
+        <div class="aesthetics-header">
+            <span class="aesthetics-subtitle">AESTHETICS</span>
+            <h2 class="aesthetics-title">The Art of Plating</h2>
+            <div class="aesthetics-divider"></div>
+        </div>
+
+        <div class="aesthetics-grid">
+      
+            <!-- Card 1: Food architecture -->
+            <div class="aesthetics-card article-card" data-category="hack" data-id="food-architecture">
+                <a href="/gastronomy-studio/en/articles_/hacks/food-architecture.html" class="aesthetics-card-link">
+                    <div class="aesthetics-card-image">
+                        <img src="/gastronomy-studio/images/hacks/food-architecture/food-architecture-card.webp" alt="Food architecture" width="1200" height="900" loading="lazy">
+                    </div>
+                    <div class="aesthetics-card-footer">
+                        <h3 class="aesthetics-card-title">Food Architecture</h3>
+                    </div>
+                </a>
+
+                <button class="fav-btn" aria-label="Save to favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Card 2: Texture magic -->
+            <div class="aesthetics-card article-card" data-category="hack" data-id="texture-magic">
+                <a href="/gastronomy-studio/en/articles_/hacks/texture-magic.html" class="aesthetics-card-link">
+                    <div class="aesthetics-card-image">
+                        <img src="/gastronomy-studio/images/hacks/texture-magic/texture-magic-card.webp" alt="Texture magic" width="1200" height="900" loading="lazy">
+                    </div>
+                    <div class="aesthetics-card-footer">
+                        <h3 class="aesthetics-card-title">Texture Magic</h3>
+                    </div>
+                </a>
+
+                <button class="fav-btn" aria-label="Save to favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Card 3: Cheese board -->
+            <div class="aesthetics-card article-card" data-category="hack" data-id="cheese-board">
+                <a href="/gastronomy-studio/en/articles_/hacks/cheese-board.html" class="aesthetics-card-link">
+                    <div class="aesthetics-card-image">
+                        <img src="/gastronomy-studio/images/hacks/cheese-board/cheese-board-card.webp" alt="Cheese board" width="1200" height="900" loading="lazy">
+                    </div>
+                    <div class="aesthetics-card-footer">
+                        <h3 class="aesthetics-card-title">Cheese Board</h3>
+                    </div>
+                </a>
+
+                <button class="fav-btn" aria-label="Save to favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Culinary Roundups ==================== -->
+<section id="culinary-stories" class="stories-section">
+    <h2 class="section-title-italic">Culinary Roundups</h2>
+
+    <div class="stories-container">
+        <!-- Breakfast -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=breakfast" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/breakfast.webp" alt="Breakfast" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">BREAKFAST</span>
+        </a>
+
+        <!-- Quick dinner -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=quick-dinner" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/dinner.webp" alt="Quick dinner" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">QUICK DINNER</span>
+        </a>
+
+        <!-- Budget-friendly -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=budget" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/budget.webp" alt="Budget & tasty" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">BUDGET &amp; TASTY</span>
+        </a>
+
+        <!-- Weekend -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=weekend" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/weekend.webp" alt="Weekend" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">WEEKEND</span>
+        </a>
+
+        <!-- Festive table -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=holiday" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/holiday.webp" alt="Festive table" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">FESTIVE TABLE</span>
+        </a>
+
+        <!-- Cooking with kids -->
+        <a href="/gastronomy-studio/en/recipes/roundups/index.html?story=kids" class="story-item">
+            <div class="story-circle-wrapper">
+                <div class="story-circle">
+                    <img src="/gastronomy-studio/images/storylines/kids.webp" alt="Cooking with kids" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+            <span class="story-label">COOKING WITH KIDS</span>
+        </a>
+    </div>
+</section>
+
+<!-- ==================== Chef's Choice ==================== -->
+<section id="featured-chef" class="chefs-choice-section">
+    <h2 class="section-title-italic">Chef's Choice</h2>
+
+    <div class="chefs-choice-grid">
+        <!-- Large main dish (Left) -->
+        <a href="/gastronomy-studio/en/recipes/hot-dishes/salmon-asparagus.html" class="chef-card card-large recipe-card" data-id="salmon-asparagus">
+            <div class="card-img-wrap">
+                <img src="/gastronomy-studio/images/hot-dishes/salmon-asparagus-card.webp" alt="Salmon with asparagus" class="card-img" width="800" height="600" loading="lazy">
+            </div>
+            <div class="card-overlay">
+                <span class="card-badge">Dish of the day</span>
+                <h3 class="card-title">Grilled Salmon with Asparagus</h3>
+                <p class="card-desc">A refined flavor pairing curated by the chef</p>
+            </div>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </a>
+
+        <!-- Two small cards (Right) -->
+        <div class="chefs-choice-side">
+            <!-- Small card 1 -->
+            <a href="/gastronomy-studio/en/recipes/salads/salmon-avocado-salad.html" class="chef-card card-small recipe-card" data-id="salmon-avocado-salad">
+                <div class="card-img-wrap">
+                    <img src="/gastronomy-studio/images/salads/salmon-avocado-salad2-card.webp" alt="Salmon and avocado salad" class="card-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="card-overlay">
+                    <span class="card-badge">Hit</span>
+                    <h3 class="card-title">Salmon &amp; Avocado Salad</h3>
+                </div>
+                <button class="fav-btn" aria-label="Save to favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Small card 2 -->
+            <a href="/gastronomy-studio/en/recipes/drinks/smoothie.html" class="chef-card card-small recipe-card" data-id="green-elixir">
+                <div class="card-img-wrap">
+                    <img src="/gastronomy-studio/images/drinks/smoothie-card.webp" alt="Green elixir smoothie" class="card-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="card-overlay">
+                    <span class="card-badge">Drink</span>
+                    <h3 class="card-title">Green Elixir</h3>
+                </div>
+                <button class="fav-btn" aria-label="Save to favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Popular Trends ==================== -->
+<section id="trends" class="trends-section">
+    <h2 class="section-title-italic">Popular trends</h2>
+
+    <!-- Trends grid -->
+    <div class="trends-grid">
+        <!-- Card 1 -->
+        <div class="trend-card recipe-card" data-id="avocado-lemon-toast">
+            <a href="/gastronomy-studio/en/recipes/salads/avocado-lemon-toast.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/salads/avocado-lemon-toast-card.webp" alt="Avocado and lemon toast" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Avocado &amp; Lemon Toast</h3>
+                        <p class="trend-subtitle">Freshness and ideal crunch</p>
+                    </div>
+                    <span class="trend-badge tag-street">Fresh</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="trend-card recipe-card" data-id="cloud-bread">
+            <a href="/gastronomy-studio/en/recipes/desserts/cloud-bread.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/desserts/cloud-bread-card.webp" alt="Cloud bread" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Cloud Bread</h3>
+                        <p class="trend-subtitle">Airy TikTok trend</p>
+                    </div>
+                    <span class="trend-badge tag-viral">Viral</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="trend-card recipe-card" data-id="matcha-dessert">
+            <a href="/gastronomy-studio/en/recipes/desserts/matcha-dessert.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/desserts/matcha-dessert-card.webp" alt="Matcha dessert" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Matcha Dessert</h3>
+                        <p class="trend-subtitle">Delicate mousse and bold flavor</p>
+                    </div>
+                    <span class="trend-badge tag-healthy">Healthy</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="trend-card recipe-card" data-id="tartlets-caviar">
+            <a href="/gastronomy-studio/en/recipes/salads/tartlets-caviar.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/salads/tartlets-caviar-card.webp" alt="Cream cheese tartlets" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Cream Cheese Tartlets</h3>
+                        <p class="trend-subtitle">Elegant starter</p>
+                    </div>
+                    <span class="trend-badge tag-quick">Quick&amp;Easy</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="trend-card recipe-card" data-id="korean-corn-dogs">
+            <a href="/gastronomy-studio/en/recipes/salads/korean-corn-dogs.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/salads/korean-corn-dogs-card.webp" alt="Korean corn dogs" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Korean Corn Dogs</h3>
+                        <p class="trend-subtitle">Crispy cheesy street food</p>
+                    </div>
+                    <span class="trend-badge tag-fast">Street Food</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="trend-card recipe-card" data-id="steak-ribeye">
+            <a href="/gastronomy-studio/en/recipes/hot-dishes/steak-ribeye.html" class="trend-card-link">
+                <div class="trend-img-wrapper">
+                    <img src="/gastronomy-studio/images/hot-dishes/steak-ribeye-card.webp" alt="Ribeye steak" class="trend-img" width="800" height="600" loading="lazy">
+                </div>
+                <div class="trend-info">
+                    <div class="trend-text-group">
+                        <h3 class="trend-title">Ribeye Steak</h3>
+                        <p class="trend-subtitle">The science of the perfect sear</p>
+                    </div>
+                    <span class="trend-badge tag-fine">Fine Dining</span>
+                </div>
+            </a>
+            <button class="fav-btn" aria-label="Save to favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- TRENDS: INGREDIENTS + FERMENTATION -->
+    <div class="trending-flex-row">
+        <!-- LEFT COLUMN (50%) -->
+        <div class="trending-col-left">
+            <h3 class="trending-sub-title">Trending ingredients</h3>
+            <div class="trending-circles-wrap">
+                <a href="/gastronomy-studio/en/articles_/stories_/yuzu-trend.html" class="trending-circle-item">
+                    <div class="trending-img-box">
+                        <img src="/gastronomy-studio/images/stories_/yuzu-trend/yuzu-trend-card.webp" alt="Yuzu" width="800" height="600" loading="lazy">
+                    </div>
+                    <span class="trending-item-label">Yuzu</span>
+                </a>
+                <a href="/gastronomy-studio/en/articles_/stories_/matcha-trend.html" class="trending-circle-item">
+                    <div class="trending-img-box">
+                        <img src="/gastronomy-studio/images/stories_/matcha-trend/matcha-trend-card.webp" alt="Matcha" width="800" height="600" loading="lazy">
+                    </div>
+                    <span class="trending-item-label">Matcha</span>
+                </a>
+                <a href="/gastronomy-studio/en/articles_/hacks/gochujang-guide.html" class="trending-circle-item">
+                    <div class="trending-img-box">
+                        <img src="/gastronomy-studio/images/hacks/gochujang-guide/gochujang-guide-card.webp" alt="Gochujang" width="800" height="600" loading="lazy">
+                    </div>
+                    <span class="trending-item-label">Gochujang</span>
+                </a>
+                <a href="/gastronomy-studio/en/articles_/stories_/truffle-magic.html" class="trending-circle-item">
+                    <div class="trending-img-box">
+                        <img src="/gastronomy-studio/images/stories_/truffle-magic/truffle-magic-card.webp" alt="Truffle" width="800" height="600" loading="lazy">
+                    </div>
+                    <span class="trending-item-label">Truffle</span>
+                </a>
+                <a href="/gastronomy-studio/en/articles_/hacks/tahini-secrets.html" class="trending-circle-item">
+                    <div class="trending-img-box">
+                        <img src="/gastronomy-studio/images/hacks/tahini-secrets/tahini-secrets-card.webp" alt="Tahini" width="800" height="600" loading="lazy">
+                    </div>
+                    <span class="trending-item-label">Tahini</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN (50%) -->
+        <div class="trending-col-right">
+            <div class="ferment-card">
+                <div class="ferment-card-img">
+                    <img src="/gastronomy-studio/images/hacks/fermentation-revival/fermentation-card.webp" alt="Fermentation revival" width="800" height="600" loading="lazy">
+                </div>
+                <div class="ferment-card-info">
+                    <h4>Fermentation revival</h4>
+                    <p>Learn how to bring fermentation into your own kitchen</p>
+                    <a href="/gastronomy-studio/en/articles_/hacks/fermentation-revival.html" class="btn-gold">Explore the technique</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Block: World Cuisines ==================== -->
+<section id="world-cuisines" class="world-cuisines-section">
+    
+    <h2 class="section-title-italic">World cuisines</h2>
+
+    <!-- 1. Infinite card marquee -->
+    <div class="marquee-container">
+
+        <div class="cuisines-cards-grid">
+            
+            <!-- Card 1: Masala (TOP) -->
+            <a href="/gastronomy-studio/en/recipes/drinks/masala-tea.html" class="cuisine-card recipe-card card-up" data-id="masala-tea">
+                <img src="/gastronomy-studio/images/drinks/masala-tea-card.webp" alt="Masala chai" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title recipe-card-title">Masala Chai</h3>
+                    <p class="glass-desc">Traditional Indian spiced tea with milk</p>
+                    <div class="flag-accent flag-india"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Card 2: Risotto (BOTTOM) -->
+            <a href="/gastronomy-studio/en/recipes/hot-dishes/" class="cuisine-card recipe-card card-down" data-id="risotto">
+                <img src="/gastronomy-studio/images/hot-dishes/risotto-card.webp" alt="Risotto" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title recipe-card-title">Risotto</h3>
+                    <p class="glass-desc">Creamy Italian rice dish with a rich, velvety texture</p>
+                    <div class="flag-accent flag-italy"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Card 3: Poke bowl (TOP) -->
+            <a href="/gastronomy-studio/en/recipes/salads/tuna-poke.html" class="cuisine-card recipe-card card-up" data-id="tuna-poke">
+                <img src="/gastronomy-studio/images/salads/tuna-poke-card.webp" alt="Poke bowl" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title recipe-card-title">Poke Bowl</h3>
+                    <p class="glass-desc">Hawaiian dish of fresh fish and crisp vegetables</p>
+                    <div class="flag-accent flag-hawaii"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Card 4: Shakshuka (BOTTOM) -->
+            <a href="/gastronomy-studio/en/recipes/hot-dishes/shakshuka.html" class="cuisine-card recipe-card card-down" data-id="shakshuka">
+                <img src="/gastronomy-studio/images/hot-dishes/shakshuka-card.webp" alt="Shakshuka with feta" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title recipe-card-title">Shakshuka with Feta</h3>
+                    <p class="glass-desc">A Middle Eastern breakfast classic</p>
+                    <div class="flag-accent flag-east"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Card 5: Margherita Pizza (TOP) -->
+            <a href="/gastronomy-studio/en/recipes/baking/margherita-recipe.html" class="cuisine-card recipe-card card-up" data-id="margherita-recipe">
+                <img src="/gastronomy-studio/images/baking/margherita-recipe-card.webp" alt="Margherita Pizza" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title recipe-card-title">Margherita Pizza</h3>
+                    <p class="glass-desc">Timeless classic made at home</p>
+                    <div class="flag-accent flag-italy"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Card 6: Tacos (BOTTOM) -->
+            <a href="/gastronomy-studio/en/recipes/hot-dishes/birria-tacos.html" class="cuisine-card card-down" data-id="birria-tacos">
+                <img src="/gastronomy-studio/images/hot-dishes/birria-tacos-card.webp" alt="Birria tacos" class="card-bg-img" width="800" height="600" loading="lazy">
+                <div class="card-glass-content">
+                    <h3 class="glass-title">Spicy Birria Tacos</h3>
+                    <p class="glass-desc">Juicy spiced beef and melted cheese in a crisp tortilla served with rich consommé.</p>
+                    <div class="flag-accent flag-mexico"></div>
+                </div>
+                <!-- Favorite button -->
+                <button class="fav-btn" aria-label="Save to favorites" onclick="event.preventDefault();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- 2. Quote banner about China -->
+    <div class="china-banner">
+        <img src="/gastronomy-studio/images/hero/china-banner.webp" alt="History of Chinese restaurants" class="china-banner-img" width="1920" height="480" loading="lazy">
+        <div class="china-banner-overlay">
+            <p class="china-banner-quote">
+                The world's first restaurants appeared in 12th-century China, originally serving travelers passing through.
+            </p>
+        </div>
+    </div>
+
+    <!-- 3. History circles -->
+    <div class="history-circles-row">
+        
+        <a href="/gastronomy-studio/en/articles_/stories_/cinnamon-history.html" class="circle-card-item">
+            <div class="circle-img-frame">
+                <img src="/gastronomy-studio/images/stories_/cinnamon-history/cinnamon-history-main-card.webp" alt="Cinnamon" width="800" height="600" loading="lazy">
+            </div>
+            <span class="circle-card-title">How Cinnamon Reshaped Imperial Borders</span>
+        </a>
+
+        <a href="/gastronomy-studio/en/articles_/stories_/bread-cultures.html" class="circle-card-item">
+            <div class="circle-img-frame">
+                <img src="/gastronomy-studio/images/stories_/bread-cultures/bread-cultures-card.webp" alt="Bread" width="800" height="600" loading="lazy">
+            </div>
+            <span class="circle-card-title">Why Every Culture Has Its Own Bread</span>
+        </a>
+
+        <a href="/gastronomy-studio/en/articles_/stories_/pizza-history.html" class="circle-card-item">
+            <div class="circle-img-frame">
+                <img src="/gastronomy-studio/images/stories_/pizza-history/queen-margherita-card.webp" alt="Queen Margherita" width="800" height="600" loading="lazy">
+            </div>
+            <span class="circle-card-title">Recipes That Changed the World</span>
+        </a>
+
+        <a href="/gastronomy-studio/en/articles_/stories_/coffee-culture.html" class="circle-card-item">
+            <div class="circle-img-frame">
+                <img src="/gastronomy-studio/images/stories_/coffee-culture/coffee-culture-card.webp" alt="Cup of coffee" width="800" height="600" loading="lazy">
+            </div>
+            <span class="circle-card-title">From Secret Brew to Coffeehouse Culture</span>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contacts" class="site-footer">
+
+    <div class="footer-main">
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <div class="footer-logo">Gástronomy <span>STUDIO</span></div>
+                <p class="footer-desc">
+                    A culinary studio and aesthetic magazine on good food, traditions, and modern gastronomic trends.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Sections</h4>
+                <ul class="footer-links">
+                    <li><a href="#aestethics">The Art of Plating</a></li>
+                    <li><a href="#culinary-stories">Culinary Roundups</a></li>
+                    <li><a href="#featured-chef">Chef's Choice</a></li>
+                    <li><a href="#trends">Popular Trends</a></li>
+                    <li><a href="#world-cuisines">World Cuisines</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Contacts</h4>
+                <p class="footer-contact-item">gastronomystudiosev@gmail.com</p>
+                <p class="footer-contact-item">+7 (978) 827-22-95</p>
+                <p class="footer-contact-text">Sevastopol</p>
+
+<div class="footer-socials">
+    <!-- Telegram -->
+    <a href="https://t.me/gastronomy_studio" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="social-link" title="Telegram">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.78 18.65l.28-4.2 7.63-6.88c.34-.31-.07-.48-.52-.19l-9.43 5.94-4.08-1.28c-.89-.28-.9-.89.19-1.32L19.7 6.42c.73-.28 1.38.17 1.14 1.28l-2.69 12.67c-.2.93-.75 1.15-1.53.72l-4.53-3.34-2.18 2.1c-.24.24-.44.44-.9.44z"/>
+        </svg>
+    </a>
+    
+    <!-- VK (Navigation disabled) -->
+    <a href="javascript:void(0)" aria-label="VK" class="social-link" title="VK (coming soon)" style="opacity: 0.5; cursor: default;">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M15.684 18.653c-6.87 0-10.785-4.71-10.951-12.545h3.456c.115 5.753 2.651 8.186 4.664 8.691V6.108h3.255v4.962c1.993-.214 4.082-2.474 4.787-4.962h3.255c-.538 3.132-2.843 5.392-4.502 6.353 1.66.786 4.218 2.766 5.16 6.192h-3.585c-.736-2.298-2.574-4.072-5.011-4.318v4.318h-.528z"/>
+        </svg>
+    </a>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <p>© 2026 Gástronomy Studio. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/gastronomy-studio/js/script.js"></script>
+<script src="/gastronomy-studio/js/search-page.js"></script>
+<script src="/gastronomy-studio/js/favorites.js"></script>
+</body>
+</html>
