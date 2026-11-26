@@ -142,6 +142,8 @@ if (card) {
         });
 
         // 2. Обновляем кнопки на отдельных страницах блюд и статей
+        const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+
         document.querySelectorAll('[data-id]').forEach(el => {
             const elId = el.dataset.id;
             const isFav = favoriteIds.includes(elId);
@@ -152,7 +154,9 @@ if (card) {
 
             const btnText = el.querySelector('.btn-text');
             if (btnText) {
-                btnText.textContent = isFav ? 'В избранном' : 'Добавить в избранное';
+                btnText.textContent = isEn
+                    ? (isFav ? 'In favorites' : 'Add to favorites')
+                    : (isFav ? 'В избранном' : 'Добавить в избранное');
             }
         });
 
