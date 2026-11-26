@@ -539,67 +539,88 @@ if (openRecipesMenuBtn && burgerBtn && navGroup) {
 
 
 
-    // ==========================================
+// ==========================================
+// 7. ВЫБОР ЯЗЫКА (МОБИЛЬНЫЕ, ПЛАНШЕТЫ И ДЕСКТОП)
+// ==========================================
+const langWrappers = document.querySelectorAll('.lang-select-wrapper');
 
-    // 7. МОБИЛЬНЫЙ ВЫБОР ЯЗЫКА
+langWrappers.forEach(wrapper => {
+    const btn = wrapper.querySelector('button');
+    const dropdown = wrapper.querySelector('.lang-dropdown');
+    if (!btn || !dropdown) return;
 
-    // ==========================================
+    let lastToggleTime = 0;
 
-    const mobileLangWrapper = document.querySelector('.mobile-lang-wrapper');
+    function toggleLangDropdown(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
 
-    const mobileLangBtn = document.getElementById('mobileLangBtn');
+        const now = Date.now();
+        if (now - lastToggleTime < 250) return;
+        lastToggleTime = now;
 
-    const mobileLangDropdown = document.getElementById('mobileLangDropdown');
+        const isOpen = dropdown.classList.contains('active');
 
+        document.querySelectorAll('.lang-dropdown.active').forEach(d => {
+            d.classList.remove('active');
+        });
 
+        if (!isOpen) {
+            dropdown.classList.add('active');
+        }
+    }
 
-    if (mobileLangBtn && mobileLangDropdown && mobileLangWrapper) {
+    btn.addEventListener('pointerup', toggleLangDropdown);
+    btn.addEventListener('click', toggleLangDropdown);
 
-        mobileLangBtn.addEventListener('click', (e) => {
-
+    const langOptions = dropdown.querySelectorAll('.lang-option');
+    langOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
 
-            mobileLangDropdown.classList.toggle('active');
+            langOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            dropdown.classList.remove('active');
 
-        });
+            const selectedLang = (option.dataset.lang || option.textContent).trim().toLowerCase();
+            const currentPath = window.location.pathname;
+            const basePath = '/gastronomy-studio';
 
+            let relativePath = currentPath.startsWith(basePath)
+                ? currentPath.slice(basePath.length)
+                : currentPath;
 
-
-        const langOptions = mobileLangDropdown.querySelectorAll('.lang-option');
-
-        langOptions.forEach(option => {
-
-            option.addEventListener('click', (e) => {
-
-                e.preventDefault();
-
-               
-
-                langOptions.forEach(opt => opt.classList.remove('active'));
-
-                option.classList.add('active');
-
-               
-
-                mobileLangDropdown.classList.remove('active');
-
-            });
-
-        });
-
-
-
-        document.addEventListener('click', (e) => {
-
-            if (!mobileLangWrapper.contains(e.target)) {
-
-                mobileLangDropdown.classList.remove('active');
-
+            if (!relativePath.startsWith('/')) {
+                relativePath = '/' + relativePath;
             }
 
-        });
+            const isCurrentlyEn = relativePath === '/en' || relativePath.startsWith('/en/');
+            let nextPath = relativePath;
 
+            if (selectedLang === 'en' && !isCurrentlyEn) {
+                nextPath = relativePath === '/' ? '/en/index.html' : `/en${relativePath}`;
+            } else if (selectedLang === 'ru' && isCurrentlyEn) {
+                nextPath = relativePath.replace(/^\/en(\/|$)/, '/') || '/index.html';
+                if (nextPath === '/') nextPath = '/index.html';
+            }
+
+            const targetUrl = `${basePath}${nextPath}${window.location.search}`;
+            if (currentPath !== `${basePath}${nextPath}`) {
+                window.location.href = targetUrl;
+            }
+        });
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-select-wrapper')) {
+        document.querySelectorAll('.lang-dropdown.active').forEach(d => {
+            d.classList.remove('active');
+        });
     }
+});
 
 
 // ==========================================
