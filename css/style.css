@@ -299,8 +299,15 @@ input[type="text"].search-input::placeholder {
     flex-direction: column;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s ease;
     z-index: 100;
+}
+
+.lang-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .lang-option {
@@ -2401,15 +2408,14 @@ h3.article-card-title {
     margin: 0 0 auto 0;
 }
 
-/* Кнопка неподвижна, только свечение при hover */
 .ferment-card-info .btn-gold {
     margin-top: 16px;
     background: var(--gradient-gold);
     color: #ffffff;
-    padding: 10px 18px;
+    padding: 8px 16px;
     border-radius: 4px;
     font-family: var(--font-main);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -4530,11 +4536,16 @@ h3.article-card-title {
       margin-bottom: 8px;
     }
 
-    /* Твои эффекты для супер-читабельности текста на мобильных экранах */
+    /* Эффекты для супер-читабельности текста на мобильных экранах */
     .slide-title {
         font-size: 1.7rem;
         line-height: 1.2;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+    }
+
+   .carousel-slide[data-theme="dark"] .slide-tag {
+        color: #F7E3B5;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
     }
 
     .slide-subtitle {
