@@ -5421,7 +5421,6 @@ h3.article-card-title {
     }
 
     .recipe-meta {
-        flex-wrap: wrap; 
         gap: 10px 14px;
         margin-bottom: 16px;
         font-size: 0.82rem;
