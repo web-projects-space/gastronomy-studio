@@ -212,8 +212,8 @@ footer,
 .action-group {
     display: flex;
     align-items: center;
-    gap: 36px; 
-    margin-left: auto; 
+    gap: 36px;
+    margin-left: auto;
 }
 
 .action-btn {
@@ -229,6 +229,68 @@ footer,
     height: 24px;
     transition: color 0.2s ease, transform 0.2s ease;
     text-decoration: none;
+}
+
+/* Обёртка кнопки темы с подсказкой */
+.theme-control {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-hint {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: -6px;
+    z-index: 1060;
+    width: max-content;
+    max-width: 240px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #3d312c;
+    color: #fbf8f5;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 0 10px 26px rgba(36, 26, 22, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scale(0.98);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+/* Стрелочка вверх к иконке луны */
+.theme-hint::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 12px;
+    width: 9px;
+    height: 9px;
+    background: #3d312c;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    transform: rotate(45deg);
+}
+
+.theme-hint.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.hint-text {
+    display: none;
+}
+
+.hint-text.is-active {
+    display: inline;
 }
 
 /* Переключатели иконки темы */
@@ -4415,19 +4477,51 @@ h3.article-card-title {
     }
 
     /* --- НИЖНЯЯ ПАНЕЛЬ С ТЕМОЙ И ЯЗЫКОМ --- */
-    .main-header .mobile-action-group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 28px;
-        margin-top: auto;
-        margin-bottom: 75px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
-        width: 140px;
-        position: relative;
-        overflow: visible;
-    }
+   .main-header .mobile-action-group {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 28px;
+       margin-top: auto !important;
+       margin-bottom: 75px !important;
+       padding-top: 16px;
+       border-top: 1px solid rgba(0, 0, 0, 0.08);
+       width: 140px !important;
+       position: relative !important;
+       overflow: visible;
+   }
+
+   .main-header .mobile-action-group .theme-control {
+       position: relative;
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       flex-shrink: 0;
+   }
+   
+   .main-header .mobile-action-group .theme-hint {
+       left: 50%;
+       right: auto;
+       width: max-content;
+       min-width: 160px;
+       max-width: 220px;
+       font-size: 11.5px;
+       transform: translate(-50%, -6px) scale(0.98);
+   }
+   
+   .main-header .mobile-action-group .theme-hint::before {
+       content: "";
+       position: absolute;
+       left: 50%;
+       right: auto;
+       transform: translateX(-50%) rotate(45deg);
+   }
+   
+   .main-header .mobile-action-group .theme-hint.is-visible {
+       opacity: 1 !important;
+       visibility: visible !important;
+       transform: translate(-50%, 0) scale(1) !important;
+   }
 
     .main-header .mobile-lang-wrapper {
         position: relative;
