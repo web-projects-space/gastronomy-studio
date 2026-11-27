@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Быстрый подъём теста без духовки | Gastronomy Studio</title>
-    <meta name="description" content="Простой лайфхак с мультиваркой или духовкой, который заменяет профессиональную расстоечную камеру.">
+    <title>Курица как в ресторане | Gastronomy Studio</title>
+    <meta name="description" content="Почему в ресторанах курица всегда получается сочной и румяной? Применяем реакцию Майара на практике.">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Gastronomy Studio">
-    <meta property="og:title" content="Быстрый подъём дрожжевого теста">
-    <meta property="og:description" content="Простой лайфхак с мультиваркой или духовкой, который заменяет профессиональную расстоечную камеру.">
-    <meta property="og:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/dough-hack/dough-hack-full.webp">
-    <meta property="og:url" content="https://gastronomy-studio.ru/gastronomy-studio/articles_/hacks/dough-hack.html">
+    <meta property="og:title" content="Секреты идеальной хрустящей корочки">
+    <meta property="og:description" content="Почему в ресторанах курица всегда получается сочной и румяной? Применяем реакцию Майара на практике.">
+    <meta property="og:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp">
+    <meta property="og:url" content="https://gastronomy-studio.ru/gastronomy-studio/articles_/hacks/crispy-chicken-hack.html">
     <meta property="article:section" content="Лайфхаки">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Быстрый подъём дрожжевого теста">
-    <meta name="twitter:description" content="Простой лайфхак с мультиваркой или духовкой, который заменяет профессиональную расстоечную камеру.">
-    <meta name="twitter:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/dough-hack/dough-hack-full.webp">
+    <meta name="twitter:title" content="Секреты идеальной хрустящей корочки">
+    <meta name="twitter:description" content="Почему в ресторанах курица всегда получается сочной и румяной? Применяем реакцию Майара на практике.">
+    <meta name="twitter:image" content="https://gastronomy-studio.ru/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -93,17 +93,33 @@
 
             <!-- Иконки для мобилок -->
             <div class="mobile-action-group">
-                <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему">
-                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <div class="theme-control">
+                <button type="button" class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему" aria-describedby="mobile-theme-hint">
+                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
                 </button>
+                <div id="mobile-theme-hint" class="theme-hint" role="status" aria-live="polite">Тёмная тема скоро появится</div>
+            </div>
+            
                 <div class="lang-select-wrapper mobile-lang-wrapper">
                     <button class="action-btn" id="mobileLangBtn" aria-label="Язык">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
                     </button>
                     <div class="lang-dropdown" id="mobileLangDropdown">
                         <a href="#" class="lang-option active">RU</a>
-                        <a href="/gastronomy-studio/en/articles_/hacks/dough-hack.html" class="lang-option">EN</a>
+                        <a href="/gastronomy-studio/en/articles_/hacks/crispy-chicken-hack.html" class="lang-option">EN</a>
                     </div>
                 </div>
             </div>
@@ -119,16 +135,30 @@
                             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                         </svg>
                     </button>
-            </form>
-
+                </form>
             <a href="/gastronomy-studio/favorites.html" class="action-btn" aria-label="Сохраненное">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             </a>
 
-            <button class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему">
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <div class="theme-control">
+            <button type="button" class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему" aria-describedby="desktop-theme-hint">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
             </button>
+            <div id="desktop-theme-hint" class="theme-hint" role="status" aria-live="polite">Тёмная тема скоро появится</div>
+        </div>
 
             <div class="lang-select-wrapper">
                 <button class="action-btn" aria-label="Язык">
@@ -136,7 +166,7 @@
                 </button>
                 <div class="lang-dropdown">
                     <a href="#" class="lang-option active">RU</a>
-                    <a href="/gastronomy-studio/en/articles_/hacks/dough-hack.html" class="lang-option">EN</a>
+                    <a href="/gastronomy-studio/en/articles_/hacks/crispy-chicken-hack.html" class="lang-option">EN</a>
                 </div>
             </div>
         </div>
@@ -151,83 +181,81 @@
 <!-- Основной контент -->
 <main class="main-content">
 
-        <!-- СТАТЬЯ-ЛАЙФХАК -->
-        <article class="single-article hack-article">
-            <div class="container container-narrow">
+    <!-- СТАТЬЯ ЛАЙФХАК -->
+    <article class="single-article hack-article">
+        <div class="container container-narrow">
 
-        <!-- Хлебные крошки -->
-        <nav class="breadcrumbs-container">
-            <a href="/gastronomy-studio/articles_/index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="back-link">
-                ← Назад
-            </a>
-        </nav>
-                
-<!-- Шапка статьи -->
-<header class="article-header">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs-container">
+                <a href="/gastronomy-studio/articles_/index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="back-link">
+                    ← Назад 
+                </a>
+            </nav>
 
-    <h1 class="article-title">Быстрый подъём дрожжевого теста без духовки за 2 минуты</h1>
+            <!-- Шапка статьи -->
+            <header class="article-header">
+                <h1 class="article-title">Курица как в ресторане: Секреты идеальной хрустящей корочки</h1>
 
-    <!-- Строка метаданных -->
-    <div class="article-author-info">
-        <span class="story-date">12 октября 2026</span>
-        <span class="meta-dot">•</span>
-        <span class="read-time">4 мин чтения</span>
-    </div>
-
-    <p class="article-lead">
-        Простой способ создать идеальную расстоечную камеру с влажным теплом на любой кухне без батарей и сквозняков.
-    </p>
-</header>
-
-                <!-- Главное изображение статьи -->
-                <div class="article-hero-image">
-                    <img src="/gastronomy-studio/images/hacks/dough-hack/dough-hack-full.webp" alt="Пышное дрожжевое тесто" width="1200" height="675" fetchpriority="high">
-
-                    <!-- Кнопка закладки поверх обложки статьи -->
-                    <button class="fav-btn" aria-label="Сохранить в закладки" data-id="dough-hack">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-                        </svg>
-                    </button> 
+                <!-- Строка метаданных -->
+                <div class="article-author-info">
+                    <span class="story-date">8 ноября 2026</span>
+                    <span class="meta-dot">•</span>
+                    <span class="read-time">4 мин чтения</span>
                 </div>
 
-                <!-- Тело статьи -->
-                <div class="article-body">
-                    <p>Часто при выпечке пирожков или домашнего хлеба мы сталкиваемся с тем, что дома прохладно, а дрожжевое тесто категорически отказывается подниматься. Надеяться на батарею — долго, а результат не всегда надёжный. Но есть профессиональный секрет шеф-кондитеров, который заменяет дорогое ресторанное оборудование.</p>
-                    
-                    <h3>Что вам понадобится:</h3>
-                    <ul>
-                        <li>Обычная микроволновка (любой мощности)</li>
-                        <li>1 стакан воды (около 200–250 мл)</li>
-                        <li>Ваша миска с замешанным тестом</li>
-                    </ul>
+                <p class="article-lead">
+                    Почему в ресторанах сочные куриные бёдра всегда получаются с идеальной золотистой корочкой, а дома часто тушатся? Применяем реакцию Майара на практике.
+                </p>
+            </header>
 
-                    <h3>Пошаговая инструкция:</h3>
-                    <ol>
-                        <li>Налейте в стакан воду и поставьте его в микроволновку. Включите максимальную мощность на 2–3 минуты, чтобы вода закипела, а внутри камеры образовался густой пар.</li>
-                        <li>Осторожно отодвиньте стакан в дальний угол микроволновки, быстро поставьте рядом миску с тестом (накрытую лёгким полотенцем или пищевой плёнкой) и <strong>мгновенно закройте дверцу</strong>.</li>
-                        <li><strong>Ни в коем случае не включайте микроволновку повторно!</strong> Прибор должен быть выключен. Нам нужна исключительно его герметичная камера, превратившаяся в мини-парник.</li>
-                    </ol>
+            <!-- Главное изображение статьи -->
+            <div class="article-hero-image">
+                <img src="/gastronomy-studio/images/hacks/crispy-chicken/crispy-chicken-full.webp" alt="Сочные куриные бёдра с хрустящей корочкой" width="1200" height="675" fetchpriority="high">
 
-                    <blockquote class="chef-note">
-                        В закрытой микроволновке сохраняется 100% влажности и комфортная температура около +35°C. В таких условиях дикие дрожжи и штаммы сахаромицетов работают в 2 раза быстрее, а тесто не заветривается и не покрывается сухой коркой.
-                    </blockquote>
-
-                    <figure class="article-embedded-image">
-                        <img src="/gastronomy-studio/images/hacks/dough-hack/rising-dough.webp" alt="Пышное тесто" width="800" height="600" loading="lazy">
-                    </figure>
-
-                    <h3>Важные нюансы для идеального результата</h3>
-                    <ul>
-                        <li>Убедитесь, что миска с тестом термостойкая и не имеет металлических элементов (ободков), если вдруг случайно решите нарушить правило и включить прибор (чего делать категорически нельзя!).</li>
-                        <li><strong>Время расстойки:</strong> Обычно в таких тепличных условиях тесто увеличивается в объёме в два-три раза уже через 30–40 минут.</li>
-                    </ul>
-
-                    <p>Оставьте тесто в этой импровизированной «камере» — и вы получите пышную, воздушную основу для будущей выпечки без лишних хлопот!</p>
-                </div>
+                <!-- Кнопка закладки поверх обложки статьи -->
+                <button class="fav-btn" aria-label="Сохранить в закладки" data-id="crispy-chicken">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button> 
             </div>
-        </article>
-    </main>
+
+            <div class="article-body">
+                <p>Секрет идеального ресторанного ужина кроется в нюансах техники. Сегодня разберём, как превратить приготовление куриных бёдер на обычной сковороде в настоящее гастрономическое событие.</p>
+                
+                <h3>1. Три правила подготовки до жарки</h3>
+                <p>Главный секрет идеальной корочки начинается задолго до того, как мясо коснется сковороды:</p>
+                <ul>
+                    <li><strong>Комнатная температура:</strong> Никогда не выкладывайте мясо сразу из холодильника. Ледяная курица резко остудит сковороду, начнёт выделять сок и будет вариться в собственном соку вместо жарки.</li>
+                    <li><strong>Идеальная сухость (Влага — враг хруста):</strong> Тщательно промокните бёдра бумажным полотенцем. Пока на поверхности есть хоть капля воды, реакция Майара не начнётся, а влага заблокирует образование корочки.</li>
+                    <li><strong>Прогрев посуды:</strong> Выкладывайте мясо только на хорошо разогретую сковороду с каплей масла с высокой точкой дымления.</li>
+                </ul>
+
+                <blockquote class="chef-note">
+                    Важно: Указанное время жарки идеально подходит для филе бедра или небольших бескостных бёдер. Если вы используете крупные части на кости — обязательно доводите их до готовности в духовке, чтобы мясо у кости не осталось розовым.
+                </blockquote>
+
+                <h3>2. Пошаговая техника обжарки</h3>
+                <p>Соблюдайте чёткую последовательность на сковороде для достижения ресторанного результата:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Бёдрышки обсушите, посолите со стороны мяса. Выложите шкуркой вниз в разогретую сковороду.</li>
+                    <li><strong>Шаг 2 (Правило «Не беспокоить»):</strong> Жарьте на средне-сильном огне 8–12 минут. <em>Не двигайте и не трогайте кусочки!</em> Дайте реакции Майара время «запечатать» поверхность и создать тот самый золотистый каркас.</li>
+                    <li><strong>Шаг 3:</strong> Переверните и жарьте ещё 6–8 минут. Если куски толстые — накройте крышкой на 1–2 минуты в самом конце.</li>
+                    <li><strong>Шаг 4 (Французская техника Арозе):</strong> За 2 минуты до готовности добавьте в сковороду раздавленный чеснок, веточку розмарина и кусочек сливочного масла. Ароматизированным пенящимся маслом поливайте курицу сверху с помощью ложки.</li>
+                </ul>
+
+                <figure class="article-embedded-image">
+                    <img src="/gastronomy-studio/images/hacks/crispy-chicken/seared-chicken.webp" alt="Курица в процессе жарки" width="800" height="600" loading="lazy">
+                </figure>
+
+                <h3>3. Финальный штрих: Отдых мяса</h3>
+                <p>Снимите мясо со сковороды на доску или тёплую тарелку, посыпьте свежемолотым чёрным перцем и свободно накройте фольгой на 5 минут.</p>
+                
+                <p>Этот простой шаг позволит мясным сокам, собравшимся в центре от высокой температуры, равномерно перераспределиться по всем волокнам. Курица получится невероятно сочной внутри и хрустящей снаружи!</p>
+            </div>
+        </div>
+    </article>
+</main>
 
             <!-- FOOTER / ПОДВАЛ (ДЛЯ ВНУТРЕННИХ СТРАНИЦ) -->
     <footer id="contacts" class="site-footer">
