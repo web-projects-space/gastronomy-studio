@@ -1,5 +1,3 @@
-console.log('--- JS ФАЙЛ УСПЕШНО ПОДКЛЮЧЕН И РАБОТАЕТ! ---');
-
 document.addEventListener('DOMContentLoaded', () => {
     
 // ==========================================
@@ -136,25 +134,73 @@ if (mobileSearchForm && mobileSearchInput) {
 
 
 
-    // ==========================================
+// ==========================================
+// 2. ПОДСКАЗКА ПО ТЁМНОЙ ТЕМЕ (ДЕСКТОП И МОБИЛЬНЫЕ)
+// ==========================================
+(() => {
+    const controls = document.querySelectorAll('.theme-control');
+    if (!controls.length) return;
 
-    // 2. ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (ДЕСКТОП И МОБИЛЬНЫЕ)
+    function getCurrentLang() {
+        const htmlLang = (document.documentElement.lang || '').toLowerCase();
+        if (htmlLang.startsWith('en') || window.location.pathname.includes('/en/')) {
+            return 'en';
+        }
+        return 'ru';
+    }
 
-    // ==========================================
+    function hideAllHints() {
+        controls.forEach((ctrl) => {
+            const hint = ctrl.querySelector('.theme-hint');
+            if (hint) hint.classList.remove('is-visible');
+            if (ctrl._hideTimer) clearTimeout(ctrl._hideTimer);
+        });
+    }
 
-    const themeBtns = document.querySelectorAll('.theme-btn');
+    controls.forEach((ctrl) => {
+        const btn = ctrl.querySelector('.theme-btn');
+        const hint = ctrl.querySelector('.theme-hint');
+        const texts = ctrl.querySelectorAll('.hint-text');
+        if (!btn || !hint) return;
 
-   
+        function syncLang() {
+            const lang = getCurrentLang();
+            texts.forEach((el) => {
+                el.classList.toggle('is-active', el.dataset.lang === lang);
+            });
+        }
 
-    themeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-        btn.addEventListener('click', () => {
+            const alreadyOpen = hint.classList.contains('is-visible');
+            hideAllHints();
 
-            document.body.classList.toggle('dark-theme');
-
+            if (!alreadyOpen) {
+                syncLang();
+                hint.classList.add('is-visible');
+                ctrl._hideTimer = setTimeout(() => {
+                    hint.classList.remove('is-visible');
+                }, 2800);
+            }
         });
 
+        syncLang();
     });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.theme-control')) {
+            hideAllHints();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideAllHints();
+        }
+    });
+})();
 
     // ==========================================
     // 3. БАННЕР-КАРУСЕЛЬ (HERO CAROUSEL)
@@ -537,8 +583,7 @@ if (openRecipesMenuBtn && burgerBtn && navGroup) {
 
     });
 
-
-
+    
 // ==========================================
 // 7. ВЫБОР ЯЗЫКА (МОБИЛЬНЫЕ, ПЛАНШЕТЫ И ДЕСКТОП)
 // ==========================================
@@ -633,7 +678,7 @@ if (articlesSection && articlesSection.querySelector('.articles-grid')) {
     const cards = Array.from(grid.querySelectorAll('.article-card'));
     const heroCard = articlesSection.querySelector('.story-hero-card');
     const loadMoreBtn = articlesSection.querySelector('.load-more-btn');
-    
+
     // Берем ТОЛЬКО локальный инпут на самой странице статей
     const searchInput = document.getElementById('sectionSearch');
     const visibleCountEl = articlesSection.querySelector('.articles-counter strong, #visibleCount');
@@ -642,8 +687,8 @@ if (articlesSection && articlesSection.querySelector('.articles-grid')) {
     const INITIAL_COUNT = 11;
 
     function updateArticlesGrid() {
-        const isExpanded = loadMoreBtn ? loadMoreBtn.getAttribute('data-expanded') === 'true' : false;
-        
+        const isExpanded = loadMoreBtn ? loadMoreBtn.dataset.expanded === 'true' : false;
+
         const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const activeTag = tagBtns.find(btn => btn.classList.contains('active'));
         const filterValue = activeTag ? activeTag.getAttribute('data-filter') : 'all';
@@ -703,9 +748,17 @@ if (articlesSection && articlesSection.querySelector('.articles-grid')) {
 
         // 6. Кнопка "Показать ещё"
         if (loadMoreBtn) {
+            if (!loadMoreBtn.dataset.langMode) {
+                const initialText = loadMoreBtn.textContent.trim().toLowerCase();
+                loadMoreBtn.dataset.langMode = initialText.includes('show') ? 'en' : 'ru';
+            }
+
             if (matchedCards.length > INITIAL_COUNT && searchQuery === '' && (!filterValue || filterValue === 'all')) {
+                const isEn = loadMoreBtn.dataset.langMode === 'en';
                 loadMoreBtn.style.display = 'inline-block';
-                loadMoreBtn.textContent = isExpanded ? 'Свернуть' : 'Показать ещё';
+                loadMoreBtn.textContent = isEn
+                    ? (isExpanded ? 'Show less' : 'Show more')
+                    : (isExpanded ? 'Свернуть' : 'Показать ещё');
             } else {
                 loadMoreBtn.style.display = 'none';
             }
@@ -718,7 +771,7 @@ if (articlesSection && articlesSection.querySelector('.articles-grid')) {
             e.preventDefault();
             tagBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            if (loadMoreBtn) loadMoreBtn.setAttribute('data-expanded', 'false');
+            if (loadMoreBtn) loadMoreBtn.dataset.expanded = 'false';
             updateArticlesGrid();
         });
     });
@@ -732,118 +785,14 @@ if (articlesSection && articlesSection.querySelector('.articles-grid')) {
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const isExpanded = loadMoreBtn.getAttribute('data-expanded') === 'true';
-            loadMoreBtn.setAttribute('data-expanded', isExpanded ? 'false' : 'true');
+            const isExpanded = loadMoreBtn.dataset.expanded === 'true';
+            loadMoreBtn.dataset.expanded = isExpanded ? 'false' : 'true';
             updateArticlesGrid();
         });
     }
 
     // Инициализация при загрузке
     updateArticlesGrid();
-}
-
-// ==========================================
-// 8.2. СЮЖЕТЫ И КАТАЛОГИ РЕЦЕПТОВ (СИММЕТРИЧНАЯ СЕТКА)
-// ==========================================
-const recipesSection = document.querySelector('.recipes-section');
-const recipesGrid = recipesSection?.querySelector('.recipes-grid');
-
-if (recipesSection && recipesGrid) {
-    const filterSection = document.querySelector('.content-section');
-    const recipeCards = Array.from(recipesGrid.querySelectorAll('.recipe-card'));
-    const loadMoreBtn = recipesSection.querySelector('.recipes-load-more-btn, .load-more-btn');
-
-    const searchInput =
-        filterSection?.querySelector('#sectionSearch, input[type="search"], input[type="text"]') ||
-        null;
-
-    const tagBtns = filterSection
-        ? Array.from(filterSection.querySelectorAll('.tag-btn'))
-        : [];
-
-    const rawLimit = recipesGrid.getAttribute('data-limit') || recipesSection.getAttribute('data-limit');
-    const parsedLimit = rawLimit ? parseInt(rawLimit, 10) : 15;
-    const INITIAL_COUNT = Number.isNaN(parsedLimit) ? 15 : parsedLimit;
-
-    function getActiveFilter() {
-        const activeBtn = tagBtns.find(btn => btn.classList.contains('active'));
-        if (!activeBtn) return 'all';
-        return (
-            activeBtn.getAttribute('data-story-filter') ||
-            activeBtn.getAttribute('data-filter') ||
-            activeBtn.getAttribute('data-category') ||
-            activeBtn.getAttribute('data-story') ||
-            'all'
-        );
-    }
-
-    function updateRecipesGrid() {
-        const isExpanded = loadMoreBtn ? loadMoreBtn.getAttribute('data-expanded') === 'true' : false;
-        const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
-        const filterValue = getActiveFilter();
-        const isFiltered = searchQuery !== '' || (filterValue && filterValue !== 'all');
-
-        const matchedCards = recipeCards.filter(card => {
-            const titleText =
-                card.querySelector('.recipe-card-title, h2, h3, h4, a')?.textContent.toLowerCase() || '';
-            const cardValue =
-                card.getAttribute('data-story') ||
-                card.getAttribute('data-category') ||
-                '';
-
-            const matchesSearch = searchQuery === '' || titleText.includes(searchQuery);
-            const matchesFilter = (!filterValue || filterValue === 'all') || (cardValue === filterValue);
-
-            return matchesSearch && matchesFilter;
-        });
-
-        // Скрываем все карточки
-        recipeCards.forEach(card => {
-            card.style.setProperty('display', 'none', 'important');
-        });
-
-        // Показываем подходящие карточки
-        matchedCards.forEach((card, index) => {
-            if (isExpanded || isFiltered || index < INITIAL_COUNT) {
-                card.style.removeProperty('display');
-            }
-        });
-
-        // Кнопка "Показать ещё"
-        if (loadMoreBtn) {
-            if (!isFiltered && matchedCards.length > INITIAL_COUNT) {
-                loadMoreBtn.style.display = 'inline-block';
-                loadMoreBtn.textContent = isExpanded ? 'Свернуть' : 'Показать ещё';
-            } else {
-                loadMoreBtn.style.display = 'none';
-            }
-        }
-    }
-
-    tagBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            tagBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (loadMoreBtn) loadMoreBtn.setAttribute('data-expanded', 'false');
-            updateRecipesGrid();
-        });
-    });
-
-    if (searchInput) {
-        searchInput.addEventListener('input', updateRecipesGrid);
-    }
-
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isExpanded = loadMoreBtn.getAttribute('data-expanded') === 'true';
-            loadMoreBtn.setAttribute('data-expanded', isExpanded ? 'false' : 'true');
-            updateRecipesGrid();
-        });
-    }
-
-    updateRecipesGrid();
 }
 
 // ==========================================
@@ -941,8 +890,3 @@ if (storyCards.length > 0 && storyFilterBtns.length > 0) {
 }
 
 }); 
-
-
-
-
-
