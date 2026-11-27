@@ -55,7 +55,7 @@
             <div class="glass-dropdown">
                 <a href="/gastronomy-studio/recipes/hot-dishes/index.html" class="dropdown-item">Первые и горячие блюда</a>
                 <a href="/gastronomy-studio/recipes/salads/index.html" class="dropdown-item">Салаты и закуски</a>
-                <a href="/gastronomy-studio/recipes/baking.html" class="dropdown-item">Мучные блюда</a>
+                <a href="/gastronomy-studio/recipes/baking/index.html" class="dropdown-item">Мучные блюда</a>
                 <a href="/gastronomy-studio/recipes/desserts/index.html" class="dropdown-item is-active">Десерты и выпечка</a>
                 <a href="/gastronomy-studio/recipes/sauces/index.html" class="dropdown-item">Соусы и заправки</a>
                 <a href="/gastronomy-studio/recipes/drinks/index.html" class="dropdown-item">Напитки</a>
@@ -102,22 +102,25 @@
 <!-- ИКОНКИ СНИЗУ (Только для мобилок) -->
 <div class="mobile-action-group">
     <!-- Кнопка темы с луной и солнцем -->
-    <button class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему">
-        <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-    </button>
+            <div class="theme-control">
+                <button type="button" class="action-btn theme-btn" id="mobileThemeBtn" aria-label="Переключить тему" aria-describedby="mobile-theme-hint">
+                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <div id="mobile-theme-hint" class="theme-hint" role="status" aria-live="polite">Тёмная тема скоро появится</div>
+            </div>
 
     <!-- Выпадающий список языков -->
     <div class="lang-select-wrapper mobile-lang-wrapper">
@@ -154,22 +157,25 @@
             </svg>
         </a>
 
-        <button class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему">
-            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-        </button>
+        <div class="theme-control">
+            <button type="button" class="action-btn theme-btn" id="themeBtn" aria-label="Переключить тему" aria-describedby="desktop-theme-hint">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+            <div id="desktop-theme-hint" class="theme-hint" role="status" aria-live="polite">Тёмная тема скоро появится</div>
+        </div>
 
         <div class="lang-select-wrapper">
             <button class="action-btn" aria-label="Язык">
