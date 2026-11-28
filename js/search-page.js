@@ -116,7 +116,7 @@
 
         {
             title: "Архитектура блюда и правила построения объёма",
-            excerpt: "Секреты создания объёма и вертикали при подаче пасты и горячих блюд.",
+            excerpt: "Секреты создания объема и вертикали при подаче пасты и горячих блюд.",
             image: "images/hacks/food-architecture/food-architecture-card.webp",
             link: "articles_/hacks/food-architecture.html",
             badge: "Лайфхак",
@@ -467,7 +467,7 @@
             meta: "Лёгкая сложность"
         },
 
-                // STORIES
+        // STORIES
 
         {
             title: "The Secret History of the Croissant from Vienna to Paris",
@@ -935,6 +935,9 @@
 
     function initSearch() {
         const isSearchPage = window.location.pathname.includes('search.html');
+        const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+        const currentLang = isEn ? 'en' : 'ru';
+        const searchPagePath = isEn ? '/gastronomy-studio/en/search.html' : '/gastronomy-studio/search.html';
 
         function getActiveInputs() {
             return document.querySelectorAll('#pageSearchInput, #mobileSearchInput, #headerSearchInput, .search-input, .mobile-search-input, input[name="q"]');
@@ -974,9 +977,14 @@
                 queryTitleEl.textContent = `«${rawQuery}»`;
             }
 
-const filteredResults = SITE_DATABASE.filter(item => {
-    return item.title.toLowerCase().includes(query);
-});
+const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+            const currentLang = isEn ? 'en' : 'ru';
+            const searchPageUrl = isEn ? '/gastronomy-studio/en/search.html' : '/gastronomy-studio/search.html';
+
+            const filteredResults = SITE_DATABASE.filter(item => {
+                const itemLang = item.lang || (item.link.startsWith('en/') ? 'en' : 'ru');
+                return itemLang === currentLang && item.title.toLowerCase().includes(query);
+            });
 
             if (countEl) {
                 countEl.textContent = filteredResults.length;
@@ -989,11 +997,13 @@ const filteredResults = SITE_DATABASE.filter(item => {
                 if (noResultsEl) noResultsEl.style.display = 'none';
                 grid.style.display = 'grid';
 
-grid.innerHTML = filteredResults.map(item => `
+                grid.innerHTML = filteredResults.map(item => {
+                    const normalizedLink = isEn && !item.link.startsWith('en/') ? `en/${item.link}` : item.link;
+                    return `
 <article class="recipe-card" data-category="${item.category}">
     <div class="recipe-thumb">
         <img src="/gastronomy-studio/${item.image}" alt="${item.title}" loading="lazy">
-        <button class="fav-btn" aria-label="Сохранить">
+        <button class="fav-btn" aria-label="${isEn ? 'Save' : 'Сохранить'}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
             </svg>
@@ -1005,12 +1015,13 @@ grid.innerHTML = filteredResults.map(item => `
             <span class="recipe-level">${item.meta}</span>
         </div>
         <h3 class="recipe-card-title">
-            <a href="/gastronomy-studio/${item.link}">${item.title}</a>
+            <a href="/gastronomy-studio/${normalizedLink}">${item.title}</a>
         </h3>
         <p class="recipe-excerpt">${item.excerpt}</p>
     </div>
 </article>
-            `).join('');
+                    `;
+                }).join('');
             }
         }
 
@@ -1072,10 +1083,12 @@ grid.innerHTML = filteredResults.map(item => `
                 e.preventDefault();
                 const val = e.target.value.trim();
                 const isSearchPage = window.location.pathname.includes('search.html');
+                const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+                const targetSearchUrl = isEn ? '/gastronomy-studio/en/search.html' : '/gastronomy-studio/search.html';
                 
                 if (val) {
                     if (!isSearchPage) {
-                        window.location.href = `/gastronomy-studio/search.html?q=${encodeURIComponent(val)}`;
+                        window.location.href = `${targetSearchUrl}?q=${encodeURIComponent(val)}`;
                     } else {
                         document.querySelectorAll('#pageSearchInput, #mobileSearchInput, #headerSearchInput, .search-input, .mobile-search-input, input[name="q"]').forEach(el => el.value = val);
                         const grid = document.getElementById('searchResultsGrid');
@@ -1093,11 +1106,13 @@ grid.innerHTML = filteredResults.map(item => `
                 const input = form.querySelector('input[name="q"]');
                 const val = input ? input.value.trim() : '';
                 const isSearchPage = window.location.pathname.includes('search.html');
+                const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+                const targetSearchUrl = isEn ? '/gastronomy-studio/en/search.html' : '/gastronomy-studio/search.html';
                 
                 if (val) {
                     e.preventDefault();
                     if (!isSearchPage) {
-                        window.location.href = `/gastronomy-studio/search.html?q=${encodeURIComponent(val)}`;
+                        window.location.href = `${targetSearchUrl}?q=${encodeURIComponent(val)}`;
                     }
                 }
             }
